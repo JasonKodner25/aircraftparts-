@@ -6,6 +6,8 @@
 <title>Global Supply Chain Map — Aircraft Component Origins</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson@3/topojson.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -172,140 +174,8 @@ nav{
       <line x1="0" y1="340" x2="1400" y2="340" stroke="rgba(80,150,220,0.12)" stroke-width="1"/>
     </g>
 
-    <!-- ── CONTINENTS ── (equirectangular projection, 1400×680) -->
-    <!-- x = (lon+180)/360*1400  y = (90-lat)/180*680 -->
-    <g fill="#0e2238" stroke="#1e3a58" stroke-width=".8" stroke-linejoin="round">
-
-      <!-- NORTH AMERICA -->
-      <path d="M158,82 L196,66 L244,66 L284,72 L330,82 L370,88 L416,88 L444,100 L444,112
-               L424,120 L395,130 L383,146 L380,168 L388,190 L396,210 L393,220
-               L378,222 L366,217 L353,224 L334,232 L308,248 L280,263 L258,273
-               L238,268 L225,256 L224,244 L230,236 L218,232 L205,218
-               L193,200 L186,178 L180,158 L178,140 L180,122 L175,112
-               L159,102 L138,96 L115,92 L92,90 L78,86 L71,80 Z"/>
-      <!-- Florida peninsula -->
-      <path d="M390,192 L398,205 L400,220 L394,230 L386,228 L382,215 L386,200 Z"/>
-      <!-- Baja California -->
-      <path d="M172,210 L178,222 L175,238 L168,246 L162,240 L163,226 L168,214 Z"/>
-      <!-- Greenland -->
-      <path d="M430,44 L460,36 L498,34 L524,42 L528,56 L518,70 L494,78 L466,76 L444,64 L432,52 Z"/>
-      <!-- Cuba (simplified) -->
-      <path d="M342,250 L360,246 L378,248 L382,254 L364,258 L344,256 Z"/>
-
-      <!-- SOUTH AMERICA -->
-      <path d="M294,266 L318,260 L350,265 L378,280 L398,306 L408,332 L415,362
-               L414,395 L407,428 L394,460 L374,492 L350,514 L330,522
-               L310,512 L293,493 L278,463 L272,432 L270,398 L272,365
-               L278,334 L284,304 L293,278 Z"/>
-      <!-- Colombia coast bump -->
-      <path d="M284,278 L295,268 L310,265 L316,274 L302,282 Z"/>
-
-      <!-- EUROPE (including British Isles, Scandinavia, Iberia) -->
-      <!-- Main Europe body -->
-      <path d="M646,106 L668,100 L692,98 L714,96 L738,100 L758,108 L776,118
-               L786,130 L782,142 L770,152 L754,158 L738,162 L722,165
-               L706,164 L690,162 L674,164 L660,160 L648,152 L640,140
-               L638,128 L641,116 Z"/>
-      <!-- Scandinavia -->
-      <path d="M714,96 L730,80 L742,62 L748,50 L758,44 L768,48 L774,60
-               L768,72 L758,82 L750,92 L738,100 Z"/>
-      <!-- British Isles -->
-      <path d="M664,100 L676,95 L688,98 L693,108 L690,120 L682,126 L672,124 L664,116 L662,108 Z"/>
-      <!-- Ireland -->
-      <path d="M652,106 L660,102 L662,110 L658,118 L650,116 L648,110 Z"/>
-      <!-- Iberian Peninsula -->
-      <path d="M638,140 L640,154 L636,170 L628,182 L618,188 L610,182 L606,168
-               L608,154 L616,142 L628,136 Z"/>
-      <!-- Italy -->
-      <path d="M724,148 L732,150 L740,162 L744,176 L748,192 L740,208
-               L732,212 L728,198 L724,182 L720,166 L718,154 Z"/>
-      <!-- Greece -->
-      <path d="M770,160 L778,162 L782,172 L778,182 L770,184 L764,178 L764,168 Z"/>
-
-      <!-- AFRICA -->
-      <path d="M638,182 L660,176 L686,174 L714,176 L740,183 L760,196
-               L773,216 L780,242 L783,270 L780,300 L774,330 L765,360
-               L758,390 L748,418 L733,444 L710,462 L684,468 L658,462
-               L640,444 L626,418 L617,386 L612,352 L610,318 L612,285
-               L614,254 L618,224 L624,200 L632,186 Z"/>
-      <!-- Madagascar -->
-      <path d="M832,356 L840,344 L848,348 L850,368 L844,392 L836,404 L828,400 L824,384 L826,364 Z"/>
-
-      <!-- MIDDLE EAST / ARABIAN PENINSULA -->
-      <path d="M784,210 L808,202 L832,198 L852,206 L868,220 L876,238
-               L870,256 L856,270 L838,280 L818,282 L800,274 L786,260
-               L780,242 L782,226 Z"/>
-
-      <!-- ASIA — Main body -->
-      <path d="M792,58 L840,52 L896,46 L950,44 L1008,46 L1060,50 L1110,56
-               L1158,62 L1204,70 L1248,80 L1288,94 L1318,110 L1340,128
-               L1354,148 L1358,170 L1350,192 L1336,210 L1314,226 L1286,238
-               L1258,246 L1226,252 L1196,256 L1164,260 L1132,262 L1100,260
-               L1068,256 L1040,248 L1014,238 L990,225 L968,210 L950,195
-               L936,180 L924,166 L912,154 L896,144 L878,138 L858,136
-               L838,140 L818,148 L800,158 L786,170 L778,184 L774,198
-               L776,210 L784,210 L784,200 L788,188 L796,176 L808,164
-               L822,154 L838,147 L856,144 L874,146 L890,152 L906,162
-               L918,174 L928,188 L938,200 L952,214 L968,225 L984,232
-               L1000,236 L1020,240 L1040,244 L1060,248 L1080,250 L1100,250
-               L1120,248 L1140,244 L1158,238 L1176,228 L1190,218 L1200,208
-               L1208,196 L1212,182 L1210,168 L1200,154 L1184,142 L1166,132
-               L1148,124 L1126,118 L1102,114 L1076,112 L1050,114 L1022,118
-               L998,124 L978,130 L962,136 L948,140 L932,140 L918,136 L906,128
-               L896,120 L886,112 L878,104 L870,96 L858,88 L844,80 L830,74
-               L816,70 L800,65 L784,62 Z"/>
-      <!-- Indian Subcontinent -->
-      <path d="M916,200 L934,196 L952,202 L966,216 L972,234 L968,252
-               L958,272 L944,292 L928,306 L910,310 L896,302 L886,284
-               L880,264 L880,244 L886,226 L898,210 Z"/>
-      <!-- Southeast Asia / Indochina -->
-      <path d="M1060,252 L1078,248 L1094,252 L1104,268 L1100,286 L1090,300
-               L1076,308 L1062,306 L1052,296 L1048,280 L1050,264 Z"/>
-      <!-- Sri Lanka -->
-      <path d="M932,310 L940,308 L944,318 L940,326 L932,322 L928,314 Z"/>
-
-      <!-- KOREA -->
-      <path d="M992,182 L1004,178 L1016,184 L1020,198 L1017,213 L1006,218 L995,213 L991,200 Z"/>
-
-      <!-- JAPAN (main islands) -->
-      <!-- Honshu -->
-      <path d="M1016,166 L1032,160 L1050,162 L1068,172 L1082,186 L1090,202
-               L1086,218 L1074,228 L1058,232 L1042,228 L1028,216 L1018,200
-               L1012,184 Z"/>
-      <!-- Kyushu -->
-      <path d="M1042,230 L1052,228 L1060,236 L1058,248 L1048,252 L1040,246 L1038,236 Z"/>
-      <!-- Hokkaido -->
-      <path d="M1060,140 L1076,136 L1090,140 L1096,152 L1090,162 L1074,166 L1062,160 L1056,150 Z"/>
-
-      <!-- TAIWAN -->
-      <path d="M1096,214 L1104,210 L1110,218 L1108,230 L1100,234 L1093,228 L1092,218 Z"/>
-
-      <!-- INDONESIA (simplified) -->
-      <path d="M1062,330 L1094,320 L1128,318 L1162,320 L1190,326 L1204,338
-               L1198,348 L1176,350 L1148,348 L1120,346 L1094,342 L1068,340 Z"/>
-      <path d="M1204,330 L1230,322 L1260,320 L1284,326 L1296,338 L1290,348 L1268,350 L1240,346 L1214,342 Z"/>
-
-      <!-- AUSTRALIA -->
-      <path d="M1088,380 L1138,366 L1192,366 L1238,374 L1270,390 L1290,416
-               L1298,446 L1294,478 L1278,506 L1252,524 L1218,534 L1182,534
-               L1148,524 L1114,504 L1088,480 L1070,452 L1064,420 L1068,396 Z"/>
-      <!-- Tasmania -->
-      <path d="M1182,548 L1192,544 L1200,552 L1196,562 L1186,564 L1178,558 Z"/>
-      <!-- New Zealand North -->
-      <path d="M1314,484 L1326,476 L1334,484 L1330,498 L1320,504 L1312,498 Z"/>
-      <!-- New Zealand South -->
-      <path d="M1302,510 L1316,504 L1326,512 L1320,530 L1306,540 L1294,534 L1290,518 Z"/>
-
-      <!-- ALASKA -->
-      <path d="M54,88 L70,80 L92,84 L106,90 L116,96 L126,100 L138,100
-               L148,104 L150,112 L136,116 L118,116 L100,112 L82,108 L64,100 Z"/>
-      <!-- Aleutians suggestion -->
-      <path d="M54,106 L62,102 L72,104 L80,108 L72,112 L60,110 Z"/>
-
-      <!-- ICELAND -->
-      <path d="M568,68 L584,62 L600,64 L608,74 L604,84 L590,90 L574,88 L562,78 Z"/>
-
-    </g>
+    <!-- Countries rendered by D3 + TopoJSON (accurate outlines) -->
+    <g id="countries"></g>
 
     <!-- ── CONNECTION ARCS ── -->
     <!-- Each arc goes from manufacturing city → final assembly city -->
@@ -700,6 +570,85 @@ document.querySelectorAll('.city').forEach(g => {
     ttVisible = false;
   });
 });
+</script>
+
+<script>
+// ── Accurate world map via D3 + TopoJSON ─────────────────────────────────────
+// Custom projection that matches the existing coordinate system exactly:
+//   x = (lon + 180) / 360 * 1400
+//   y = (90 - lat) / 180 * 680
+// This means all existing arc endpoints and city dots remain pixel-perfect.
+(async function renderCountries() {
+  try {
+    // Define the raw projection function (inputs are radians)
+    function rawProj(lambda, phi) {
+      const lon = lambda * 180 / Math.PI;
+      const lat  = phi   * 180 / Math.PI;
+      return [
+        (lon + 180) / 360 * 1400,
+        (90 - lat)  / 180 * 680
+      ];
+    }
+    rawProj.invert = function([x, y]) {
+      return [
+        (x / 1400 * 360 - 180) * Math.PI / 180,
+        (90 - y / 680 * 180)   * Math.PI / 180
+      ];
+    };
+
+    const projection = d3.geoProjection(rawProj);
+    const path = d3.geoPath().projection(projection);
+
+    // Load 110m-resolution world atlas (≈100 KB, good detail)
+    const world = await d3.json(
+      'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
+    );
+
+    const countries  = topojson.feature(world, world.objects.countries);
+    const borders    = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+    const land       = topojson.merge(world, world.objects.countries.geometries);
+
+    const g = d3.select('#countries');
+
+    // Land fill
+    g.append('path')
+      .datum(land)
+      .attr('d', path)
+      .attr('fill', '#0d2040')
+      .attr('stroke', 'none');
+
+    // Individual country fills (slightly lighter for variation)
+    g.selectAll('path.ctry')
+      .data(countries.features)
+      .enter().append('path')
+        .attr('class', 'ctry')
+        .attr('d', path)
+        .attr('fill', 'none')
+        .attr('stroke', 'none');
+
+    // Country border lines
+    g.append('path')
+      .datum(borders)
+      .attr('d', path)
+      .attr('fill', 'none')
+      .attr('stroke', '#1e4060')
+      .attr('stroke-width', '0.55')
+      .attr('stroke-linejoin', 'round');
+
+    // Coastline / outer edge
+    g.append('path')
+      .datum(land)
+      .attr('d', path)
+      .attr('fill', 'none')
+      .attr('stroke', '#2a5880')
+      .attr('stroke-width', '0.8')
+      .attr('stroke-linejoin', 'round');
+
+  } catch (err) {
+    // If CDN fails, the empty <g id="countries"> just leaves the dark ocean
+    console.warn('World atlas load failed:', err);
+  }
+})();
 </script>
 </body>
 </html>

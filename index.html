@@ -120,6 +120,24 @@ main{max-width:1300px;margin:0 auto;padding:0 32px 100px;}
 }
 .card:hover .card-cta{gap:10px;}
 .card-cta span{margin-left:auto;font-size:13px;}
+/* Modal hero photo */
+.modal-hero{
+  position:relative;height:260px;background:#04080f;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.modal-hero img{
+  width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block;
+}
+.modal-hero-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(4,8,16,.08) 0%,rgba(4,8,16,.55) 100%);
+  pointer-events:none;
+}
+.modal-hero-label{
+  position:absolute;bottom:14px;left:34px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(200,230,255,.55);
+}
 /* Modal */
 .overlay{position:fixed;inset:0;background:rgba(2,5,12,.95);backdrop-filter:blur(14px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .overlay.open{opacity:1;pointer-events:all;}
@@ -202,6 +220,7 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
 
 <script>
 const DOT_COLORS=['#5ba3f5','#4fd18a','#f0c040','#e05c4f','#a78bfa','#38d9f9','#fb923c','#f472b6'];
+const loadedPhotos={};
 
 // ── SIDE-PROFILE SVGs (viewBox 0 0 560 215) ──────────────────────────────────
 const SVG={
@@ -889,6 +908,7 @@ async function loadAircraftPhotos(){
       if(!card)continue;
       const img=card.querySelector('.aircraft-photo');
       const fallback=card.querySelector('.photo-fallback');
+      loadedPhotos[id]=page.thumbnail.source;
       img.onload=()=>{
         img.classList.add('loaded');
         if(fallback)fallback.style.opacity='0';
@@ -934,7 +954,13 @@ function buildTable(id){
 
 function openModal(id){
   const a=AIRCRAFT[id];
+  const photoSrc=loadedPhotos[id]||'';
   document.getElementById('modal').innerHTML=`
+    ${photoSrc?`<div class="modal-hero">
+      <img src="${photoSrc}" alt="${a.name}" onerror="this.parentElement.style.display='none'"/>
+      <div class="modal-hero-grad"></div>
+      <div class="modal-hero-label">${a.name} — ${a.manufacturer}</div>
+    </div>`:''}
     <div class="modal-top">
       <div>
         <div class="modal-title">${a.name}</div>
