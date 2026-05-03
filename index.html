@@ -7,253 +7,121 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #07111f;
-  --surface: #0b1928;
-  --card: #0e2035;
-  --border: rgba(80,150,220,0.14);
-  --border-hover: rgba(80,150,220,0.35);
-  --accent: #2d7dd2;
-  --accent-bright: #5ba3f5;
-  --text: #a8c8e8;
-  --text-dim: #4a6a8a;
-  --text-bright: #deeeff;
-  --grid: rgba(80,150,220,0.055);
+:root{
+  --bg:#07111f;--surface:#0b1928;--card:#07131f;
+  --border:rgba(80,150,220,0.14);--border-hover:rgba(80,150,220,0.35);
+  --accent:#2d7dd2;--accent-bright:#5ba3f5;
+  --text:#a8c8e8;--text-dim:#4a6a8a;--text-bright:#deeeff;
+  --grid:rgba(80,150,220,0.055);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  background-image:
-    linear-gradient(var(--grid) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
   background-size:48px 48px;
 }
-
-/* ── HEADER ── */
-header{
-  text-align:center;
-  padding:72px 24px 52px;
-  position:relative;
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:rgba(7,17,31,0.92);backdrop-filter:blur(12px);z-index:50;
 }
+.nav-brand{font-weight:800;font-size:14px;color:var(--text-bright);letter-spacing:-.01em;}
+.nav-brand span{color:var(--accent-bright);}
+.nav-link{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent-bright);text-decoration:none;
+  border:1px solid rgba(91,163,245,.25);padding:6px 14px;border-radius:2px;
+  background:rgba(91,163,245,.06);transition:all .15s;
+}
+.nav-link:hover{background:rgba(91,163,245,.14);border-color:rgba(91,163,245,.45);}
+header{text-align:center;padding:64px 24px 48px;position:relative;}
 header::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;transform:translateX(-50%);
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
   width:600px;max-width:90%;height:1px;
   background:linear-gradient(90deg,transparent,rgba(80,150,220,0.3),transparent);
 }
 .tag{
-  display:inline-block;
-  font-family:'JetBrains Mono',monospace;
-  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--accent-bright);
-  border:1px solid rgba(91,163,245,0.25);
-  padding:4px 14px;border-radius:2px;
-  margin-bottom:22px;
-  background:rgba(91,163,245,0.06);
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);
+  border:1px solid rgba(91,163,245,.25);padding:4px 14px;border-radius:2px;
+  margin-bottom:22px;background:rgba(91,163,245,.06);
 }
-header h1{
-  font-size:clamp(2rem,4.5vw,3.2rem);
-  font-weight:800;color:var(--text-bright);
-  letter-spacing:-0.025em;line-height:1.1;
-  margin-bottom:14px;
-}
+header h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:var(--text-bright);letter-spacing:-.025em;line-height:1.1;margin-bottom:14px;}
 header h1 em{font-style:normal;color:var(--accent-bright);}
-header p{
-  font-size:.93rem;color:var(--text-dim);
-  max-width:480px;margin:0 auto;line-height:1.75;
-}
-
-/* ── MAIN ── */
+header p{font-size:.9rem;color:var(--text-dim);max-width:460px;margin:0 auto;line-height:1.75;}
 main{max-width:1280px;margin:0 auto;padding:0 32px 100px;}
-
-.mfr-section{margin-bottom:64px;}
-
-.mfr-head{
-  display:flex;align-items:center;gap:18px;
-  padding:36px 0 20px;
-  border-bottom:1px solid var(--border);
-  margin-bottom:28px;
-}
-.mfr-badge{
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--text-dim);border:1px solid var(--border);
-  padding:3px 10px;border-radius:2px;
-}
-.mfr-head h2{
-  font-size:1.3rem;font-weight:700;
-  color:var(--text-bright);letter-spacing:-0.01em;
-}
-
-/* ── CARDS ── */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:6px;
-  cursor:pointer;
-  transition:transform .2s,border-color .2s,box-shadow .2s;
-  overflow:hidden;
-}
-.card:hover{
-  transform:translateY(-5px);
-  border-color:var(--border-hover);
-  box-shadow:0 16px 50px rgba(45,125,210,.13);
-}
+.mfr-section{margin-bottom:60px;}
+.mfr-head{display:flex;align-items:center;gap:18px;padding:36px 0 20px;border-bottom:1px solid var(--border);margin-bottom:26px;}
+.mfr-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);padding:3px 10px;border-radius:2px;}
+.mfr-head h2{font-size:1.25rem;font-weight:700;color:var(--text-bright);letter-spacing:-.01em;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;overflow:hidden;}
+.card:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 16px 50px rgba(45,125,210,.15);}
 .card-silhouette{
-  height:175px;
-  background:rgba(5,12,22,.55);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  padding:16px 20px;
-  position:relative;
-  overflow:visible;
+  height:185px;background:#06101a;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;padding:10px 14px;position:relative;
 }
-.card-silhouette svg{
-  width:100%;height:100%;overflow:visible;
-}
+.card-silhouette svg{width:100%;height:100%;overflow:visible;}
 .card-body{padding:18px 20px 0;}
-.card-model{font-size:.98rem;font-weight:700;color:var(--text-bright);margin-bottom:3px;}
-.card-sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
-.card-specs{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:0;}
+.card-model{font-size:.96rem;font-weight:700;color:var(--text-bright);margin-bottom:3px;}
+.card-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
+.card-specs{display:flex;gap:18px;flex-wrap:wrap;}
 .spec{display:flex;flex-direction:column;gap:2px;}
-.spec-k{font-size:8.5px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
-.spec-v{font-size:11.5px;font-weight:600;color:var(--text);}
-.card-cta{
-  display:flex;align-items:center;gap:6px;
-  font-size:10.5px;font-weight:600;letter-spacing:.06em;
-  color:var(--accent-bright);
-  padding:12px 20px;
-  border-top:1px solid var(--border);
-  margin-top:16px;
-  transition:gap .18s;
-}
+.spec-k{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
+.spec-v{font-size:11px;font-weight:600;color:var(--text);}
+.card-cta{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--accent-bright);padding:12px 20px;border-top:1px solid var(--border);margin-top:14px;transition:gap .18s;}
 .card:hover .card-cta{gap:10px;}
 .card-cta span{margin-left:auto;font-size:13px;}
-
-/* ── MODAL ── */
-.overlay{
-  position:fixed;inset:0;
-  background:rgba(4,9,18,.93);
-  backdrop-filter:blur(10px);
-  z-index:200;
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;
-  opacity:0;pointer-events:none;
-  transition:opacity .25s ease;
-}
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(4,9,18,.94);backdrop-filter:blur(12px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{
-  background:var(--surface);
-  border:1px solid rgba(91,163,245,.18);
-  border-radius:8px;
-  width:100%;max-width:960px;
-  max-height:92vh;overflow-y:auto;
-  transform:translateY(22px);
-  transition:transform .25s ease;
-  position:relative;
-}
+.modal{background:var(--surface);border:1px solid rgba(91,163,245,.18);border-radius:8px;width:100%;max-width:960px;max-height:92vh;overflow-y:auto;transform:translateY(22px);transition:transform .25s ease;}
 .overlay.open .modal{transform:translateY(0);}
 .modal::-webkit-scrollbar{width:3px;}
 .modal::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-
-.modal-top{
-  padding:28px 36px 24px;
-  border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:flex-start;
-}
-.modal-title{font-size:1.55rem;font-weight:800;color:var(--text-bright);letter-spacing:-.02em;margin-bottom:8px;}
+.modal-top{padding:26px 34px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;}
+.modal-title{font-size:1.45rem;font-weight:800;color:var(--text-bright);letter-spacing:-.02em;margin-bottom:8px;}
 .modal-chips{display:flex;gap:8px;flex-wrap:wrap;}
-.chip{
-  font-family:'JetBrains Mono',monospace;font-size:9.5px;
-  letter-spacing:.15em;text-transform:uppercase;
-  padding:3px 10px;border-radius:2px;
-  border:1px solid rgba(91,163,245,.22);
-  color:var(--accent-bright);
-  background:rgba(91,163,245,.07);
-}
+.chip{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;border:1px solid rgba(91,163,245,.22);color:var(--accent-bright);background:rgba(91,163,245,.07);}
 .chip.assembly{color:#4fd18a;border-color:rgba(79,209,138,.22);background:rgba(79,209,138,.06);}
-.close-btn{
-  background:none;border:1px solid var(--border);
-  color:var(--text-dim);width:34px;height:34px;
-  border-radius:4px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;transition:all .15s;flex-shrink:0;
-}
+.close-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;flex-shrink:0;}
 .close-btn:hover{color:var(--text-bright);border-color:var(--border-hover);}
-
-.modal-diagram{
-  padding:28px 36px;
-  background:rgba(5,12,22,.5);
-  border-bottom:1px solid var(--border);
-}
-.section-lbl{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);
-  margin-bottom:14px;
-}
-.diagram-wrap{position:relative;width:100%;}
+.modal-diagram{padding:26px 34px;background:rgba(5,11,20,.6);border-bottom:1px solid var(--border);}
+.section-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
 .diagram-wrap svg{width:100%;height:auto;display:block;overflow:visible;}
-
-.modal-parts{padding:28px 36px;}
+.modal-parts{padding:26px 34px;}
 table{width:100%;border-collapse:collapse;}
-thead th{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);
-  text-align:left;padding:8px 12px;
-  border-bottom:1px solid var(--border);
-}
-tbody td{
-  padding:11px 12px;
-  border-bottom:1px solid rgba(80,150,220,.06);
-  font-size:12.5px;vertical-align:middle;
-}
+thead th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);}
+tbody td{padding:11px 12px;border-bottom:1px solid rgba(80,150,220,.06);font-size:12.5px;vertical-align:middle;}
 tbody tr:last-child td{border-bottom:none;}
-tbody tr:hover td{background:rgba(91,163,245,.035);}
-.td-num{
-  width:28px;
-  font-family:'JetBrains Mono',monospace;font-weight:700;
-  font-size:10px;
-}
-.num-dot{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:20px;height:20px;border-radius:50%;
-  font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;
-}
+tbody tr:hover td{background:rgba(91,163,245,.03);}
+.td-num{width:28px;}
+.num-dot{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;}
 .td-part{color:var(--text-bright);font-weight:600;}
 .td-mfr{color:var(--text);}
-.td-loc{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dim);line-height:1.5;}
-.td-flag{font-size:19px;text-align:center;width:38px;}
-
-.modal-footer{
-  padding:14px 36px;
-  border-top:1px solid var(--border);
-  background:rgba(45,125,210,.05);
-  display:flex;align-items:center;gap:10px;
-  font-size:11.5px;
-}
+.td-loc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);line-height:1.5;}
+.td-flag{font-size:18px;text-align:center;width:36px;}
+.modal-footer{padding:13px 34px;border-top:1px solid var(--border);background:rgba(45,125,210,.05);display:flex;align-items:center;gap:10px;font-size:11px;flex-wrap:wrap;}
 .footer-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
 .footer-val{color:var(--text-bright);font-weight:600;}
-
+.sep{color:var(--border);margin:0 8px;}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:580px){
   .grid{grid-template-columns:1fr;}
   main{padding:0 14px 60px;}
-  header{padding:44px 14px 36px;}
-  .modal-top,.modal-diagram,.modal-parts,.modal-footer{padding-left:18px;padding-right:18px;}
+  header{padding:40px 14px 32px;}
+  nav{padding:12px 16px;}
+  .modal-top,.modal-diagram,.modal-parts,.modal-footer{padding-left:16px;padding-right:16px;}
 }
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="nav-brand">Aircraft<span>Origins</span></div>
+  <a href="worldmap.html" class="nav-link">↗ World Map View</a>
+</nav>
 
 <header>
   <div class="tag">Global Supply Chain Analysis</div>
@@ -262,15 +130,14 @@ tbody tr:hover td{background:rgba(91,163,245,.035);}
 </header>
 
 <main>
-  <section class="mfr-section" id="boeing">
+  <section class="mfr-section">
     <div class="mfr-head">
       <span class="mfr-badge">Manufacturer</span>
-      <h2>Boeing Commercial Airplanes — Seattle, WA</h2>
+      <h2>Boeing Commercial Airplanes — Renton &amp; Everett, Washington</h2>
     </div>
     <div class="grid" id="boeing-grid"></div>
   </section>
-
-  <section class="mfr-section" id="airbus">
+  <section class="mfr-section">
     <div class="mfr-head">
       <span class="mfr-badge">Manufacturer</span>
       <h2>Airbus Commercial Aircraft — Toulouse, France</h2>
@@ -284,423 +151,596 @@ tbody tr:hover td{background:rgba(91,163,245,.035);}
 </div>
 
 <script>
-// ─── PALETTE for callout dots ───────────────────────────────────────────────
 const DOT_COLORS = ['#5ba3f5','#4fd18a','#f0c040','#e05c4f','#a78bfa','#38d9f9','#fb923c','#f472b6'];
 
-// ─── SVG AIRCRAFT DEFINITIONS ───────────────────────────────────────────────
-// All use viewBox="0 0 560 210", nose pointing right.
-// Fuselage center Y ≈ 103–105.
+// ── REALISTIC AIRCRAFT SVGs ──────────────────────────────────────────────────
+// All viewBox="0 0 560 215". Gradients defined inline per aircraft.
+// Boeing: white upper / Boeing-blue lower fuselage. Metallic engines.
+// Airbus: white fuselage, lighter styling.
 
 const SVG = {
 
 // ── Boeing 737 MAX 8 ─────────────────────────────────────────────────────────
-'737max': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- fuselage -->
-  <path stroke-width="1.5" d="M28,104 C35,83 65,74 102,72 L438,72 C458,72 473,80 481,95 C485,101 485,108 481,114 C473,129 458,136 438,136 L102,136 C65,136 35,125 28,115 Z"/>
-  <!-- cockpit visor -->
-  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M54,88 C62,78 80,73 102,72 L108,72 L102,89 Z"/>
-  <!-- wing -->
-  <path stroke-width="1.5" d="M218,123 L174,172 L325,172 L284,123 Z"/>
-  <!-- split-scimitar winglet up -->
-  <path stroke-width="1.3" d="M174,172 L160,153 L175,170 Z"/>
-  <!-- split-scimitar winglet down (small) -->
-  <path stroke-width="1.2" d="M174,172 L165,183 L177,174 Z"/>
-  <!-- engine pylon -->
-  <path stroke-width=".9" d="M238,123 L234,137 L250,137 L252,123 Z"/>
-  <!-- CFM LEAP-1B body (flat-bottom nacelle) -->
-  <path stroke-width="1.6" fill="#060f1e" d="M196,152 C195,140 203,134 214,134 L272,134 C283,134 290,140 290,152 C290,162 284,170 272,170 L214,170 C203,170 196,162 196,152 Z"/>
-  <!-- flat-bottom line — 737 MAX signature -->
-  <line x1="196" y1="170" x2="290" y2="170" stroke-width="2.2"/>
-  <!-- engine inlet -->
-  <ellipse cx="198" cy="152" rx="9" ry="18" fill="#030810" stroke-width="1"/>
-  <!-- fan face hint -->
-  <ellipse cx="198" cy="152" rx="5" ry="12" fill="#060e1c" stroke-width=".5"/>
-  <!-- exhaust nozzle -->
-  <path stroke-width=".9" fill="#040c1a" d="M281,141 L292,147 L292,161 L281,168 Z"/>
-  <!-- vertical stabilizer -->
-  <path stroke-width="1.5" d="M448,72 L464,25 L477,25 L498,70 Z"/>
-  <!-- horizontal stabilizer -->
-  <path stroke-width="1.5" d="M458,117 L422,134 L472,134 L476,117 Z"/>
-  <!-- door frames -->
-  <rect x="132" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="308" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="412" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-</g>
-<!-- windows -->
-<g fill="rgba(147,210,255,0.32)" stroke="none">
-  <rect x="140" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="153" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="166" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="179" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="192" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="205" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="218" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="231" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="244" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="257" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="270" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="283" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="296" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="309" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="322" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="335" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="348" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="361" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="374" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="387" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="400" y="80" width="7" height="4" rx="1.2"/>
+'737max':`
+<defs>
+  <linearGradient id="f7" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#eef2f7"/>
+    <stop offset="36%" stop-color="#f5f8fb"/>
+    <stop offset="56%" stop-color="#c2d8ef"/>
+    <stop offset="66%" stop-color="#1550b8"/>
+    <stop offset="100%" stop-color="#001e90"/>
+  </linearGradient>
+  <linearGradient id="f7h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.52)"/>
+    <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="e7" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#8fa8c0"/>
+    <stop offset="22%" stop-color="#d8e8f4"/>
+    <stop offset="48%" stop-color="#f0f6ff"/>
+    <stop offset="78%" stop-color="#8898b0"/>
+    <stop offset="100%" stop-color="#445566"/>
+  </linearGradient>
+  <radialGradient id="ei7" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#050810"/>
+    <stop offset="55%" stop-color="#141e2e"/>
+    <stop offset="100%" stop-color="#253545"/>
+  </radialGradient>
+  <linearGradient id="w7" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b8ccde"/>
+    <stop offset="100%" stop-color="#7888a0"/>
+  </linearGradient>
+  <linearGradient id="vt7" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0%" stop-color="#001880"/>
+    <stop offset="100%" stop-color="#1248cc"/>
+  </linearGradient>
+  <linearGradient id="ht7" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b0c4d8"/>
+    <stop offset="100%" stop-color="#7888a0"/>
+  </linearGradient>
+</defs>
+<!-- WING (behind fuselage) -->
+<path d="M216,122 L172,172 L326,172 L284,122 Z" fill="url(#w7)" stroke="#8898b0" stroke-width="1.1"/>
+<!-- Split-scimitar winglet up -->
+<path d="M172,172 L157,152 L173,170 Z" fill="#ccd8e8" stroke="#8898b0" stroke-width=".9"/>
+<!-- Split-scimitar winglet down (Boeing blue) -->
+<path d="M172,172 L163,184 L176,174 Z" fill="#1040b8" stroke="#0830a0" stroke-width=".9"/>
+<!-- Engine pylon -->
+<path d="M237,122 L233,136 L249,136 L251,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- CFM LEAP-1B nacelle (flat-bottom) -->
+<path d="M195,151 C194,139 203,133 214,133 L272,133 C283,133 290,140 290,151 C290,161 284,169 272,169 L214,169 C203,169 195,161 195,151 Z" fill="url(#e7)" stroke="#7080988" stroke-width="1.5"/>
+<!-- LEAP flat-bottom line (distinctive feature) -->
+<line x1="195" y1="169" x2="290" y2="169" stroke="#8090a8" stroke-width="2.2"/>
+<!-- Engine inlet -->
+<ellipse cx="197" cy="151" rx="9" ry="18" fill="url(#ei7)" stroke="#3848588" stroke-width="1.1"/>
+<ellipse cx="197" cy="151" rx="5.5" ry="11" fill="none" stroke="#243040" stroke-width=".7" opacity=".7"/>
+<ellipse cx="197" cy="151" rx="2" ry="5" fill="none" stroke="#243040" stroke-width=".5" opacity=".4"/>
+<!-- Exhaust nozzle -->
+<path d="M281,140 L293,147 L293,162 L281,168 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
+<!-- FUSELAGE (over wings) -->
+<path d="M28,104 C35,82 66,73 103,71 L440,71 C460,71 475,79 483,95 C487,101 487,108 483,115 C475,130 460,138 440,138 L103,138 C66,138 35,125 28,115 Z" fill="url(#f7)" stroke="#8898b0" stroke-width="1.2"/>
+<!-- Fuselage cylindrical highlight -->
+<path d="M30,110 C36,88 64,78 102,76 L440,76 C457,76 472,82 480,94 L483,98 C474,83 458,73 440,73 L102,73 C63,73 34,84 28,108 Z" fill="url(#f7h)" stroke="none"/>
+<!-- Cockpit windows -->
+<rect x="58" y="79" width="15" height="9" rx="2.5" fill="rgba(100,165,230,0.55)" stroke="#5878b0" stroke-width=".8"/>
+<rect x="77" y="79" width="11" height="9" rx="2.5" fill="rgba(90,155,220,0.5)" stroke="#5878b0" stroke-width=".8"/>
+<!-- Vertical stabilizer (Boeing blue) -->
+<path d="M448,71 L465,23 L478,23 L500,69 Z" fill="url(#vt7)" stroke="#2040a8" stroke-width="1.2"/>
+<!-- Boeing globe emblem suggestion on VS -->
+<circle cx="470" cy="45" r="9" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width=".9"/>
+<circle cx="470" cy="45" r="4.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width=".6"/>
+<!-- Horizontal stabilizer -->
+<path d="M458,118 L421,136 L473,136 L477,118 Z" fill="url(#ht7)" stroke="#8898b0" stroke-width="1.1"/>
+<!-- Door outlines -->
+<rect x="131" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="308" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="412" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<!-- Windows (light blue-gray in white zone) -->
+<g fill="#90b4d0" stroke="none">
+  <rect x="141" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="154" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="167" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="180" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="193" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="206" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="219" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="232" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="245" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="258" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="271" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="284" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="297" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="310" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="323" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="336" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="349" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="362" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="375" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="388" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="401" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="414" y="79" width="7" height="4" rx="1.3"/>
 </g>`,
 
 // ── Boeing 757-200 ────────────────────────────────────────────────────────────
-'757': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- fuselage (longer, slimmer) -->
-  <path stroke-width="1.5" d="M24,104 C31,83 63,74 100,72 L458,72 C480,72 497,80 506,95 C510,101 510,108 506,114 C497,129 480,136 458,136 L100,136 C63,136 31,125 24,115 Z"/>
-  <!-- cockpit visor -->
-  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M50,88 C58,78 78,73 100,72 L106,72 L100,89 Z"/>
-  <!-- wing -->
-  <path stroke-width="1.5" d="M220,123 L172,178 L348,178 L296,123 Z"/>
-  <!-- RB211 engine body (conventional round, no winglets on -200) -->
-  <path stroke-width=".9" d="M248,123 L244,142 L260,142 L262,123 Z"/>
-  <!-- engine ellipse -->
-  <path stroke-width="1.5" fill="#060f1e" d="M210,158 C209,145 217,138 229,138 L280,138 C292,138 300,145 300,158 C300,171 292,178 280,178 L229,178 C217,178 210,171 210,158 Z"/>
-  <!-- inlet -->
-  <ellipse cx="212" cy="158" rx="9" ry="20" fill="#030810" stroke-width="1"/>
-  <ellipse cx="212" cy="158" rx="5" ry="13" fill="#060e1c" stroke-width=".5"/>
-  <!-- exhaust -->
-  <path stroke-width=".9" fill="#040c1a" d="M292,145 L304,151 L304,166 L292,174 Z"/>
-  <!-- VERY TALL vertical stabilizer — 757 signature -->
-  <path stroke-width="1.5" d="M446,72 L462,12 L478,12 L512,70 Z"/>
-  <!-- horizontal stabilizer -->
-  <path stroke-width="1.5" d="M462,116 L424,134 L476,134 L480,116 Z"/>
-  <!-- door frames -->
-  <rect x="132" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="320" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="420" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-</g>
-<g fill="rgba(147,210,255,0.32)" stroke="none">
-  <rect x="140" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="153" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="166" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="179" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="192" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="205" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="218" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="231" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="244" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="257" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="270" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="283" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="296" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="309" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="322" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="335" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="348" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="361" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="374" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="387" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="400" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="413" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="426" y="80" width="7" height="4" rx="1.2"/>
+'757':`
+<defs>
+  <linearGradient id="f75" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#edf1f7"/>
+    <stop offset="37%" stop-color="#f4f8fc"/>
+    <stop offset="57%" stop-color="#bed4ee"/>
+    <stop offset="67%" stop-color="#1450b5"/>
+    <stop offset="100%" stop-color="#001a8a"/>
+  </linearGradient>
+  <linearGradient id="f75h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
+    <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="e75" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#8ca6c0"/>
+    <stop offset="22%" stop-color="#d5e5f2"/>
+    <stop offset="50%" stop-color="#eef6ff"/>
+    <stop offset="78%" stop-color="#8090a8"/>
+    <stop offset="100%" stop-color="#404e5e"/>
+  </linearGradient>
+  <radialGradient id="ei75" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#040710"/>
+    <stop offset="55%" stop-color="#121c2c"/>
+    <stop offset="100%" stop-color="#223040"/>
+  </radialGradient>
+  <linearGradient id="w75" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b5c9dc"/>
+    <stop offset="100%" stop-color="#72869a"/>
+  </linearGradient>
+  <linearGradient id="vt75" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0%" stop-color="#001880"/>
+    <stop offset="100%" stop-color="#1045c8"/>
+  </linearGradient>
+</defs>
+<!-- Wing -->
+<path d="M218,122 L170,178 L350,178 L296,122 Z" fill="url(#w75)" stroke="#8898b0" stroke-width="1.1"/>
+<!-- Pylon -->
+<path d="M248,122 L244,142 L260,142 L262,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- RB211-535 engine (conventional round) -->
+<path d="M210,159 C209,145 218,138 230,138 L282,138 C294,138 302,145 302,159 C302,173 294,180 282,180 L230,180 C218,180 210,173 210,159 Z" fill="url(#e75)" stroke="#7080988" stroke-width="1.5"/>
+<ellipse cx="212" cy="159" rx="10" ry="21" fill="url(#ei75)" stroke="#3848588" stroke-width="1.1"/>
+<ellipse cx="212" cy="159" rx="6" ry="13" fill="none" stroke="#243040" stroke-width=".7" opacity=".7"/>
+<path d="M293,146 L305,153 L305,167 L293,175 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
+<!-- Fuselage (longer/slimmer) -->
+<path d="M24,104 C31,82 63,73 100,71 L462,71 C484,71 499,80 508,96 C512,102 512,108 508,116 C499,131 484,138 462,138 L100,138 C63,138 31,125 24,115 Z" fill="url(#f75)" stroke="#8898b0" stroke-width="1.2"/>
+<path d="M26,110 C32,88 61,78 100,76 L462,76 C480,76 495,82 503,95 L508,100 C499,83 484,73 462,73 L100,73 C61,73 31,84 24,108 Z" fill="url(#f75h)" stroke="none"/>
+<!-- Cockpit -->
+<rect x="48" y="79" width="15" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
+<rect x="67" y="79" width="11" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
+<!-- VERY TALL vertical stabilizer — 757 signature -->
+<path d="M450,71 L467,10 L482,10 L514,69 Z" fill="url(#vt75)" stroke="#2040a8" stroke-width="1.2"/>
+<circle cx="473" cy="35" r="9" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width=".9"/>
+<circle cx="473" cy="35" r="4.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width=".6"/>
+<!-- Horizontal stabilizer -->
+<path d="M463,117 L424,136 L476,136 L480,117 Z" fill="#b0c4d8" stroke="#8898b0" stroke-width="1.1"/>
+<!-- Doors -->
+<rect x="131" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="318" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="424" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<g fill="#8ab4d0" stroke="none">
+  <rect x="140" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="153" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="166" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="179" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="192" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="205" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="218" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="231" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="244" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="257" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="270" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="283" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="296" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="309" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="322" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="335" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="348" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="361" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="374" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="387" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="400" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="413" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="426" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="439" y="79" width="7" height="4" rx="1.3"/>
 </g>`,
 
 // ── Boeing 777-300ER ──────────────────────────────────────────────────────────
-'777': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- widebody fuselage (taller cross-section) -->
-  <path stroke-width="1.6" d="M20,104 C28,78 62,65 106,63 L480,63 C504,63 522,72 530,90 C534,98 534,110 530,118 C522,136 504,145 480,145 L106,145 C62,145 28,130 20,116 Z"/>
-  <!-- cockpit visor -->
-  <path stroke-width=".9" fill="rgba(147,210,255,0.17)" d="M46,82 C56,70 78,64 106,63 L114,63 L106,82 Z"/>
-  <!-- wing (large, high sweep) -->
-  <path stroke-width="1.5" d="M212,132 L155,188 L368,188 L298,132 Z"/>
-  <!-- raked wingtip (no winglet) -->
-  <path stroke-width="1.2" d="M155,188 L144,180 L157,187 Z"/>
-  <!-- engine pylon -->
-  <path stroke-width="1" d="M238,132 L232,146 L254,146 L258,132 Z"/>
-  <!-- GE90-115B — world's largest turbofan -->
-  <path stroke-width="1.8" fill="#050d1c" d="M190,166 C188,150 198,142 214,142 L284,142 C300,142 310,150 310,166 C310,182 300,190 284,190 L214,190 C198,190 188,182 190,166 Z"/>
-  <!-- large inlet -->
-  <ellipse cx="193" cy="166" rx="12" ry="24" fill="#030810" stroke-width="1.2"/>
-  <ellipse cx="193" cy="166" rx="7" ry="16" fill="#060d1c" stroke-width=".6"/>
-  <!-- exhaust -->
-  <path stroke-width="1" fill="#040c1a" d="M298,150 L314,158 L314,175 L298,184 Z"/>
-  <!-- vertical stabilizer -->
-  <path stroke-width="1.6" d="M468,63 L486,18 L502,18 L524,61 Z"/>
-  <!-- horizontal stabilizer (large) -->
-  <path stroke-width="1.5" d="M480,122 L438,143 L492,143 L498,122 Z"/>
-  <!-- door frames -->
-  <rect x="140" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="328" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="430" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+'777':`
+<defs>
+  <linearGradient id="f77" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ecf0f7"/>
+    <stop offset="34%" stop-color="#f3f7fc"/>
+    <stop offset="54%" stop-color="#bbd1ea"/>
+    <stop offset="65%" stop-color="#1250b4"/>
+    <stop offset="100%" stop-color="#001888"/>
+  </linearGradient>
+  <linearGradient id="f77h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
+    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="e77" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#7a9ab6"/>
+    <stop offset="18%" stop-color="#cce0f2"/>
+    <stop offset="46%" stop-color="#eaf4ff"/>
+    <stop offset="78%" stop-color="#7888a2"/>
+    <stop offset="100%" stop-color="#384858"/>
+  </linearGradient>
+  <radialGradient id="ei77" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#040610"/>
+    <stop offset="55%" stop-color="#101828"/>
+    <stop offset="100%" stop-color="#1e2e3e"/>
+  </radialGradient>
+  <linearGradient id="w77" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#aac0d4"/>
+    <stop offset="100%" stop-color="#6a7e92"/>
+  </linearGradient>
+  <linearGradient id="vt77" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0%" stop-color="#001680"/>
+    <stop offset="100%" stop-color="#1042c5"/>
+  </linearGradient>
+</defs>
+<!-- Wing (large) -->
+<path d="M210,130 L154,190 L372,190 L298,130 Z" fill="url(#w77)" stroke="#8090a8" stroke-width="1.2"/>
+<!-- Raked wingtip -->
+<path d="M154,190 L142,181 L156,189 Z" fill="#a8bcce" stroke="#8090a8" stroke-width=".9"/>
+<!-- Engine pylon -->
+<path d="M236,130 L229,146 L252,146 L256,130 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- GE90-115B — world's largest turbofan (massive nacelle) -->
+<path d="M186,168 C184,150 195,141 213,141 L284,141 C302,141 313,150 313,168 C313,186 302,195 284,195 L213,195 C195,195 184,186 186,168 Z" fill="url(#e77)" stroke="#6878988" stroke-width="1.8"/>
+<ellipse cx="189" cy="168" rx="13" ry="27" fill="url(#ei77)" stroke="#3848588" stroke-width="1.3"/>
+<ellipse cx="189" cy="168" rx="8" ry="17" fill="none" stroke="#1e2e3c" stroke-width=".8" opacity=".7"/>
+<ellipse cx="189" cy="168" rx="4" ry="9" fill="none" stroke="#1e2e3c" stroke-width=".5" opacity=".4"/>
+<path d="M300,152 L315,161 L315,178 L300,187 Z" fill="#364858" stroke="#445868" stroke-width=".9"/>
+<!-- Fuselage (widebody — taller cross-section) -->
+<path d="M19,104 C27,77 62,64 106,62 L490,62 C514,62 532,72 540,90 C545,98 545,110 540,118 C532,136 514,146 490,146 L106,146 C62,146 27,131 19,118 Z" fill="url(#f77)" stroke="#8090a8" stroke-width="1.3"/>
+<path d="M21,115 C28,92 60,78 106,76 L490,76 C510,76 525,83 532,95 L540,103 C531,83 512,65 490,64 L106,64 C61,64 27,79 19,106 Z" fill="url(#f77h)" stroke="none"/>
+<!-- Cockpit (wider windows — widebody) -->
+<rect x="46" y="76" width="17" height="10" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".9"/>
+<rect x="67" y="76" width="13" height="10" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".9"/>
+<!-- Vertical stabilizer (large, Boeing blue) -->
+<path d="M475,62 L494,16 L510,16 L532,60 Z" fill="url(#vt77)" stroke="#2040a8" stroke-width="1.3"/>
+<circle cx="497" cy="38" r="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+<circle cx="497" cy="38" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width=".6"/>
+<!-- Horizontal stabilizer (large) -->
+<path d="M488,124 L446,145 L498,145 L505,124 Z" fill="#aac0d4" stroke="#8090a8" stroke-width="1.2"/>
+<rect x="140" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="336" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="438" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<!-- Two rows of windows (widebody) -->
+<g fill="#88b2ce" stroke="none">
+  <rect x="149" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="163" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="177" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="191" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="205" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="219" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="233" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="247" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="261" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="275" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="289" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="303" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="317" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="331" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="345" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="359" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="373" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="387" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="401" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="415" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="429" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="443" y="72" width="8" height="4" rx="1.3"/>
+  <rect x="457" y="72" width="8" height="4" rx="1.3"/>
 </g>
-<!-- two rows of windows — widebody cabin -->
-<g fill="rgba(147,210,255,0.3)" stroke="none">
-  <rect x="148" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="161" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="174" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="187" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="200" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="213" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="226" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="239" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="252" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="265" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="278" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="291" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="304" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="317" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="330" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="343" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="356" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="369" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="382" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="395" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="408" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="421" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="434" y="73" width="7" height="4" rx="1.2"/>
-  <rect x="447" y="73" width="7" height="4" rx="1.2"/>
-</g>
-<g fill="rgba(147,210,255,0.18)" stroke="none">
-  <rect x="148" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="161" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="174" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="187" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="200" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="213" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="226" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="239" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="252" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="265" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="278" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="291" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="304" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="317" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="330" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="343" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="356" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="369" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="382" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="395" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="408" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="421" y="81" width="7" height="4" rx="1.2"/>
-  <rect x="434" y="81" width="7" height="4" rx="1.2"/>
+<g fill="#5c90b8" stroke="none" opacity=".55">
+  <rect x="149" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="163" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="177" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="191" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="205" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="219" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="233" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="247" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="261" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="275" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="289" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="303" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="317" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="331" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="345" y="80" width="8" height="4" rx="1.3"/>
+  <rect x="359" y="80" width="8" height="4" rx="1.3"/>
 </g>`,
 
 // ── Airbus A318 ───────────────────────────────────────────────────────────────
-'a318': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- fuselage (short, Airbus rounded nose) -->
-  <path stroke-width="1.5" d="M46,104 C52,84 78,76 112,74 L400,74 C420,74 434,82 440,96 C443,102 443,108 440,114 C434,128 420,134 400,134 L112,134 C78,134 52,123 46,114 Z"/>
-  <!-- Airbus cockpit: wider, more rectangular windows -->
-  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M68,90 C76,81 94,75 114,74 L120,74 L114,90 Z"/>
-  <rect x="70" y="80" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
-  <rect x="92" y="80" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
-  <!-- wing -->
-  <path stroke-width="1.5" d="M210,122 L167,172 L314,172 L274,122 Z"/>
-  <!-- engine pylon -->
-  <path stroke-width=".9" d="M232,122 L228,137 L244,137 L246,122 Z"/>
-  <!-- CFM56-5B (compact, round) -->
-  <path stroke-width="1.5" fill="#060f1e" d="M194,152 C193,141 200,135 210,135 L262,135 C272,135 279,141 279,152 C279,163 272,170 262,170 L210,170 C200,170 193,163 194,152 Z"/>
-  <ellipse cx="196" cy="152" rx="8" ry="17" fill="#030810" stroke-width="1"/>
-  <ellipse cx="196" cy="152" rx="4.5" ry="11" fill="#060e1c" stroke-width=".5"/>
-  <path stroke-width=".9" fill="#040c1a" d="M271,141 L282,147 L282,159 L271,167 Z"/>
-  <!-- Airbus curved vertical stabilizer leading edge -->
-  <path stroke-width="1.5" d="M404,74 C416,74 430,64 440,42 L452,22 L466,22 L454,72 Z"/>
-  <!-- horizontal stabilizer -->
-  <path stroke-width="1.5" d="M412,116 L380,132 L426,132 L430,116 Z"/>
-  <!-- doors -->
-  <rect x="136" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="296" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="370" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-</g>
-<g fill="rgba(147,210,255,0.32)" stroke="none">
-  <rect x="142" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="155" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="168" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="181" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="194" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="207" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="220" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="233" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="246" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="259" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="272" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="285" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="298" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="311" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="324" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="337" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="350" y="82" width="7" height="4" rx="1.2"/>
-  <rect x="363" y="82" width="7" height="4" rx="1.2"/>
+'a318':`
+<defs>
+  <linearGradient id="fa18" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ecf0f6"/>
+    <stop offset="40%" stop-color="#f6f9fc"/>
+    <stop offset="62%" stop-color="#dde8f2"/>
+    <stop offset="74%" stop-color="#c8d8ec"/>
+    <stop offset="100%" stop-color="#a0b5ce"/>
+  </linearGradient>
+  <linearGradient id="fa18h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
+    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="ea18" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#8aa4bc"/>
+    <stop offset="22%" stop-color="#d2e4f0"/>
+    <stop offset="48%" stop-color="#ecf4fc"/>
+    <stop offset="78%" stop-color="#7e90a6"/>
+    <stop offset="100%" stop-color="#3e4e5e"/>
+  </linearGradient>
+  <radialGradient id="eia18" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#040810"/>
+    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="100%" stop-color="#212f3f"/>
+  </radialGradient>
+  <linearGradient id="wa18" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b2c6d8"/>
+    <stop offset="100%" stop-color="#708498"/>
+  </linearGradient>
+  <!-- Airbus tail: white with subtle gray -->
+  <linearGradient id="vta18" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#e0e8f2"/>
+    <stop offset="100%" stop-color="#b8ccde"/>
+  </linearGradient>
+</defs>
+<!-- Wing -->
+<path d="M210,122 L166,172 L316,172 L274,122 Z" fill="url(#wa18)" stroke="#8090a8" stroke-width="1.1"/>
+<!-- Pylon -->
+<path d="M230,122 L226,137 L242,137 L244,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- CFM56-5B (compact) -->
+<path d="M194,151 C193,141 200,135 211,135 L264,135 C275,135 281,141 281,151 C281,162 275,168 264,168 L211,168 C200,168 194,162 194,151 Z" fill="url(#ea18)" stroke="#7080988" stroke-width="1.4"/>
+<ellipse cx="196" cy="151" rx="9" ry="16" fill="url(#eia18)" stroke="#3848588" stroke-width="1"/>
+<ellipse cx="196" cy="151" rx="5" ry="10" fill="none" stroke="#243040" stroke-width=".7" opacity=".6"/>
+<path d="M272,141 L283,147 L283,158 L272,165 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
+<!-- Fuselage (short — A318 is smallest of group) -->
+<path d="M44,104 C51,83 78,74 112,72 L405,72 C424,72 437,80 443,95 C446,101 446,108 443,115 C437,129 424,137 405,137 L112,137 C78,137 51,124 44,115 Z" fill="url(#fa18)" stroke="#8898b0" stroke-width="1.2"/>
+<path d="M46,112 C52,90 78,80 112,78 L405,78 C421,78 434,84 440,96 L443,100 C436,83 423,74 405,74 L112,74 C78,74 51,86 44,110 Z" fill="url(#fa18h)" stroke="none"/>
+<!-- Airbus cockpit — distinctive rectangular windows -->
+<rect x="66" y="80" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
+<rect x="86" y="80" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
+<!-- Airbus VS — curved leading edge, white -->
+<path d="M409,72 C421,72 434,64 442,44 L453,23 L467,23 L455,71 Z" fill="url(#vta18)" stroke="#8090a8" stroke-width="1.2"/>
+<!-- Horizontal stabilizer -->
+<path d="M416,116 L382,133 L428,133 L432,116 Z" fill="#b2c6d8" stroke="#8090a8" stroke-width="1.1"/>
+<rect x="135" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="298" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="374" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
+<g fill="#8ab2cc" stroke="none">
+  <rect x="141" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="154" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="167" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="180" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="193" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="206" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="219" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="232" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="245" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="258" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="271" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="284" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="297" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="310" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="323" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="336" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="349" y="80" width="7" height="4" rx="1.3"/>
+  <rect x="362" y="80" width="7" height="4" rx="1.3"/>
 </g>`,
 
 // ── Airbus A320 ───────────────────────────────────────────────────────────────
-'a320': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- fuselage (medium Airbus) -->
-  <path stroke-width="1.5" d="M40,104 C47,83 74,74 110,72 L446,72 C466,72 480,80 488,95 C492,101 492,108 488,114 C480,129 466,136 446,136 L110,136 C74,136 47,124 40,114 Z"/>
-  <!-- cockpit -->
-  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M63,88 C72,78 90,73 110,72 L116,72 L110,88 Z"/>
-  <rect x="65" y="79" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
-  <rect x="87" y="79" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
-  <!-- wing -->
-  <path stroke-width="1.5" d="M216,123 L172,175 L332,175 L288,123 Z"/>
-  <!-- SHARKLET (smooth curved upward tip — Airbus signature) -->
-  <path stroke-width="1.3" fill="#0d2040" d="M172,175 C168,168 164,158 166,147 L172,158 L176,173 Z"/>
-  <!-- engine pylon -->
-  <path stroke-width=".9" d="M238,123 L234,138 L250,138 L252,123 Z"/>
-  <!-- CFM LEAP-1A or IAE V2500 -->
-  <path stroke-width="1.5" fill="#060f1e" d="M198,153 C197,141 204,135 215,135 L268,135 C279,135 285,141 285,153 C285,165 279,172 268,172 L215,172 C204,172 197,165 198,153 Z"/>
-  <ellipse cx="200" cy="153" rx="9" ry="18" fill="#030810" stroke-width="1"/>
-  <ellipse cx="200" cy="153" rx="5" ry="12" fill="#060e1c" stroke-width=".5"/>
-  <path stroke-width=".9" fill="#040c1a" d="M277,141 L288,147 L288,161 L277,169 Z"/>
-  <!-- Airbus curved vertical stabilizer -->
-  <path stroke-width="1.5" d="M450,72 C462,72 475,62 485,40 L496,21 L510,21 L498,70 Z"/>
-  <!-- horizontal stabilizer -->
-  <path stroke-width="1.5" d="M458,117 L422,135 L472,135 L476,117 Z"/>
-  <!-- doors -->
-  <rect x="138" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="326" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="416" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-</g>
-<g fill="rgba(147,210,255,0.32)" stroke="none">
-  <rect x="144" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="157" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="170" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="183" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="196" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="209" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="222" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="235" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="248" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="261" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="274" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="287" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="300" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="313" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="326" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="339" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="352" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="365" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="378" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="391" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="404" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="417" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="430" y="80" width="7" height="4" rx="1.2"/>
+'a320':`
+<defs>
+  <linearGradient id="fa20" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#edf1f7"/>
+    <stop offset="40%" stop-color="#f5f8fc"/>
+    <stop offset="62%" stop-color="#dce8f2"/>
+    <stop offset="74%" stop-color="#c6d6ea"/>
+    <stop offset="100%" stop-color="#9eb4cc"/>
+  </linearGradient>
+  <linearGradient id="fa20h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
+    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="ea20" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#8ca6be"/>
+    <stop offset="22%" stop-color="#d4e6f2"/>
+    <stop offset="48%" stop-color="#eef6ff"/>
+    <stop offset="78%" stop-color="#8092a8"/>
+    <stop offset="100%" stop-color="#40505e"/>
+  </linearGradient>
+  <radialGradient id="eia20" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#040810"/>
+    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="100%" stop-color="#212f3f"/>
+  </radialGradient>
+  <linearGradient id="wa20" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b4c8da"/>
+    <stop offset="100%" stop-color="#72869a"/>
+  </linearGradient>
+  <linearGradient id="vta20" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#dde6f0"/>
+    <stop offset="100%" stop-color="#b6cade"/>
+  </linearGradient>
+</defs>
+<!-- Wing -->
+<path d="M216,122 L172,174 L332,174 L288,122 Z" fill="url(#wa20)" stroke="#8090a8" stroke-width="1.1"/>
+<!-- Airbus A320 SHARKLET (smooth curve up) -->
+<path d="M172,174 C167,166 163,156 165,145 L170,156 L174,172 Z" fill="#c2d4e4" stroke="#8090a8" stroke-width="1.1"/>
+<!-- Pylon -->
+<path d="M238,122 L234,138 L250,138 L252,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- LEAP-1A engine -->
+<path d="M198,153 C197,141 204,135 215,135 L268,135 C279,135 285,141 285,153 C285,165 279,172 268,172 L215,172 C204,172 198,165 198,153 Z" fill="url(#ea20)" stroke="#7080988" stroke-width="1.5"/>
+<ellipse cx="200" cy="153" rx="9" ry="18" fill="url(#eia20)" stroke="#3848588" stroke-width="1.1"/>
+<ellipse cx="200" cy="153" rx="5.5" ry="11" fill="none" stroke="#243040" stroke-width=".7" opacity=".65"/>
+<path d="M277,141 L288,148 L288,161 L277,169 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
+<!-- Fuselage -->
+<path d="M38,104 C45,82 73,73 109,71 L450,71 C470,71 484,79 492,95 C496,101 496,108 492,115 C484,130 470,138 450,138 L109,138 C73,138 45,125 38,115 Z" fill="url(#fa20)" stroke="#8898b0" stroke-width="1.2"/>
+<path d="M40,112 C46,90 73,80 109,77 L450,77 C467,77 481,83 488,96 L492,101 C483,84 469,73 450,73 L109,73 C73,73 45,86 38,110 Z" fill="url(#fa20h)" stroke="none"/>
+<rect x="61" y="79" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
+<rect x="81" y="79" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
+<!-- Airbus VS (curved LE) -->
+<path d="M454,71 C466,71 479,62 488,42 L499,21 L514,21 L501,70 Z" fill="url(#vta20)" stroke="#8090a8" stroke-width="1.2"/>
+<!-- Horizontal stabilizer -->
+<path d="M461,117 L424,136 L474,136 L478,117 Z" fill="#b4c8da" stroke="#8090a8" stroke-width="1.1"/>
+<rect x="136" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="324" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="416" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
+<g fill="#8ab2cc" stroke="none">
+  <rect x="142" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="155" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="168" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="181" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="194" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="207" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="220" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="233" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="246" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="259" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="272" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="285" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="298" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="311" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="324" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="337" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="350" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="363" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="376" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="389" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="402" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="415" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="428" y="79" width="7" height="4" rx="1.3"/>
 </g>`,
 
 // ── Airbus A340-300 ───────────────────────────────────────────────────────────
-'a340': `
-<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
-  <!-- fuselage (long) -->
-  <path stroke-width="1.5" d="M34,104 C41,83 70,74 108,72 L476,72 C498,72 514,80 522,95 C526,101 526,108 522,114 C514,129 498,136 476,136 L108,136 C70,136 41,124 34,114 Z"/>
-  <!-- Airbus cockpit -->
-  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M57,88 C66,78 84,73 108,72 L114,72 L108,88 Z"/>
-  <rect x="60" y="79" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
-  <rect x="82" y="79" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
-  <!-- wing (large 4-engine wing) -->
-  <path stroke-width="1.5" d="M218,123 L168,182 L362,182 L298,123 Z"/>
-  <!-- FOUR ENGINES — 2 visible in profile (inboard + outboard) -->
-  <!-- INBOARD ENGINE pylon -->
-  <path stroke-width=".9" d="M250,123 L246,138 L260,138 L262,123 Z"/>
-  <!-- Inboard CFM56-5C -->
-  <path stroke-width="1.4" fill="#060f1e" d="M218,152 C217,142 224,137 234,137 L278,137 C288,137 294,142 294,152 C294,162 288,168 278,168 L234,168 C224,168 218,162 218,152 Z"/>
-  <ellipse cx="220" cy="152" rx="8" ry="15" fill="#030810" stroke-width="1"/>
-  <ellipse cx="220" cy="152" rx="4.5" ry="10" fill="#060e1c" stroke-width=".5"/>
-  <path stroke-width=".8" fill="#040c1a" d="M286,142 L296,147 L296,158 L286,165 Z"/>
-  <!-- OUTBOARD ENGINE pylon (further out along wing) -->
-  <path stroke-width=".9" d="M207,143 L204,156 L214,156 L216,143 Z"/>
-  <!-- Outboard CFM56-5C (lower/further out) -->
-  <path stroke-width="1.4" fill="#060f1e" d="M178,165 C177,156 183,151 192,151 L228,151 C237,151 242,156 242,165 C242,174 237,179 228,179 L192,179 C183,179 178,174 178,165 Z"/>
-  <ellipse cx="180" cy="165" rx="7" ry="14" fill="#030810" stroke-width="1"/>
-  <ellipse cx="180" cy="165" rx="4" ry="9" fill="#060e1c" stroke-width=".5"/>
-  <path stroke-width=".8" fill="#040c1a" d="M230,155 L239,159 L239,171 L230,176 Z"/>
-  <!-- Airbus vertical stabilizer (curved LE) -->
-  <path stroke-width="1.5" d="M480,72 C492,72 505,62 515,40 L526,21 L540,21 L528,70 Z"/>
-  <!-- horizontal stabilizer (large span) -->
-  <path stroke-width="1.5" d="M490,117 L450,136 L504,136 L508,117 Z"/>
-  <!-- doors -->
-  <rect x="136" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="340" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-  <rect x="446" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
-</g>
-<g fill="rgba(147,210,255,0.32)" stroke="none">
-  <rect x="142" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="155" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="168" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="181" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="194" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="207" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="220" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="233" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="246" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="259" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="272" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="285" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="298" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="311" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="324" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="337" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="350" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="363" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="376" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="389" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="402" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="415" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="428" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="441" y="80" width="7" height="4" rx="1.2"/>
-  <rect x="454" y="80" width="7" height="4" rx="1.2"/>
+'a340':`
+<defs>
+  <linearGradient id="fa34" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#edf1f7"/>
+    <stop offset="40%" stop-color="#f4f8fc"/>
+    <stop offset="62%" stop-color="#dbe7f1"/>
+    <stop offset="74%" stop-color="#c4d4e8"/>
+    <stop offset="100%" stop-color="#9cb2ca"/>
+  </linearGradient>
+  <linearGradient id="fa34h" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
+    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+  </linearGradient>
+  <linearGradient id="ea34" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#8aa4ba"/>
+    <stop offset="22%" stop-color="#d2e4f0"/>
+    <stop offset="48%" stop-color="#ecf6fe"/>
+    <stop offset="78%" stop-color="#7e90a4"/>
+    <stop offset="100%" stop-color="#3c4c5c"/>
+  </linearGradient>
+  <radialGradient id="eia34" cx="38%" cy="50%" r="65%">
+    <stop offset="0%" stop-color="#040810"/>
+    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="100%" stop-color="#212f3f"/>
+  </radialGradient>
+  <linearGradient id="wa34" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b2c6d8"/>
+    <stop offset="100%" stop-color="#6e8298"/>
+  </linearGradient>
+  <linearGradient id="vta34" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#dce6f0"/>
+    <stop offset="100%" stop-color="#b4c8dc"/>
+  </linearGradient>
+</defs>
+<!-- Wing (large, 4-engine) -->
+<path d="M216,122 L166,184 L364,184 L298,122 Z" fill="url(#wa34)" stroke="#8090a8" stroke-width="1.1"/>
+<!-- INBOARD ENGINE pylon -->
+<path d="M252,122 L248,138 L263,138 L265,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
+<!-- Inboard CFM56-5C -->
+<path d="M220,152 C219,142 226,136 237,136 L278,136 C289,136 295,142 295,152 C295,162 289,168 278,168 L237,168 C226,168 220,162 220,152 Z" fill="url(#ea34)" stroke="#7080988" stroke-width="1.4"/>
+<ellipse cx="222" cy="152" rx="8.5" ry="16" fill="url(#eia34)" stroke="#3848588" stroke-width="1"/>
+<ellipse cx="222" cy="152" rx="5" ry="10" fill="none" stroke="#243040" stroke-width=".6" opacity=".6"/>
+<path d="M287,141 L297,147 L297,159 L287,165 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".7"/>
+<!-- OUTBOARD ENGINE pylon -->
+<path d="M207,143 L204,157 L215,157 L216,143 Z" fill="#8898a8" stroke="#6878908" stroke-width=".7"/>
+<!-- Outboard CFM56-5C (lower, smaller) -->
+<path d="M179,165 C178,156 184,151 193,151 L228,151 C237,151 242,156 242,165 C242,174 237,179 228,179 L193,179 C184,179 179,174 179,165 Z" fill="url(#ea34)" stroke="#7080988" stroke-width="1.3"/>
+<ellipse cx="181" cy="165" rx="7.5" ry="14" fill="url(#eia34)" stroke="#3848588" stroke-width=".9"/>
+<ellipse cx="181" cy="165" rx="4" ry="8.5" fill="none" stroke="#243040" stroke-width=".6" opacity=".55"/>
+<path d="M234,154 L243,159 L243,172 L234,176 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".7"/>
+<!-- Fuselage (long) -->
+<path d="M32,104 C40,82 70,73 108,71 L480,71 C501,71 516,79 524,95 C528,101 528,108 524,116 C516,131 501,138 480,138 L108,138 C70,138 40,125 32,116 Z" fill="url(#fa34)" stroke="#8898b0" stroke-width="1.2"/>
+<path d="M34,112 C41,90 70,80 108,77 L480,77 C498,77 512,84 519,97 L524,102 C515,84 500,73 480,73 L108,73 C70,73 40,86 32,110 Z" fill="url(#fa34h)" stroke="none"/>
+<rect x="56" y="79" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
+<rect x="76" y="79" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
+<!-- Airbus VS curved LE -->
+<path d="M484,71 C496,71 510,62 518,42 L529,21 L544,21 L531,70 Z" fill="url(#vta34)" stroke="#8090a8" stroke-width="1.2"/>
+<!-- Horizontal stabilizer (large) -->
+<path d="M494,117 L452,137 L506,137 L510,117 Z" fill="#b2c6d8" stroke="#8090a8" stroke-width="1.2"/>
+<rect x="134" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="342" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
+<rect x="448" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
+<g fill="#8ab2cc" stroke="none">
+  <rect x="140" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="153" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="166" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="179" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="192" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="205" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="218" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="231" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="244" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="257" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="270" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="283" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="296" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="309" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="322" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="335" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="348" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="361" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="374" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="387" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="400" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="413" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="426" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="439" y="79" width="7" height="4" rx="1.3"/>
+  <rect x="452" y="79" width="7" height="4" rx="1.3"/>
 </g>`
 };
 
-// ─── AIRCRAFT DATA ─────────────────────────────────────────────────────────
+// ── AIRCRAFT DATA ─────────────────────────────────────────────────────────────
 const AIRCRAFT = {
-  '737max': {
-    name: 'Boeing 737 MAX 8',
-    manufacturer: 'Boeing',
-    type: 'Narrow-body twin-jet',
-    firstFlight: 'January 29, 2016',
-    assembly: 'Renton, Washington, USA',
-    range: '3,550 nmi / 6,570 km',
-    engines: '2× CFM LEAP-1B',
-    capacity: '162–178 passengers',
-    callouts: [
-      {cx:96, cy:100, label:'Fuselage'},
-      {cx:252, cy:145, label:'Wings'},
-      {cx:244, cy:152, label:'Engines'},
-      {cx:162, cy:162, label:'Winglets'},
-      {cx:462, cy:120, label:'Horiz. Stabilizer'},
-      {cx:62, cy:87,  label:'Avionics'},
-      {cx:272, cy:168, label:'Landing Gear'},
+  '737max':{
+    name:'Boeing 737 MAX 8',manufacturer:'Boeing',type:'Narrow-body twin-jet',
+    firstFlight:'January 29, 2016',assembly:'Renton, Washington, USA',
+    range:'3,550 nmi / 6,570 km',engines:'2× CFM International LEAP-1B',capacity:'162–178 passengers',
+    callouts:[
+      {cx:98,cy:100,label:'Fuselage'},{cx:252,cy:145,label:'Wings'},
+      {cx:244,cy:151,label:'Engines'},{cx:160,cy:163,label:'Winglets'},
+      {cx:464,cy:121,label:'Horiz. Stabilizer'},{cx:62,cy:87,label:'Avionics'},
+      {cx:274,cy:169,label:'Landing Gear'}
     ],
     parts:[
       {component:'Fuselage (All Sections)',manufacturer:'Spirit AeroSystems',location:'Wichita, Kansas',country:'USA',flag:'🇺🇸'},
       {component:'Wings & Skins',manufacturer:'Boeing Fabrication',location:'Auburn & Renton, Washington',country:'USA',flag:'🇺🇸'},
-      {component:'Engines — CFM LEAP-1B',manufacturer:'GE Aerospace / Safran Aircraft Engines',location:'Evendale, Ohio (USA) · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
-      {component:'Split Scimitar Winglets',manufacturer:'Korean Air Aerospace Division',location:'Incheon',country:'South Korea',flag:'🇰🇷'},
+      {component:'Engines — CFM LEAP-1B',manufacturer:'GE Aerospace / Safran Aircraft Engines',location:'Evendale, Ohio · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
+      {component:'Split Scimitar Winglets',manufacturer:'Korean Air Aerospace Division',location:'Incheon, South Korea',country:'South Korea',flag:'🇰🇷'},
       {component:'Horizontal Stabilizer',manufacturer:'Korea Aerospace Industries (KAI)',location:'Sacheon, South Gyeongsang',country:'South Korea',flag:'🇰🇷'},
-      {component:'Avionics & Flight Displays',manufacturer:'Collins Aerospace (Rockwell Collins)',location:'Cedar Rapids, Iowa',country:'USA',flag:'🇺🇸'},
-      {component:'Main & Nose Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Avionics & Flight Displays',manufacturer:'Collins Aerospace',location:'Cedar Rapids, Iowa',country:'USA',flag:'🇺🇸'},
+      {component:'Main & Nose Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'}
     ]
   },
-  '757': {
-    name: 'Boeing 757-200',
-    manufacturer: 'Boeing',
-    type: 'Narrow-body twin-jet',
-    firstFlight: 'February 19, 1982',
-    assembly: 'Renton, Washington, USA',
-    range: '3,900 nmi / 7,222 km',
-    engines: '2× Rolls-Royce RB211-535 or P&W PW2000',
-    capacity: '200–239 passengers',
-    callouts: [
-      {cx:96, cy:100, label:'Fuselage'},
-      {cx:262, cy:155, label:'Wings / Flaps'},
-      {cx:256, cy:158, label:'Engines'},
-      {cx:464, cy:120, label:'Horiz. Stabilizer'},
-      {cx:62,  cy:87,  label:'Tail Section'},
-      {cx:282, cy:177, label:'Landing Gear'},
-      {cx:470, cy:30,  label:'Vert. Stabilizer'},
+  '757':{
+    name:'Boeing 757-200',manufacturer:'Boeing',type:'Narrow-body twin-jet',
+    firstFlight:'February 19, 1982',assembly:'Renton, Washington, USA',
+    range:'3,900 nmi / 7,222 km',engines:'2× Rolls-Royce RB211-535E4',capacity:'200–239 passengers',
+    callouts:[
+      {cx:98,cy:100,label:'Fuselage'},{cx:264,cy:158,label:'Wings/Flaps'},
+      {cx:256,cy:160,label:'Engines'},{cx:468,cy:121,label:'Horiz. Stabilizer'},
+      {cx:62,cy:87,label:'Tail Section'},{cx:280,cy:179,label:'Landing Gear'},
+      {cx:474,cy:28,label:'Vert. Stabilizer'}
     ],
     parts:[
       {component:'Rear Fuselage, Fin & Tailplane',manufacturer:'Northrop Grumman',location:'Hawthorne, California',country:'USA',flag:'🇺🇸'},
@@ -709,26 +749,18 @@ const AIRCRAFT = {
       {component:'Outboard Flaps',manufacturer:'EADS CASA',location:'Getafe, Madrid',country:'Spain',flag:'🇪🇸'},
       {component:'Engines — RB211-535E4',manufacturer:'Rolls-Royce',location:'Derby, England',country:'United Kingdom',flag:'🇬🇧'},
       {component:'Main Landing Gear',manufacturer:'Menasco / Collins Aerospace',location:'Oakville, Ontario',country:'Canada',flag:'🇨🇦'},
-      {component:'Dorsal Fin',manufacturer:'Israel Aerospace Industries (IAI)',location:'Lod, Central District',country:'Israel',flag:'🇮🇱'},
+      {component:'Dorsal Fin',manufacturer:'Israel Aerospace Industries (IAI)',location:'Lod, Central District',country:'Israel',flag:'🇮🇱'}
     ]
   },
-  '777': {
-    name: 'Boeing 777-300ER',
-    manufacturer: 'Boeing',
-    type: 'Wide-body twin-jet',
-    firstFlight: 'February 24, 2003',
-    assembly: 'Everett, Washington, USA',
-    range: '7,370 nmi / 13,650 km',
-    engines: '2× GE90-115B (world\'s largest turbofan)',
-    capacity: '340–396 passengers',
-    callouts: [
-      {cx:104, cy:102, label:'Fuselage Panels'},
-      {cx:275, cy:155, label:'Wings'},
-      {cx:252, cy:166, label:'Engines (GE90)'},
-      {cx:484, cy:125, label:'Horiz. Stabilizer'},
-      {cx:62,  cy:90,  label:'Cockpit / Avionics'},
-      {cx:280, cy:188, label:'Landing Gear'},
-      {cx:490, cy:38,  label:'Vert. Stabilizer'},
+  '777':{
+    name:'Boeing 777-300ER',manufacturer:'Boeing',type:'Wide-body twin-jet',
+    firstFlight:'February 24, 2003',assembly:'Everett, Washington, USA',
+    range:'7,370 nmi / 13,650 km',engines:"2× GE90-115B (world's largest turbofan)",capacity:'340–396 passengers',
+    callouts:[
+      {cx:104,cy:102,label:'Fuselage Panels'},{cx:280,cy:158,label:'Wings'},
+      {cx:252,cy:168,label:'Engines (GE90)'},{cx:490,cy:127,label:'Horiz. Stabilizer'},
+      {cx:62,cy:88,label:'Avionics'},{cx:282,cy:192,label:'Landing Gear'},
+      {cx:498,cy:35,label:'Vert. Stabilizer'}
     ],
     parts:[
       {component:'Fuselage Panels & Center Section',manufacturer:'Kawasaki Heavy Industries',location:'Nagoya, Aichi',country:'Japan',flag:'🇯🇵'},
@@ -737,26 +769,18 @@ const AIRCRAFT = {
       {component:'Engines — GE90-115B',manufacturer:'GE Aerospace',location:'Evendale & Durham, North Carolina',country:'USA',flag:'🇺🇸'},
       {component:'Main Landing Gear',manufacturer:'Héroux-Devtek',location:'Longueuil, Quebec',country:'Canada',flag:'🇨🇦'},
       {component:'Avionics (AIMS suite)',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
-      {component:'Interior — Galleys & Lavatories',manufacturer:'Jamco Corporation',location:'Hamura, Tokyo',country:'Japan',flag:'🇯🇵'},
+      {component:'Interior — Galleys & Lavatories',manufacturer:'Jamco Corporation',location:'Hamura, Tokyo',country:'Japan',flag:'🇯🇵'}
     ]
   },
-  'a318': {
-    name: 'Airbus A318-100',
-    manufacturer: 'Airbus',
-    type: 'Narrow-body twin-jet',
-    firstFlight: 'January 15, 2002',
-    assembly: 'Hamburg-Finkenwerder, Germany',
-    range: '3,100 nmi / 5,750 km',
-    engines: '2× CFM56-5B or PW6000',
-    capacity: '107–132 passengers',
-    callouts: [
-      {cx:108, cy:100, label:'Fuselage'},
-      {cx:240, cy:145, label:'Wings'},
-      {cx:236, cy:152, label:'Engines'},
-      {cx:424, cy:120, label:'Horiz. Stabilizer'},
-      {cx:72,  cy:88,  label:'Cockpit / FBW'},
-      {cx:258, cy:170, label:'Landing Gear'},
-      {cx:455, cy:36,  label:'Vert. Stabilizer'},
+  'a318':{
+    name:'Airbus A318-100',manufacturer:'Airbus',type:'Narrow-body twin-jet',
+    firstFlight:'January 15, 2002',assembly:'Hamburg-Finkenwerder, Germany',
+    range:'3,100 nmi / 5,750 km',engines:'2× CFM56-5B or PW6000',capacity:'107–132 passengers',
+    callouts:[
+      {cx:110,cy:100,label:'Fuselage'},{cx:242,cy:145,label:'Wings'},
+      {cx:237,cy:151,label:'Engines'},{cx:428,cy:119,label:'Horiz. Stabilizer'},
+      {cx:72,cy:87,label:'Cockpit/FBW'},{cx:260,cy:168,label:'Landing Gear'},
+      {cx:457,cy:37,label:'Vert. Stabilizer'}
     ],
     parts:[
       {component:'Wings (skins, spars, ribs)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
@@ -765,26 +789,18 @@ const AIRCRAFT = {
       {component:'Engines — CFM56-5B',manufacturer:'CFM International (GE + Safran)',location:'Evendale, Ohio · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
       {component:'Main & Nose Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
       {component:'Fly-By-Wire Flight Controls',manufacturer:'Thales / Diehl Aerospace',location:'Toulouse, France · Überlingen, Germany',country:'France & Germany',flag:'🇫🇷🇩🇪'},
-      {component:'Flight Management System',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
+      {component:'Flight Management System',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'}
     ]
   },
-  'a320': {
-    name: 'Airbus A320-200',
-    manufacturer: 'Airbus',
-    type: 'Narrow-body twin-jet',
-    firstFlight: 'February 22, 1987',
-    assembly: 'Hamburg · Toulouse · Tianjin · Mobile (AL)',
-    range: '3,300 nmi / 6,150 km',
-    engines: '2× CFM LEAP-1A or IAE V2500 / PW1100G',
-    capacity: '150–180 passengers',
-    callouts: [
-      {cx:108, cy:100, label:'Fuselage'},
-      {cx:252, cy:148, label:'Wings'},
-      {cx:248, cy:155, label:'Engines'},
-      {cx:166, cy:165, label:'Sharklets'},
-      {cx:464, cy:122, label:'Horiz. Stabilizer'},
-      {cx:70,  cy:87,  label:'Cockpit / FBW'},
-      {cx:268, cy:172, label:'Landing Gear'},
+  'a320':{
+    name:'Airbus A320-200',manufacturer:'Airbus',type:'Narrow-body twin-jet',
+    firstFlight:'February 22, 1987',assembly:'Hamburg · Toulouse · Tianjin · Mobile (AL)',
+    range:'3,300 nmi / 6,150 km',engines:'2× CFM LEAP-1A or IAE V2500 / PW1100G',capacity:'150–180 passengers',
+    callouts:[
+      {cx:110,cy:100,label:'Fuselage'},{cx:254,cy:146,label:'Wings'},
+      {cx:248,cy:153,label:'Engines'},{cx:166,cy:165,label:'Sharklets'},
+      {cx:466,cy:120,label:'Horiz. Stabilizer'},{cx:70,cy:87,label:'Cockpit/FBW'},
+      {cx:268,cy:172,label:'Landing Gear'}
     ],
     parts:[
       {component:'Wings (primary structure)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
@@ -793,53 +809,42 @@ const AIRCRAFT = {
       {component:'Engines — CFM LEAP-1A',manufacturer:'CFM International (GE + Safran)',location:'Evendale, Ohio · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
       {component:'Main Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
       {component:'Flight Control Computers',manufacturer:'Thales Avionics',location:'Toulouse, Haute-Garonne',country:'France',flag:'🇫🇷'},
-      {component:'Hydraulic Systems',manufacturer:'Parker Hannifin Aerospace',location:'Irvine, California',country:'USA',flag:'🇺🇸'},
+      {component:'Hydraulic Systems',manufacturer:'Parker Hannifin Aerospace',location:'Irvine, California',country:'USA',flag:'🇺🇸'}
     ]
   },
-  'a340': {
-    name: 'Airbus A340-300',
-    manufacturer: 'Airbus',
-    type: 'Wide-body quad-jet',
-    firstFlight: 'October 25, 1991',
-    assembly: 'Toulouse-Blagnac, France',
-    range: '7,400 nmi / 13,700 km',
-    engines: '4× CFM International CFM56-5C4',
-    capacity: '295–380 passengers',
-    callouts: [
-      {cx:108, cy:100, label:'Fuselage'},
-      {cx:278, cy:148, label:'Wings'},
-      {cx:256, cy:152, label:'Inboard Engines'},
-      {cx:210, cy:165, label:'Outboard Engines'},
-      {cx:496, cy:124, label:'Horiz. Stabilizer'},
-      {cx:70,  cy:87,  label:'Cockpit / FBW'},
-      {cx:508, cy:38,  label:'Vert. Stabilizer'},
+  'a340':{
+    name:'Airbus A340-300',manufacturer:'Airbus',type:'Wide-body quad-jet',
+    firstFlight:'October 25, 1991',assembly:'Toulouse-Blagnac, France',
+    range:'7,400 nmi / 13,700 km',engines:'4× CFM International CFM56-5C4',capacity:'295–380 passengers',
+    callouts:[
+      {cx:110,cy:100,label:'Fuselage'},{cx:280,cy:146,label:'Wings'},
+      {cx:257,cy:152,label:'Inboard Engines'},{cx:210,cy:166,label:'Outboard Engines'},
+      {cx:498,cy:122,label:'Horiz. Stabilizer'},{cx:70,cy:87,label:'Cockpit/FBW'},
+      {cx:511,cy:36,label:'Vert. Stabilizer'}
     ],
     parts:[
       {component:'Wings (primary structure)',manufacturer:'BAE Systems',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
       {component:'Forward Fuselage & Nose',manufacturer:'Stelia Aerospace',location:'Saint-Nazaire, Loire-Atlantique',country:'France',flag:'🇫🇷'},
       {component:'Centre & Aft Fuselage',manufacturer:'Airbus / Premium Aerotec',location:'Hamburg, Germany',country:'Germany',flag:'🇩🇪'},
       {component:'Engines — CFM56-5C4 (×4)',manufacturer:'CFM International (Safran + GE)',location:'Villaroche, France · Evendale, Ohio',country:'France & USA',flag:'🇫🇷🇺🇸'},
-      {component:'Main & Nose Landing Gear',manufacturer:'Messier-Dowty (Safran Landing Systems)',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Main & Nose Landing Gear',manufacturer:'Messier-Dowty (Safran)',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
       {component:'Avionics Suite (HUD, FMS)',manufacturer:'Thales Avionics',location:'Toulouse, Haute-Garonne',country:'France',flag:'🇫🇷'},
-      {component:'APU — Honeywell 331-350A',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
+      {component:'APU — Honeywell 331-350A',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'}
     ]
   }
 };
 
-const BOEING_IDS = ['737max','757','777'];
-const AIRBUS_IDS = ['a318','a320','a340'];
+const BOEING_IDS=['737max','757','777'];
+const AIRBUS_IDS=['a318','a320','a340'];
 
-// ─── RENDER CARDS ──────────────────────────────────────────────────────────
-function renderCards(ids, containerId) {
-  const el = document.getElementById(containerId);
-  el.innerHTML = ids.map(id => {
-    const a = AIRCRAFT[id];
+function renderCards(ids,containerId){
+  const el=document.getElementById(containerId);
+  el.innerHTML=ids.map(id=>{
+    const a=AIRCRAFT[id];
     return `
     <div class="card" onclick="openModal('${id}')">
       <div class="card-silhouette">
-        <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
-          ${SVG[id]}
-        </svg>
+        <svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg">${SVG[id]}</svg>
       </div>
       <div class="card-body">
         <div class="card-model">${a.name}</div>
@@ -855,60 +860,44 @@ function renderCards(ids, containerId) {
   }).join('');
 }
 
-renderCards(BOEING_IDS, 'boeing-grid');
-renderCards(AIRBUS_IDS, 'airbus-grid');
+renderCards(BOEING_IDS,'boeing-grid');
+renderCards(AIRBUS_IDS,'airbus-grid');
 
-// ─── MODAL ─────────────────────────────────────────────────────────────────
-function buildCalloutSVG(id) {
-  const a = AIRCRAFT[id];
-  // Build callout overlay in same coordinate system as aircraft SVG
-  const lines = a.callouts.map((c, i) => {
-    const color = DOT_COLORS[i];
-    // pick a label anchor away from the dot
-    const lx = c.cx < 280 ? c.cx - 60 : c.cx + 60;
-    const ly = c.cy < 105 ? c.cy - 28 : c.cy + 28;
+function buildCalloutSVG(id){
+  const a=AIRCRAFT[id];
+  const overlays=a.callouts.map((c,i)=>{
+    const color=DOT_COLORS[i];
+    const lx=c.cx<280?c.cx-55:c.cx+55;
+    const ly=c.cy<108?c.cy-26:c.cy+26;
     return `
-      <line x1="${c.cx}" y1="${c.cy}" x2="${lx}" y2="${ly}" stroke="${color}" stroke-width="1" stroke-dasharray="4,3" opacity=".7"/>
-      <circle cx="${c.cx}" cy="${c.cy}" r="9" fill="${color}" opacity=".92"/>
-      <text x="${c.cx}" y="${c.cy+3.5}" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700" font-family="JetBrains Mono,monospace">${i+1}</text>
-    `;
+      <line x1="${c.cx}" y1="${c.cy}" x2="${lx}" y2="${ly}" stroke="${color}" stroke-width="1" stroke-dasharray="4,3" opacity=".75"/>
+      <circle cx="${c.cx}" cy="${c.cy}" r="9" fill="${color}" opacity=".93"/>
+      <text x="${c.cx}" y="${c.cy+3.5}" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700" font-family="JetBrains Mono,monospace">${i+1}</text>`;
   }).join('');
-  return `
-    <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" class="modal-diagram-svg">
-      ${SVG[id]}
-      ${lines}
-    </svg>`;
+  return `<svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;background:#06101a;border-radius:4px;">
+    ${SVG[id]}${overlays}</svg>`;
 }
 
-function buildPartsTable(id) {
-  const a = AIRCRAFT[id];
-  const rows = a.parts.map((p, i) => {
-    const color = DOT_COLORS[i];
-    return `
+function buildTable(id){
+  const a=AIRCRAFT[id];
+  return `<table>
+    <thead><tr><th>#</th><th>Component</th><th>Manufacturer</th><th>Origin</th><th></th></tr></thead>
+    <tbody>${a.parts.map((p,i)=>`
     <tr>
-      <td class="td-num"><div class="num-dot" style="background:${color};color:#fff">${i+1}</div></td>
+      <td class="td-num"><div class="num-dot" style="background:${DOT_COLORS[i]};color:#fff">${i+1}</div></td>
       <td class="td-part">${p.component}</td>
       <td class="td-mfr">${p.manufacturer}</td>
-      <td class="td-loc">${p.location}<br><span style="color:var(--text-dim);font-size:9.5px">${p.country}</span></td>
+      <td class="td-loc">${p.location}<br><span style="font-size:9px;color:var(--text-dim)">${p.country}</span></td>
       <td class="td-flag">${p.flag}</td>
-    </tr>`;
-  }).join('');
-  return `
-  <table>
-    <thead>
-      <tr>
-        <th>#</th><th>Component</th><th>Manufacturer</th><th>Origin</th><th>Flag</th>
-      </tr>
-    </thead>
-    <tbody>${rows}</tbody>
+    </tr>`).join('')}</tbody>
   </table>`;
 }
 
-function openModal(id) {
-  const a = AIRCRAFT[id];
-  document.getElementById('modal').innerHTML = `
+function openModal(id){
+  const a=AIRCRAFT[id];
+  document.getElementById('modal').innerHTML=`
     <div class="modal-top">
-      <div class="modal-title-group">
+      <div>
         <div class="modal-title">${a.name}</div>
         <div class="modal-chips">
           <span class="chip">${a.type}</span>
@@ -924,32 +913,29 @@ function openModal(id) {
     </div>
     <div class="modal-parts">
       <div class="section-lbl">Numbered Component Breakdown</div>
-      ${buildPartsTable(id)}
+      ${buildTable(id)}
     </div>
     <div class="modal-footer">
-      <span class="footer-lbl">First Flight</span>
-      <span class="footer-val">${a.firstFlight}</span>
-      <span style="margin:0 10px;color:var(--border)">|</span>
-      <span class="footer-lbl">Range</span>
-      <span class="footer-val">${a.range}</span>
-      <span style="margin:0 10px;color:var(--border)">|</span>
-      <span class="footer-lbl">Typical Capacity</span>
-      <span class="footer-val">${a.capacity}</span>
+      <span class="footer-lbl">First Flight</span><span class="footer-val">${a.firstFlight}</span>
+      <span class="sep">|</span>
+      <span class="footer-lbl">Range</span><span class="footer-val">${a.range}</span>
+      <span class="sep">|</span>
+      <span class="footer-lbl">Capacity</span><span class="footer-val">${a.capacity}</span>
     </div>`;
   document.getElementById('overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeModal() {
+function closeModal(){
   document.getElementById('overlay').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
 
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('overlay')) closeModal();
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('overlay'))closeModal();
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
