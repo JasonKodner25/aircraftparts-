@@ -8,75 +8,122 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07111f;--surface:#0b1928;--card:#07131f;
-  --border:rgba(80,150,220,0.14);--border-hover:rgba(80,150,220,0.35);
+  --bg:#04080f;--surface:#0a1528;--card:#060e1c;
+  --border:rgba(60,130,210,0.12);--border-hover:rgba(60,130,210,0.34);
   --accent:#2d7dd2;--accent-bright:#5ba3f5;
-  --text:#a8c8e8;--text-dim:#4a6a8a;--text-bright:#deeeff;
-  --grid:rgba(80,150,220,0.055);
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.13);
+  --text:#9ab8d8;--text-dim:#3d5878;--text-bright:#d4ecff;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:48px 48px;
+  font-family:'Inter',sans-serif;color:var(--text);min-height:100vh;
+  background:radial-gradient(ellipse 150% 70% at 50% 0%,#081a38 0%,#04080f 55%);
+  background-color:#04080f;
 }
 nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 40px;border-bottom:1px solid var(--border);
-  position:sticky;top:0;background:rgba(7,17,31,0.92);backdrop-filter:blur(12px);z-index:50;
+  position:sticky;top:0;background:rgba(4,8,15,0.92);backdrop-filter:blur(14px);z-index:50;
 }
 .nav-brand{font-weight:800;font-size:14px;color:var(--text-bright);letter-spacing:-.01em;}
-.nav-brand span{color:var(--accent-bright);}
+.nav-brand span{color:var(--gold);}
 .nav-link{
   font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--accent-bright);text-decoration:none;
-  border:1px solid rgba(91,163,245,.25);padding:6px 14px;border-radius:2px;
-  background:rgba(91,163,245,.06);transition:all .15s;
+  color:var(--gold);text-decoration:none;
+  border:1px solid rgba(201,168,76,.22);padding:6px 14px;border-radius:2px;
+  background:rgba(201,168,76,.05);transition:all .15s;
 }
-.nav-link:hover{background:rgba(91,163,245,.14);border-color:rgba(91,163,245,.45);}
-header{text-align:center;padding:64px 24px 48px;position:relative;}
+.nav-link:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.4);}
+header{text-align:center;padding:68px 24px 52px;position:relative;}
+header::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(45,100,200,.06),transparent 70%);
+  pointer-events:none;
+}
 header::after{
   content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:600px;max-width:90%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(80,150,220,0.3),transparent);
+  width:640px;max-width:90%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.22),transparent);
 }
 .tag{
   display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--accent-bright);
-  border:1px solid rgba(91,163,245,.25);padding:4px 14px;border-radius:2px;
-  margin-bottom:22px;background:rgba(91,163,245,.06);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(201,168,76,.22);padding:4px 14px;border-radius:2px;
+  margin-bottom:22px;background:rgba(201,168,76,.05);
 }
-header h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:var(--text-bright);letter-spacing:-.025em;line-height:1.1;margin-bottom:14px;}
-header h1 em{font-style:normal;color:var(--accent-bright);}
-header p{font-size:.9rem;color:var(--text-dim);max-width:460px;margin:0 auto;line-height:1.75;}
-main{max-width:1280px;margin:0 auto;padding:0 32px 100px;}
-.mfr-section{margin-bottom:60px;}
-.mfr-head{display:flex;align-items:center;gap:18px;padding:36px 0 20px;border-bottom:1px solid var(--border);margin-bottom:26px;}
+header h1{font-size:clamp(1.9rem,4vw,3.1rem);font-weight:800;color:var(--text-bright);letter-spacing:-.025em;line-height:1.1;margin-bottom:14px;}
+header h1 em{font-style:normal;color:var(--gold);}
+header p{font-size:.9rem;color:var(--text-dim);max-width:470px;margin:0 auto;line-height:1.75;}
+main{max-width:1300px;margin:0 auto;padding:0 32px 100px;}
+.mfr-section{margin-bottom:64px;}
+.mfr-head{display:flex;align-items:center;gap:18px;padding:38px 0 20px;border-bottom:1px solid var(--border);margin-bottom:26px;}
 .mfr-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border);padding:3px 10px;border-radius:2px;}
-.mfr-head h2{font-size:1.25rem;font-weight:700;color:var(--text-bright);letter-spacing:-.01em;}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;overflow:hidden;}
-.card:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 16px 50px rgba(45,125,210,.15);}
-.card-silhouette{
-  height:185px;background:#06101a;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;padding:10px 14px;position:relative;
+.mfr-head h2{font-size:1.2rem;font-weight:700;color:var(--text-bright);letter-spacing:-.01em;}
+.mfr-head .mfr-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  cursor:pointer;transition:transform .22s,border-color .22s,box-shadow .22s;overflow:hidden;
 }
-.card-silhouette svg{width:100%;height:100%;overflow:visible;}
-.card-body{padding:18px 20px 0;}
-.card-model{font-size:.96rem;font-weight:700;color:var(--text-bright);margin-bottom:3px;}
-.card-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
+.card:hover{transform:translateY(-6px);border-color:var(--border-hover);box-shadow:0 20px 60px rgba(20,60,160,.22),0 0 0 1px rgba(201,168,76,.06);}
+/* card photo area */
+.photo-area{
+  position:relative;height:210px;background:#060d1a;
+  border-bottom:1px solid var(--border);overflow:hidden;
+}
+.aircraft-photo{
+  width:100%;height:100%;object-fit:cover;object-position:center 55%;
+  display:block;opacity:0;transition:opacity .7s ease;
+}
+.aircraft-photo.loaded{opacity:1;}
+.photo-fallback{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:16px 14px;transition:opacity .4s ease;
+}
+.photo-fallback svg{
+  width:100%;height:auto;max-height:175px;display:block;overflow:visible;
+  filter:drop-shadow(0 4px 14px rgba(0,10,40,.75));
+}
+.photo-gradient{
+  position:absolute;bottom:0;left:0;right:0;height:70px;
+  background:linear-gradient(transparent,rgba(4,8,18,.75));
+  pointer-events:none;z-index:2;
+}
+/* plan-view inset badge */
+.planview-inset{
+  position:absolute;bottom:9px;right:9px;width:66px;height:88px;
+  background:rgba(4,9,20,.82);border:1px solid rgba(91,163,245,.18);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  padding:10px 6px 6px;backdrop-filter:blur(6px);z-index:3;
+}
+.planview-inset svg{
+  width:100%;height:100%;overflow:visible;
+  filter:drop-shadow(0 2px 6px rgba(0,10,40,.9));
+}
+.inset-label{
+  position:absolute;top:3px;left:0;right:0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:5.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(91,163,245,.45);
+}
+.card-body{padding:16px 18px 0;}
+.card-model{font-size:.95rem;font-weight:700;color:var(--text-bright);margin-bottom:3px;}
+.card-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:13px;}
 .card-specs{display:flex;gap:18px;flex-wrap:wrap;}
 .spec{display:flex;flex-direction:column;gap:2px;}
 .spec-k{font-size:8px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
 .spec-v{font-size:11px;font-weight:600;color:var(--text);}
-.card-cta{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--accent-bright);padding:12px 20px;border-top:1px solid var(--border);margin-top:14px;transition:gap .18s;}
+.card-cta{
+  display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;
+  letter-spacing:.06em;color:var(--gold);
+  padding:11px 18px;border-top:1px solid var(--border);margin-top:13px;transition:gap .18s;
+}
 .card:hover .card-cta{gap:10px;}
 .card-cta span{margin-left:auto;font-size:13px;}
 /* Modal */
-.overlay{position:fixed;inset:0;background:rgba(4,9,18,.94);backdrop-filter:blur(12px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+.overlay{position:fixed;inset:0;background:rgba(2,5,12,.95);backdrop-filter:blur(14px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .overlay.open{opacity:1;pointer-events:all;}
-.modal{background:var(--surface);border:1px solid rgba(91,163,245,.18);border-radius:8px;width:100%;max-width:960px;max-height:92vh;overflow-y:auto;transform:translateY(22px);transition:transform .25s ease;}
+.modal{background:var(--surface);border:1px solid rgba(91,163,245,.16);border-radius:10px;width:100%;max-width:980px;max-height:92vh;overflow-y:auto;transform:translateY(24px);transition:transform .25s ease;}
 .overlay.open .modal{transform:translateY(0);}
 .modal::-webkit-scrollbar{width:3px;}
 .modal::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
@@ -87,13 +134,13 @@ main{max-width:1280px;margin:0 auto;padding:0 32px 100px;}
 .chip.assembly{color:#4fd18a;border-color:rgba(79,209,138,.22);background:rgba(79,209,138,.06);}
 .close-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;flex-shrink:0;}
 .close-btn:hover{color:var(--text-bright);border-color:var(--border-hover);}
-.modal-diagram{padding:26px 34px;background:rgba(5,11,20,.6);border-bottom:1px solid var(--border);}
+.modal-diagram{padding:26px 34px;background:rgba(4,9,20,.5);border-bottom:1px solid var(--border);}
 .section-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
 .diagram-wrap svg{width:100%;height:auto;display:block;overflow:visible;}
 .modal-parts{padding:26px 34px;}
 table{width:100%;border-collapse:collapse;}
 thead th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);}
-tbody td{padding:11px 12px;border-bottom:1px solid rgba(80,150,220,.06);font-size:12.5px;vertical-align:middle;}
+tbody td{padding:11px 12px;border-bottom:1px solid rgba(60,130,210,.06);font-size:12.5px;vertical-align:middle;}
 tbody tr:last-child td{border-bottom:none;}
 tbody tr:hover td{background:rgba(91,163,245,.03);}
 .td-num{width:28px;}
@@ -102,17 +149,18 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
 .td-mfr{color:var(--text);}
 .td-loc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);line-height:1.5;}
 .td-flag{font-size:18px;text-align:center;width:36px;}
-.modal-footer{padding:13px 34px;border-top:1px solid var(--border);background:rgba(45,125,210,.05);display:flex;align-items:center;gap:10px;font-size:11px;flex-wrap:wrap;}
+.modal-footer{padding:13px 34px;border-top:1px solid var(--border);background:rgba(45,125,210,.04);display:flex;align-items:center;gap:10px;font-size:11px;flex-wrap:wrap;}
 .footer-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
 .footer-val{color:var(--text-bright);font-weight:600;}
 .sep{color:var(--border);margin:0 8px;}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:920px){.grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:580px){
   .grid{grid-template-columns:1fr;}
   main{padding:0 14px 60px;}
   header{padding:40px 14px 32px;}
   nav{padding:12px 16px;}
   .modal-top,.modal-diagram,.modal-parts,.modal-footer{padding-left:16px;padding-right:16px;}
+  .photo-area{height:165px;}
 }
 </style>
 </head>
@@ -134,6 +182,7 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
     <div class="mfr-head">
       <span class="mfr-badge">Manufacturer</span>
       <h2>Boeing Commercial Airplanes — Renton &amp; Everett, Washington</h2>
+      <div class="mfr-line"></div>
     </div>
     <div class="grid" id="boeing-grid"></div>
   </section>
@@ -141,6 +190,7 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
     <div class="mfr-head">
       <span class="mfr-badge">Manufacturer</span>
       <h2>Airbus Commercial Aircraft — Toulouse, France</h2>
+      <div class="mfr-line"></div>
     </div>
     <div class="grid" id="airbus-grid"></div>
   </section>
@@ -151,567 +201,506 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
 </div>
 
 <script>
-const DOT_COLORS = ['#5ba3f5','#4fd18a','#f0c040','#e05c4f','#a78bfa','#38d9f9','#fb923c','#f472b6'];
+const DOT_COLORS=['#5ba3f5','#4fd18a','#f0c040','#e05c4f','#a78bfa','#38d9f9','#fb923c','#f472b6'];
 
-// ── REALISTIC AIRCRAFT SVGs ──────────────────────────────────────────────────
-// All viewBox="0 0 560 215". Gradients defined inline per aircraft.
-// Boeing: white upper / Boeing-blue lower fuselage. Metallic engines.
-// Airbus: white fuselage, lighter styling.
-
-const SVG = {
-
-// ── Boeing 737 MAX 8 ─────────────────────────────────────────────────────────
+// ── SIDE-PROFILE SVGs (viewBox 0 0 560 215) ──────────────────────────────────
+const SVG={
 '737max':`
 <defs>
   <linearGradient id="f7" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#eef2f7"/>
-    <stop offset="36%" stop-color="#f5f8fb"/>
-    <stop offset="56%" stop-color="#c2d8ef"/>
-    <stop offset="66%" stop-color="#1550b8"/>
+    <stop offset="0%" stop-color="#eef2f7"/><stop offset="36%" stop-color="#f5f8fb"/>
+    <stop offset="56%" stop-color="#c2d8ef"/><stop offset="66%" stop-color="#1550b8"/>
     <stop offset="100%" stop-color="#001e90"/>
   </linearGradient>
   <linearGradient id="f7h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.52)"/>
-    <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.52)"/><stop offset="45%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="e7" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#8fa8c0"/>
-    <stop offset="22%" stop-color="#d8e8f4"/>
-    <stop offset="48%" stop-color="#f0f6ff"/>
-    <stop offset="78%" stop-color="#8898b0"/>
+    <stop offset="0%" stop-color="#8fa8c0"/><stop offset="22%" stop-color="#d8e8f4"/>
+    <stop offset="48%" stop-color="#f0f6ff"/><stop offset="78%" stop-color="#8898b0"/>
     <stop offset="100%" stop-color="#445566"/>
   </linearGradient>
   <radialGradient id="ei7" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#050810"/>
-    <stop offset="55%" stop-color="#141e2e"/>
+    <stop offset="0%" stop-color="#050810"/><stop offset="55%" stop-color="#141e2e"/>
     <stop offset="100%" stop-color="#253545"/>
   </radialGradient>
   <linearGradient id="w7" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b8ccde"/>
-    <stop offset="100%" stop-color="#7888a0"/>
+    <stop offset="0%" stop-color="#b8ccde"/><stop offset="100%" stop-color="#7888a0"/>
   </linearGradient>
   <linearGradient id="vt7" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0%" stop-color="#001880"/>
-    <stop offset="100%" stop-color="#1248cc"/>
+    <stop offset="0%" stop-color="#001880"/><stop offset="100%" stop-color="#1248cc"/>
   </linearGradient>
   <linearGradient id="ht7" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b0c4d8"/>
-    <stop offset="100%" stop-color="#7888a0"/>
+    <stop offset="0%" stop-color="#b0c4d8"/><stop offset="100%" stop-color="#7888a0"/>
   </linearGradient>
 </defs>
-<!-- WING (behind fuselage) -->
 <path d="M216,122 L172,172 L326,172 L284,122 Z" fill="url(#w7)" stroke="#8898b0" stroke-width="1.1"/>
-<!-- Split-scimitar winglet up -->
 <path d="M172,172 L157,152 L173,170 Z" fill="#ccd8e8" stroke="#8898b0" stroke-width=".9"/>
-<!-- Split-scimitar winglet down (Boeing blue) -->
 <path d="M172,172 L163,184 L176,174 Z" fill="#1040b8" stroke="#0830a0" stroke-width=".9"/>
-<!-- Engine pylon -->
-<path d="M237,122 L233,136 L249,136 L251,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- CFM LEAP-1B nacelle (flat-bottom) -->
-<path d="M195,151 C194,139 203,133 214,133 L272,133 C283,133 290,140 290,151 C290,161 284,169 272,169 L214,169 C203,169 195,161 195,151 Z" fill="url(#e7)" stroke="#7080988" stroke-width="1.5"/>
-<!-- LEAP flat-bottom line (distinctive feature) -->
+<path d="M237,122 L233,136 L249,136 L251,122 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M195,151 C194,139 203,133 214,133 L272,133 C283,133 290,140 290,151 C290,161 284,169 272,169 L214,169 C203,169 195,161 195,151 Z" fill="url(#e7)" stroke-width="1.5"/>
 <line x1="195" y1="169" x2="290" y2="169" stroke="#8090a8" stroke-width="2.2"/>
-<!-- Engine inlet -->
-<ellipse cx="197" cy="151" rx="9" ry="18" fill="url(#ei7)" stroke="#3848588" stroke-width="1.1"/>
+<ellipse cx="197" cy="151" rx="9" ry="18" fill="url(#ei7)" stroke-width="1.1"/>
 <ellipse cx="197" cy="151" rx="5.5" ry="11" fill="none" stroke="#243040" stroke-width=".7" opacity=".7"/>
-<ellipse cx="197" cy="151" rx="2" ry="5" fill="none" stroke="#243040" stroke-width=".5" opacity=".4"/>
-<!-- Exhaust nozzle -->
 <path d="M281,140 L293,147 L293,162 L281,168 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
-<!-- FUSELAGE (over wings) -->
 <path d="M28,104 C35,82 66,73 103,71 L440,71 C460,71 475,79 483,95 C487,101 487,108 483,115 C475,130 460,138 440,138 L103,138 C66,138 35,125 28,115 Z" fill="url(#f7)" stroke="#8898b0" stroke-width="1.2"/>
-<!-- Fuselage cylindrical highlight -->
-<path d="M30,110 C36,88 64,78 102,76 L440,76 C457,76 472,82 480,94 L483,98 C474,83 458,73 440,73 L102,73 C63,73 34,84 28,108 Z" fill="url(#f7h)" stroke="none"/>
-<!-- Cockpit windows -->
+<path d="M30,110 C36,88 64,78 102,76 L440,76 C457,76 472,82 480,94 L483,98 C474,83 458,73 440,73 L102,73 C63,73 34,84 28,108 Z" fill="url(#f7h)"/>
 <rect x="58" y="79" width="15" height="9" rx="2.5" fill="rgba(100,165,230,0.55)" stroke="#5878b0" stroke-width=".8"/>
 <rect x="77" y="79" width="11" height="9" rx="2.5" fill="rgba(90,155,220,0.5)" stroke="#5878b0" stroke-width=".8"/>
-<!-- Vertical stabilizer (Boeing blue) -->
 <path d="M448,71 L465,23 L478,23 L500,69 Z" fill="url(#vt7)" stroke="#2040a8" stroke-width="1.2"/>
-<!-- Boeing globe emblem suggestion on VS -->
 <circle cx="470" cy="45" r="9" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width=".9"/>
-<circle cx="470" cy="45" r="4.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width=".6"/>
-<!-- Horizontal stabilizer -->
 <path d="M458,118 L421,136 L473,136 L477,118 Z" fill="url(#ht7)" stroke="#8898b0" stroke-width="1.1"/>
-<!-- Door outlines -->
 <rect x="131" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="308" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="412" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
-<!-- Windows (light blue-gray in white zone) -->
-<g fill="#90b4d0" stroke="none">
-  <rect x="141" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="154" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="167" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="180" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="193" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="206" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="219" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="232" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="245" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="258" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="271" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="284" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="297" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="310" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="323" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="336" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="349" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="362" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="375" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="388" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="401" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="414" y="79" width="7" height="4" rx="1.3"/>
-</g>`,
+<g fill="#90b4d0"><rect x="141" y="79" width="7" height="4" rx="1.3"/><rect x="154" y="79" width="7" height="4" rx="1.3"/><rect x="167" y="79" width="7" height="4" rx="1.3"/><rect x="180" y="79" width="7" height="4" rx="1.3"/><rect x="193" y="79" width="7" height="4" rx="1.3"/><rect x="206" y="79" width="7" height="4" rx="1.3"/><rect x="219" y="79" width="7" height="4" rx="1.3"/><rect x="232" y="79" width="7" height="4" rx="1.3"/><rect x="245" y="79" width="7" height="4" rx="1.3"/><rect x="258" y="79" width="7" height="4" rx="1.3"/><rect x="271" y="79" width="7" height="4" rx="1.3"/><rect x="284" y="79" width="7" height="4" rx="1.3"/><rect x="297" y="79" width="7" height="4" rx="1.3"/><rect x="310" y="79" width="7" height="4" rx="1.3"/><rect x="323" y="79" width="7" height="4" rx="1.3"/><rect x="336" y="79" width="7" height="4" rx="1.3"/><rect x="349" y="79" width="7" height="4" rx="1.3"/><rect x="362" y="79" width="7" height="4" rx="1.3"/><rect x="375" y="79" width="7" height="4" rx="1.3"/><rect x="388" y="79" width="7" height="4" rx="1.3"/><rect x="401" y="79" width="7" height="4" rx="1.3"/><rect x="414" y="79" width="7" height="4" rx="1.3"/></g>`,
 
-// ── Boeing 757-200 ────────────────────────────────────────────────────────────
 '757':`
 <defs>
   <linearGradient id="f75" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#edf1f7"/>
-    <stop offset="37%" stop-color="#f4f8fc"/>
-    <stop offset="57%" stop-color="#bed4ee"/>
-    <stop offset="67%" stop-color="#1450b5"/>
+    <stop offset="0%" stop-color="#edf1f7"/><stop offset="37%" stop-color="#f4f8fc"/>
+    <stop offset="57%" stop-color="#bed4ee"/><stop offset="67%" stop-color="#1450b5"/>
     <stop offset="100%" stop-color="#001a8a"/>
   </linearGradient>
   <linearGradient id="f75h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
-    <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/><stop offset="45%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="e75" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#8ca6c0"/>
-    <stop offset="22%" stop-color="#d5e5f2"/>
-    <stop offset="50%" stop-color="#eef6ff"/>
-    <stop offset="78%" stop-color="#8090a8"/>
+    <stop offset="0%" stop-color="#8ca6c0"/><stop offset="22%" stop-color="#d5e5f2"/>
+    <stop offset="50%" stop-color="#eef6ff"/><stop offset="78%" stop-color="#8090a8"/>
     <stop offset="100%" stop-color="#404e5e"/>
   </linearGradient>
   <radialGradient id="ei75" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#040710"/>
-    <stop offset="55%" stop-color="#121c2c"/>
+    <stop offset="0%" stop-color="#040710"/><stop offset="55%" stop-color="#121c2c"/>
     <stop offset="100%" stop-color="#223040"/>
   </radialGradient>
   <linearGradient id="w75" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b5c9dc"/>
-    <stop offset="100%" stop-color="#72869a"/>
+    <stop offset="0%" stop-color="#b5c9dc"/><stop offset="100%" stop-color="#72869a"/>
   </linearGradient>
   <linearGradient id="vt75" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0%" stop-color="#001880"/>
-    <stop offset="100%" stop-color="#1045c8"/>
+    <stop offset="0%" stop-color="#001880"/><stop offset="100%" stop-color="#1045c8"/>
   </linearGradient>
 </defs>
-<!-- Wing -->
 <path d="M218,122 L170,178 L350,178 L296,122 Z" fill="url(#w75)" stroke="#8898b0" stroke-width="1.1"/>
-<!-- Pylon -->
-<path d="M248,122 L244,142 L260,142 L262,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- RB211-535 engine (conventional round) -->
-<path d="M210,159 C209,145 218,138 230,138 L282,138 C294,138 302,145 302,159 C302,173 294,180 282,180 L230,180 C218,180 210,173 210,159 Z" fill="url(#e75)" stroke="#7080988" stroke-width="1.5"/>
-<ellipse cx="212" cy="159" rx="10" ry="21" fill="url(#ei75)" stroke="#3848588" stroke-width="1.1"/>
+<path d="M248,122 L244,142 L260,142 L262,122 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M210,159 C209,145 218,138 230,138 L282,138 C294,138 302,145 302,159 C302,173 294,180 282,180 L230,180 C218,180 210,173 210,159 Z" fill="url(#e75)" stroke-width="1.5"/>
+<ellipse cx="212" cy="159" rx="10" ry="21" fill="url(#ei75)" stroke-width="1.1"/>
 <ellipse cx="212" cy="159" rx="6" ry="13" fill="none" stroke="#243040" stroke-width=".7" opacity=".7"/>
 <path d="M293,146 L305,153 L305,167 L293,175 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
-<!-- Fuselage (longer/slimmer) -->
 <path d="M24,104 C31,82 63,73 100,71 L462,71 C484,71 499,80 508,96 C512,102 512,108 508,116 C499,131 484,138 462,138 L100,138 C63,138 31,125 24,115 Z" fill="url(#f75)" stroke="#8898b0" stroke-width="1.2"/>
-<path d="M26,110 C32,88 61,78 100,76 L462,76 C480,76 495,82 503,95 L508,100 C499,83 484,73 462,73 L100,73 C61,73 31,84 24,108 Z" fill="url(#f75h)" stroke="none"/>
-<!-- Cockpit -->
+<path d="M26,110 C32,88 61,78 100,76 L462,76 C480,76 495,82 503,95 L508,100 C499,83 484,73 462,73 L100,73 C61,73 31,84 24,108 Z" fill="url(#f75h)"/>
 <rect x="48" y="79" width="15" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
 <rect x="67" y="79" width="11" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
-<!-- VERY TALL vertical stabilizer — 757 signature -->
 <path d="M450,71 L467,10 L482,10 L514,69 Z" fill="url(#vt75)" stroke="#2040a8" stroke-width="1.2"/>
 <circle cx="473" cy="35" r="9" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width=".9"/>
-<circle cx="473" cy="35" r="4.5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width=".6"/>
-<!-- Horizontal stabilizer -->
 <path d="M463,117 L424,136 L476,136 L480,117 Z" fill="#b0c4d8" stroke="#8898b0" stroke-width="1.1"/>
-<!-- Doors -->
 <rect x="131" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="318" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="424" y="72" width="4" height="20" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
-<g fill="#8ab4d0" stroke="none">
-  <rect x="140" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="153" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="166" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="179" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="192" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="205" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="218" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="231" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="244" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="257" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="270" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="283" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="296" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="309" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="322" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="335" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="348" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="361" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="374" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="387" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="400" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="413" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="426" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="439" y="79" width="7" height="4" rx="1.3"/>
-</g>`,
+<g fill="#8ab4d0"><rect x="140" y="79" width="7" height="4" rx="1.3"/><rect x="153" y="79" width="7" height="4" rx="1.3"/><rect x="166" y="79" width="7" height="4" rx="1.3"/><rect x="179" y="79" width="7" height="4" rx="1.3"/><rect x="192" y="79" width="7" height="4" rx="1.3"/><rect x="205" y="79" width="7" height="4" rx="1.3"/><rect x="218" y="79" width="7" height="4" rx="1.3"/><rect x="231" y="79" width="7" height="4" rx="1.3"/><rect x="244" y="79" width="7" height="4" rx="1.3"/><rect x="257" y="79" width="7" height="4" rx="1.3"/><rect x="270" y="79" width="7" height="4" rx="1.3"/><rect x="283" y="79" width="7" height="4" rx="1.3"/><rect x="296" y="79" width="7" height="4" rx="1.3"/><rect x="309" y="79" width="7" height="4" rx="1.3"/><rect x="322" y="79" width="7" height="4" rx="1.3"/><rect x="335" y="79" width="7" height="4" rx="1.3"/><rect x="348" y="79" width="7" height="4" rx="1.3"/><rect x="361" y="79" width="7" height="4" rx="1.3"/><rect x="374" y="79" width="7" height="4" rx="1.3"/><rect x="387" y="79" width="7" height="4" rx="1.3"/><rect x="400" y="79" width="7" height="4" rx="1.3"/><rect x="413" y="79" width="7" height="4" rx="1.3"/><rect x="426" y="79" width="7" height="4" rx="1.3"/><rect x="439" y="79" width="7" height="4" rx="1.3"/></g>`,
 
-// ── Boeing 777-300ER ──────────────────────────────────────────────────────────
 '777':`
 <defs>
   <linearGradient id="f77" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#ecf0f7"/>
-    <stop offset="34%" stop-color="#f3f7fc"/>
-    <stop offset="54%" stop-color="#bbd1ea"/>
-    <stop offset="65%" stop-color="#1250b4"/>
+    <stop offset="0%" stop-color="#ecf0f7"/><stop offset="34%" stop-color="#f3f7fc"/>
+    <stop offset="54%" stop-color="#bbd1ea"/><stop offset="65%" stop-color="#1250b4"/>
     <stop offset="100%" stop-color="#001888"/>
   </linearGradient>
   <linearGradient id="f77h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
-    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/><stop offset="42%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="e77" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#7a9ab6"/>
-    <stop offset="18%" stop-color="#cce0f2"/>
-    <stop offset="46%" stop-color="#eaf4ff"/>
-    <stop offset="78%" stop-color="#7888a2"/>
+    <stop offset="0%" stop-color="#7a9ab6"/><stop offset="18%" stop-color="#cce0f2"/>
+    <stop offset="46%" stop-color="#eaf4ff"/><stop offset="78%" stop-color="#7888a2"/>
     <stop offset="100%" stop-color="#384858"/>
   </linearGradient>
   <radialGradient id="ei77" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#040610"/>
-    <stop offset="55%" stop-color="#101828"/>
+    <stop offset="0%" stop-color="#040610"/><stop offset="55%" stop-color="#101828"/>
     <stop offset="100%" stop-color="#1e2e3e"/>
   </radialGradient>
   <linearGradient id="w77" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#aac0d4"/>
-    <stop offset="100%" stop-color="#6a7e92"/>
+    <stop offset="0%" stop-color="#aac0d4"/><stop offset="100%" stop-color="#6a7e92"/>
   </linearGradient>
   <linearGradient id="vt77" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0%" stop-color="#001680"/>
-    <stop offset="100%" stop-color="#1042c5"/>
+    <stop offset="0%" stop-color="#001680"/><stop offset="100%" stop-color="#1042c5"/>
   </linearGradient>
 </defs>
-<!-- Wing (large) -->
 <path d="M210,130 L154,190 L372,190 L298,130 Z" fill="url(#w77)" stroke="#8090a8" stroke-width="1.2"/>
-<!-- Raked wingtip -->
 <path d="M154,190 L142,181 L156,189 Z" fill="#a8bcce" stroke="#8090a8" stroke-width=".9"/>
-<!-- Engine pylon -->
-<path d="M236,130 L229,146 L252,146 L256,130 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- GE90-115B — world's largest turbofan (massive nacelle) -->
-<path d="M186,168 C184,150 195,141 213,141 L284,141 C302,141 313,150 313,168 C313,186 302,195 284,195 L213,195 C195,195 184,186 186,168 Z" fill="url(#e77)" stroke="#6878988" stroke-width="1.8"/>
-<ellipse cx="189" cy="168" rx="13" ry="27" fill="url(#ei77)" stroke="#3848588" stroke-width="1.3"/>
+<path d="M236,130 L229,146 L252,146 L256,130 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M186,168 C184,150 195,141 213,141 L284,141 C302,141 313,150 313,168 C313,186 302,195 284,195 L213,195 C195,195 184,186 186,168 Z" fill="url(#e77)" stroke-width="1.8"/>
+<ellipse cx="189" cy="168" rx="13" ry="27" fill="url(#ei77)" stroke-width="1.3"/>
 <ellipse cx="189" cy="168" rx="8" ry="17" fill="none" stroke="#1e2e3c" stroke-width=".8" opacity=".7"/>
-<ellipse cx="189" cy="168" rx="4" ry="9" fill="none" stroke="#1e2e3c" stroke-width=".5" opacity=".4"/>
 <path d="M300,152 L315,161 L315,178 L300,187 Z" fill="#364858" stroke="#445868" stroke-width=".9"/>
-<!-- Fuselage (widebody — taller cross-section) -->
 <path d="M19,104 C27,77 62,64 106,62 L490,62 C514,62 532,72 540,90 C545,98 545,110 540,118 C532,136 514,146 490,146 L106,146 C62,146 27,131 19,118 Z" fill="url(#f77)" stroke="#8090a8" stroke-width="1.3"/>
-<path d="M21,115 C28,92 60,78 106,76 L490,76 C510,76 525,83 532,95 L540,103 C531,83 512,65 490,64 L106,64 C61,64 27,79 19,106 Z" fill="url(#f77h)" stroke="none"/>
-<!-- Cockpit (wider windows — widebody) -->
+<path d="M21,115 C28,92 60,78 106,76 L490,76 C510,76 525,83 532,95 L540,103 C531,83 512,65 490,64 L106,64 C61,64 27,79 19,106 Z" fill="url(#f77h)"/>
 <rect x="46" y="76" width="17" height="10" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".9"/>
 <rect x="67" y="76" width="13" height="10" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".9"/>
-<!-- Vertical stabilizer (large, Boeing blue) -->
 <path d="M475,62 L494,16 L510,16 L532,60 Z" fill="url(#vt77)" stroke="#2040a8" stroke-width="1.3"/>
 <circle cx="497" cy="38" r="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
-<circle cx="497" cy="38" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width=".6"/>
-<!-- Horizontal stabilizer (large) -->
 <path d="M488,124 L446,145 L498,145 L505,124 Z" fill="#aac0d4" stroke="#8090a8" stroke-width="1.2"/>
 <rect x="140" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.18)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="336" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.12)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="438" y="70" width="4" height="22" rx=".6" fill="rgba(160,170,190,0.1)" stroke="#9090a8" stroke-width=".6"/>
-<!-- Two rows of windows (widebody) -->
-<g fill="#88b2ce" stroke="none">
-  <rect x="149" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="163" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="177" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="191" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="205" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="219" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="233" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="247" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="261" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="275" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="289" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="303" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="317" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="331" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="345" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="359" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="373" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="387" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="401" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="415" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="429" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="443" y="72" width="8" height="4" rx="1.3"/>
-  <rect x="457" y="72" width="8" height="4" rx="1.3"/>
-</g>
-<g fill="#5c90b8" stroke="none" opacity=".55">
-  <rect x="149" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="163" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="177" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="191" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="205" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="219" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="233" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="247" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="261" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="275" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="289" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="303" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="317" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="331" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="345" y="80" width="8" height="4" rx="1.3"/>
-  <rect x="359" y="80" width="8" height="4" rx="1.3"/>
-</g>`,
+<g fill="#88b2ce"><rect x="149" y="72" width="8" height="4" rx="1.3"/><rect x="163" y="72" width="8" height="4" rx="1.3"/><rect x="177" y="72" width="8" height="4" rx="1.3"/><rect x="191" y="72" width="8" height="4" rx="1.3"/><rect x="205" y="72" width="8" height="4" rx="1.3"/><rect x="219" y="72" width="8" height="4" rx="1.3"/><rect x="233" y="72" width="8" height="4" rx="1.3"/><rect x="247" y="72" width="8" height="4" rx="1.3"/><rect x="261" y="72" width="8" height="4" rx="1.3"/><rect x="275" y="72" width="8" height="4" rx="1.3"/><rect x="289" y="72" width="8" height="4" rx="1.3"/><rect x="303" y="72" width="8" height="4" rx="1.3"/><rect x="317" y="72" width="8" height="4" rx="1.3"/><rect x="331" y="72" width="8" height="4" rx="1.3"/><rect x="345" y="72" width="8" height="4" rx="1.3"/><rect x="359" y="72" width="8" height="4" rx="1.3"/><rect x="373" y="72" width="8" height="4" rx="1.3"/><rect x="387" y="72" width="8" height="4" rx="1.3"/><rect x="401" y="72" width="8" height="4" rx="1.3"/><rect x="415" y="72" width="8" height="4" rx="1.3"/><rect x="429" y="72" width="8" height="4" rx="1.3"/><rect x="443" y="72" width="8" height="4" rx="1.3"/><rect x="457" y="72" width="8" height="4" rx="1.3"/></g>
+<g fill="#5c90b8" opacity=".55"><rect x="149" y="80" width="8" height="4" rx="1.3"/><rect x="163" y="80" width="8" height="4" rx="1.3"/><rect x="177" y="80" width="8" height="4" rx="1.3"/><rect x="191" y="80" width="8" height="4" rx="1.3"/><rect x="205" y="80" width="8" height="4" rx="1.3"/><rect x="219" y="80" width="8" height="4" rx="1.3"/><rect x="233" y="80" width="8" height="4" rx="1.3"/><rect x="247" y="80" width="8" height="4" rx="1.3"/><rect x="261" y="80" width="8" height="4" rx="1.3"/><rect x="275" y="80" width="8" height="4" rx="1.3"/><rect x="289" y="80" width="8" height="4" rx="1.3"/><rect x="303" y="80" width="8" height="4" rx="1.3"/><rect x="317" y="80" width="8" height="4" rx="1.3"/><rect x="331" y="80" width="8" height="4" rx="1.3"/><rect x="345" y="80" width="8" height="4" rx="1.3"/><rect x="359" y="80" width="8" height="4" rx="1.3"/></g>`,
 
-// ── Airbus A318 ───────────────────────────────────────────────────────────────
 'a318':`
 <defs>
   <linearGradient id="fa18" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#ecf0f6"/>
-    <stop offset="40%" stop-color="#f6f9fc"/>
-    <stop offset="62%" stop-color="#dde8f2"/>
-    <stop offset="74%" stop-color="#c8d8ec"/>
+    <stop offset="0%" stop-color="#ecf0f6"/><stop offset="40%" stop-color="#f6f9fc"/>
+    <stop offset="62%" stop-color="#dde8f2"/><stop offset="74%" stop-color="#c8d8ec"/>
     <stop offset="100%" stop-color="#a0b5ce"/>
   </linearGradient>
   <linearGradient id="fa18h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
-    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/><stop offset="42%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="ea18" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#8aa4bc"/>
-    <stop offset="22%" stop-color="#d2e4f0"/>
-    <stop offset="48%" stop-color="#ecf4fc"/>
-    <stop offset="78%" stop-color="#7e90a6"/>
+    <stop offset="0%" stop-color="#8aa4bc"/><stop offset="22%" stop-color="#d2e4f0"/>
+    <stop offset="48%" stop-color="#ecf4fc"/><stop offset="78%" stop-color="#7e90a6"/>
     <stop offset="100%" stop-color="#3e4e5e"/>
   </linearGradient>
   <radialGradient id="eia18" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#040810"/>
-    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="0%" stop-color="#040810"/><stop offset="55%" stop-color="#131d2d"/>
     <stop offset="100%" stop-color="#212f3f"/>
   </radialGradient>
   <linearGradient id="wa18" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b2c6d8"/>
-    <stop offset="100%" stop-color="#708498"/>
+    <stop offset="0%" stop-color="#b2c6d8"/><stop offset="100%" stop-color="#708498"/>
   </linearGradient>
-  <!-- Airbus tail: white with subtle gray -->
   <linearGradient id="vta18" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#e0e8f2"/>
-    <stop offset="100%" stop-color="#b8ccde"/>
+    <stop offset="0%" stop-color="#e0e8f2"/><stop offset="100%" stop-color="#b8ccde"/>
   </linearGradient>
 </defs>
-<!-- Wing -->
 <path d="M210,122 L166,172 L316,172 L274,122 Z" fill="url(#wa18)" stroke="#8090a8" stroke-width="1.1"/>
-<!-- Pylon -->
-<path d="M230,122 L226,137 L242,137 L244,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- CFM56-5B (compact) -->
-<path d="M194,151 C193,141 200,135 211,135 L264,135 C275,135 281,141 281,151 C281,162 275,168 264,168 L211,168 C200,168 194,162 194,151 Z" fill="url(#ea18)" stroke="#7080988" stroke-width="1.4"/>
-<ellipse cx="196" cy="151" rx="9" ry="16" fill="url(#eia18)" stroke="#3848588" stroke-width="1"/>
+<path d="M230,122 L226,137 L242,137 L244,122 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M194,151 C193,141 200,135 211,135 L264,135 C275,135 281,141 281,151 C281,162 275,168 264,168 L211,168 C200,168 194,162 194,151 Z" fill="url(#ea18)" stroke-width="1.4"/>
+<ellipse cx="196" cy="151" rx="9" ry="16" fill="url(#eia18)" stroke-width="1"/>
 <ellipse cx="196" cy="151" rx="5" ry="10" fill="none" stroke="#243040" stroke-width=".7" opacity=".6"/>
 <path d="M272,141 L283,147 L283,158 L272,165 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
-<!-- Fuselage (short — A318 is smallest of group) -->
 <path d="M44,104 C51,83 78,74 112,72 L405,72 C424,72 437,80 443,95 C446,101 446,108 443,115 C437,129 424,137 405,137 L112,137 C78,137 51,124 44,115 Z" fill="url(#fa18)" stroke="#8898b0" stroke-width="1.2"/>
-<path d="M46,112 C52,90 78,80 112,78 L405,78 C421,78 434,84 440,96 L443,100 C436,83 423,74 405,74 L112,74 C78,74 51,86 44,110 Z" fill="url(#fa18h)" stroke="none"/>
-<!-- Airbus cockpit — distinctive rectangular windows -->
+<path d="M46,112 C52,90 78,80 112,78 L405,78 C421,78 434,84 440,96 L443,100 C436,83 423,74 405,74 L112,74 C78,74 51,86 44,110 Z" fill="url(#fa18h)"/>
 <rect x="66" y="80" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
 <rect x="86" y="80" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
-<!-- Airbus VS — curved leading edge, white -->
 <path d="M409,72 C421,72 434,64 442,44 L453,23 L467,23 L455,71 Z" fill="url(#vta18)" stroke="#8090a8" stroke-width="1.2"/>
-<!-- Horizontal stabilizer -->
 <path d="M416,116 L382,133 L428,133 L432,116 Z" fill="#b2c6d8" stroke="#8090a8" stroke-width="1.1"/>
 <rect x="135" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="298" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
-<rect x="374" y="73" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
-<g fill="#8ab2cc" stroke="none">
-  <rect x="141" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="154" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="167" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="180" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="193" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="206" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="219" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="232" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="245" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="258" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="271" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="284" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="297" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="310" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="323" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="336" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="349" y="80" width="7" height="4" rx="1.3"/>
-  <rect x="362" y="80" width="7" height="4" rx="1.3"/>
-</g>`,
+<g fill="#8ab2cc"><rect x="141" y="80" width="7" height="4" rx="1.3"/><rect x="154" y="80" width="7" height="4" rx="1.3"/><rect x="167" y="80" width="7" height="4" rx="1.3"/><rect x="180" y="80" width="7" height="4" rx="1.3"/><rect x="193" y="80" width="7" height="4" rx="1.3"/><rect x="206" y="80" width="7" height="4" rx="1.3"/><rect x="219" y="80" width="7" height="4" rx="1.3"/><rect x="232" y="80" width="7" height="4" rx="1.3"/><rect x="245" y="80" width="7" height="4" rx="1.3"/><rect x="258" y="80" width="7" height="4" rx="1.3"/><rect x="271" y="80" width="7" height="4" rx="1.3"/><rect x="284" y="80" width="7" height="4" rx="1.3"/><rect x="297" y="80" width="7" height="4" rx="1.3"/><rect x="310" y="80" width="7" height="4" rx="1.3"/><rect x="323" y="80" width="7" height="4" rx="1.3"/><rect x="336" y="80" width="7" height="4" rx="1.3"/><rect x="349" y="80" width="7" height="4" rx="1.3"/><rect x="362" y="80" width="7" height="4" rx="1.3"/></g>`,
 
-// ── Airbus A320 ───────────────────────────────────────────────────────────────
 'a320':`
 <defs>
   <linearGradient id="fa20" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#edf1f7"/>
-    <stop offset="40%" stop-color="#f5f8fc"/>
-    <stop offset="62%" stop-color="#dce8f2"/>
-    <stop offset="74%" stop-color="#c6d6ea"/>
+    <stop offset="0%" stop-color="#edf1f7"/><stop offset="40%" stop-color="#f5f8fc"/>
+    <stop offset="62%" stop-color="#dce8f2"/><stop offset="74%" stop-color="#c6d6ea"/>
     <stop offset="100%" stop-color="#9eb4cc"/>
   </linearGradient>
   <linearGradient id="fa20h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
-    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/><stop offset="42%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="ea20" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#8ca6be"/>
-    <stop offset="22%" stop-color="#d4e6f2"/>
-    <stop offset="48%" stop-color="#eef6ff"/>
-    <stop offset="78%" stop-color="#8092a8"/>
+    <stop offset="0%" stop-color="#8ca6be"/><stop offset="22%" stop-color="#d4e6f2"/>
+    <stop offset="48%" stop-color="#eef6ff"/><stop offset="78%" stop-color="#8092a8"/>
     <stop offset="100%" stop-color="#40505e"/>
   </linearGradient>
   <radialGradient id="eia20" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#040810"/>
-    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="0%" stop-color="#040810"/><stop offset="55%" stop-color="#131d2d"/>
     <stop offset="100%" stop-color="#212f3f"/>
   </radialGradient>
   <linearGradient id="wa20" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b4c8da"/>
-    <stop offset="100%" stop-color="#72869a"/>
+    <stop offset="0%" stop-color="#b4c8da"/><stop offset="100%" stop-color="#72869a"/>
   </linearGradient>
   <linearGradient id="vta20" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#dde6f0"/>
-    <stop offset="100%" stop-color="#b6cade"/>
+    <stop offset="0%" stop-color="#dde6f0"/><stop offset="100%" stop-color="#b6cade"/>
   </linearGradient>
 </defs>
-<!-- Wing -->
 <path d="M216,122 L172,174 L332,174 L288,122 Z" fill="url(#wa20)" stroke="#8090a8" stroke-width="1.1"/>
-<!-- Airbus A320 SHARKLET (smooth curve up) -->
 <path d="M172,174 C167,166 163,156 165,145 L170,156 L174,172 Z" fill="#c2d4e4" stroke="#8090a8" stroke-width="1.1"/>
-<!-- Pylon -->
-<path d="M238,122 L234,138 L250,138 L252,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- LEAP-1A engine -->
-<path d="M198,153 C197,141 204,135 215,135 L268,135 C279,135 285,141 285,153 C285,165 279,172 268,172 L215,172 C204,172 198,165 198,153 Z" fill="url(#ea20)" stroke="#7080988" stroke-width="1.5"/>
-<ellipse cx="200" cy="153" rx="9" ry="18" fill="url(#eia20)" stroke="#3848588" stroke-width="1.1"/>
+<path d="M238,122 L234,138 L250,138 L252,122 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M198,153 C197,141 204,135 215,135 L268,135 C279,135 285,141 285,153 C285,165 279,172 268,172 L215,172 C204,172 198,165 198,153 Z" fill="url(#ea20)" stroke-width="1.5"/>
+<ellipse cx="200" cy="153" rx="9" ry="18" fill="url(#eia20)" stroke-width="1.1"/>
 <ellipse cx="200" cy="153" rx="5.5" ry="11" fill="none" stroke="#243040" stroke-width=".7" opacity=".65"/>
 <path d="M277,141 L288,148 L288,161 L277,169 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".8"/>
-<!-- Fuselage -->
 <path d="M38,104 C45,82 73,73 109,71 L450,71 C470,71 484,79 492,95 C496,101 496,108 492,115 C484,130 470,138 450,138 L109,138 C73,138 45,125 38,115 Z" fill="url(#fa20)" stroke="#8898b0" stroke-width="1.2"/>
-<path d="M40,112 C46,90 73,80 109,77 L450,77 C467,77 481,83 488,96 L492,101 C483,84 469,73 450,73 L109,73 C73,73 45,86 38,110 Z" fill="url(#fa20h)" stroke="none"/>
+<path d="M40,112 C46,90 73,80 109,77 L450,77 C467,77 481,83 488,96 L492,101 C483,84 469,73 450,73 L109,73 C73,73 45,86 38,110 Z" fill="url(#fa20h)"/>
 <rect x="61" y="79" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
 <rect x="81" y="79" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
-<!-- Airbus VS (curved LE) -->
 <path d="M454,71 C466,71 479,62 488,42 L499,21 L514,21 L501,70 Z" fill="url(#vta20)" stroke="#8090a8" stroke-width="1.2"/>
-<!-- Horizontal stabilizer -->
 <path d="M461,117 L424,136 L474,136 L478,117 Z" fill="#b4c8da" stroke="#8090a8" stroke-width="1.1"/>
 <rect x="136" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="324" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="416" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
-<g fill="#8ab2cc" stroke="none">
-  <rect x="142" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="155" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="168" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="181" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="194" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="207" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="220" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="233" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="246" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="259" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="272" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="285" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="298" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="311" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="324" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="337" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="350" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="363" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="376" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="389" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="402" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="415" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="428" y="79" width="7" height="4" rx="1.3"/>
-</g>`,
+<g fill="#8ab2cc"><rect x="142" y="79" width="7" height="4" rx="1.3"/><rect x="155" y="79" width="7" height="4" rx="1.3"/><rect x="168" y="79" width="7" height="4" rx="1.3"/><rect x="181" y="79" width="7" height="4" rx="1.3"/><rect x="194" y="79" width="7" height="4" rx="1.3"/><rect x="207" y="79" width="7" height="4" rx="1.3"/><rect x="220" y="79" width="7" height="4" rx="1.3"/><rect x="233" y="79" width="7" height="4" rx="1.3"/><rect x="246" y="79" width="7" height="4" rx="1.3"/><rect x="259" y="79" width="7" height="4" rx="1.3"/><rect x="272" y="79" width="7" height="4" rx="1.3"/><rect x="285" y="79" width="7" height="4" rx="1.3"/><rect x="298" y="79" width="7" height="4" rx="1.3"/><rect x="311" y="79" width="7" height="4" rx="1.3"/><rect x="324" y="79" width="7" height="4" rx="1.3"/><rect x="337" y="79" width="7" height="4" rx="1.3"/><rect x="350" y="79" width="7" height="4" rx="1.3"/><rect x="363" y="79" width="7" height="4" rx="1.3"/><rect x="376" y="79" width="7" height="4" rx="1.3"/><rect x="389" y="79" width="7" height="4" rx="1.3"/><rect x="402" y="79" width="7" height="4" rx="1.3"/><rect x="415" y="79" width="7" height="4" rx="1.3"/><rect x="428" y="79" width="7" height="4" rx="1.3"/></g>`,
 
-// ── Airbus A340-300 ───────────────────────────────────────────────────────────
 'a340':`
 <defs>
   <linearGradient id="fa34" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#edf1f7"/>
-    <stop offset="40%" stop-color="#f4f8fc"/>
-    <stop offset="62%" stop-color="#dbe7f1"/>
-    <stop offset="74%" stop-color="#c4d4e8"/>
+    <stop offset="0%" stop-color="#edf1f7"/><stop offset="40%" stop-color="#f4f8fc"/>
+    <stop offset="62%" stop-color="#dbe7f1"/><stop offset="74%" stop-color="#c4d4e8"/>
     <stop offset="100%" stop-color="#9cb2ca"/>
   </linearGradient>
   <linearGradient id="fa34h" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
-    <stop offset="42%" stop-color="rgba(255,255,255,0)"/>
+    <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/><stop offset="42%" stop-color="rgba(255,255,255,0)"/>
   </linearGradient>
   <linearGradient id="ea34" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#8aa4ba"/>
-    <stop offset="22%" stop-color="#d2e4f0"/>
-    <stop offset="48%" stop-color="#ecf6fe"/>
-    <stop offset="78%" stop-color="#7e90a4"/>
+    <stop offset="0%" stop-color="#8aa4ba"/><stop offset="22%" stop-color="#d2e4f0"/>
+    <stop offset="48%" stop-color="#ecf6fe"/><stop offset="78%" stop-color="#7e90a4"/>
     <stop offset="100%" stop-color="#3c4c5c"/>
   </linearGradient>
   <radialGradient id="eia34" cx="38%" cy="50%" r="65%">
-    <stop offset="0%" stop-color="#040810"/>
-    <stop offset="55%" stop-color="#131d2d"/>
+    <stop offset="0%" stop-color="#040810"/><stop offset="55%" stop-color="#131d2d"/>
     <stop offset="100%" stop-color="#212f3f"/>
   </radialGradient>
   <linearGradient id="wa34" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b2c6d8"/>
-    <stop offset="100%" stop-color="#6e8298"/>
+    <stop offset="0%" stop-color="#b2c6d8"/><stop offset="100%" stop-color="#6e8298"/>
   </linearGradient>
   <linearGradient id="vta34" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#dce6f0"/>
-    <stop offset="100%" stop-color="#b4c8dc"/>
+    <stop offset="0%" stop-color="#dce6f0"/><stop offset="100%" stop-color="#b4c8dc"/>
   </linearGradient>
 </defs>
-<!-- Wing (large, 4-engine) -->
 <path d="M216,122 L166,184 L364,184 L298,122 Z" fill="url(#wa34)" stroke="#8090a8" stroke-width="1.1"/>
-<!-- INBOARD ENGINE pylon -->
-<path d="M252,122 L248,138 L263,138 L265,122 Z" fill="#8898a8" stroke="#6878908" stroke-width=".8"/>
-<!-- Inboard CFM56-5C -->
-<path d="M220,152 C219,142 226,136 237,136 L278,136 C289,136 295,142 295,152 C295,162 289,168 278,168 L237,168 C226,168 220,162 220,152 Z" fill="url(#ea34)" stroke="#7080988" stroke-width="1.4"/>
-<ellipse cx="222" cy="152" rx="8.5" ry="16" fill="url(#eia34)" stroke="#3848588" stroke-width="1"/>
+<path d="M252,122 L248,138 L263,138 L265,122 Z" fill="#8898a8" stroke-width=".8"/>
+<path d="M220,152 C219,142 226,136 237,136 L278,136 C289,136 295,142 295,152 C295,162 289,168 278,168 L237,168 C226,168 220,162 220,152 Z" fill="url(#ea34)" stroke-width="1.4"/>
+<ellipse cx="222" cy="152" rx="8.5" ry="16" fill="url(#eia34)" stroke-width="1"/>
 <ellipse cx="222" cy="152" rx="5" ry="10" fill="none" stroke="#243040" stroke-width=".6" opacity=".6"/>
 <path d="M287,141 L297,147 L297,159 L287,165 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".7"/>
-<!-- OUTBOARD ENGINE pylon -->
-<path d="M207,143 L204,157 L215,157 L216,143 Z" fill="#8898a8" stroke="#6878908" stroke-width=".7"/>
-<!-- Outboard CFM56-5C (lower, smaller) -->
-<path d="M179,165 C178,156 184,151 193,151 L228,151 C237,151 242,156 242,165 C242,174 237,179 228,179 L193,179 C184,179 179,174 179,165 Z" fill="url(#ea34)" stroke="#7080988" stroke-width="1.3"/>
-<ellipse cx="181" cy="165" rx="7.5" ry="14" fill="url(#eia34)" stroke="#3848588" stroke-width=".9"/>
+<path d="M207,143 L204,157 L215,157 L216,143 Z" fill="#8898a8" stroke-width=".7"/>
+<path d="M179,165 C178,156 184,151 193,151 L228,151 C237,151 242,156 242,165 C242,174 237,179 228,179 L193,179 C184,179 179,174 179,165 Z" fill="url(#ea34)" stroke-width="1.3"/>
+<ellipse cx="181" cy="165" rx="7.5" ry="14" fill="url(#eia34)" stroke-width=".9"/>
 <ellipse cx="181" cy="165" rx="4" ry="8.5" fill="none" stroke="#243040" stroke-width=".6" opacity=".55"/>
 <path d="M234,154 L243,159 L243,172 L234,176 Z" fill="#3a4e60" stroke="#4a5e70" stroke-width=".7"/>
-<!-- Fuselage (long) -->
 <path d="M32,104 C40,82 70,73 108,71 L480,71 C501,71 516,79 524,95 C528,101 528,108 524,116 C516,131 501,138 480,138 L108,138 C70,138 40,125 32,116 Z" fill="url(#fa34)" stroke="#8898b0" stroke-width="1.2"/>
-<path d="M34,112 C41,90 70,80 108,77 L480,77 C498,77 512,84 519,97 L524,102 C515,84 500,73 480,73 L108,73 C70,73 40,86 32,110 Z" fill="url(#fa34h)" stroke="none"/>
+<path d="M34,112 C41,90 70,80 108,77 L480,77 C498,77 512,84 519,97 L524,102 C515,84 500,73 480,73 L108,73 C70,73 40,86 32,110 Z" fill="url(#fa34h)"/>
 <rect x="56" y="79" width="16" height="9" rx="2.5" fill="rgba(100,162,228,0.55)" stroke="#5878b0" stroke-width=".8"/>
 <rect x="76" y="79" width="12" height="9" rx="2.5" fill="rgba(90,152,218,0.5)" stroke="#5878b0" stroke-width=".8"/>
-<!-- Airbus VS curved LE -->
 <path d="M484,71 C496,71 510,62 518,42 L529,21 L544,21 L531,70 Z" fill="url(#vta34)" stroke="#8090a8" stroke-width="1.2"/>
-<!-- Horizontal stabilizer (large) -->
 <path d="M494,117 L452,137 L506,137 L510,117 Z" fill="#b2c6d8" stroke="#8090a8" stroke-width="1.2"/>
 <rect x="134" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.15)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="342" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.1)" stroke="#9090a8" stroke-width=".6"/>
 <rect x="448" y="72" width="4" height="20" rx=".6" fill="rgba(100,110,130,0.08)" stroke="#9090a8" stroke-width=".6"/>
-<g fill="#8ab2cc" stroke="none">
-  <rect x="140" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="153" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="166" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="179" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="192" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="205" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="218" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="231" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="244" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="257" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="270" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="283" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="296" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="309" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="322" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="335" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="348" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="361" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="374" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="387" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="400" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="413" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="426" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="439" y="79" width="7" height="4" rx="1.3"/>
-  <rect x="452" y="79" width="7" height="4" rx="1.3"/>
-</g>`
+<g fill="#8ab2cc"><rect x="140" y="79" width="7" height="4" rx="1.3"/><rect x="153" y="79" width="7" height="4" rx="1.3"/><rect x="166" y="79" width="7" height="4" rx="1.3"/><rect x="179" y="79" width="7" height="4" rx="1.3"/><rect x="192" y="79" width="7" height="4" rx="1.3"/><rect x="205" y="79" width="7" height="4" rx="1.3"/><rect x="218" y="79" width="7" height="4" rx="1.3"/><rect x="231" y="79" width="7" height="4" rx="1.3"/><rect x="244" y="79" width="7" height="4" rx="1.3"/><rect x="257" y="79" width="7" height="4" rx="1.3"/><rect x="270" y="79" width="7" height="4" rx="1.3"/><rect x="283" y="79" width="7" height="4" rx="1.3"/><rect x="296" y="79" width="7" height="4" rx="1.3"/><rect x="309" y="79" width="7" height="4" rx="1.3"/><rect x="322" y="79" width="7" height="4" rx="1.3"/><rect x="335" y="79" width="7" height="4" rx="1.3"/><rect x="348" y="79" width="7" height="4" rx="1.3"/><rect x="361" y="79" width="7" height="4" rx="1.3"/><rect x="374" y="79" width="7" height="4" rx="1.3"/><rect x="387" y="79" width="7" height="4" rx="1.3"/><rect x="400" y="79" width="7" height="4" rx="1.3"/><rect x="413" y="79" width="7" height="4" rx="1.3"/><rect x="426" y="79" width="7" height="4" rx="1.3"/><rect x="439" y="79" width="7" height="4" rx="1.3"/><rect x="452" y="79" width="7" height="4" rx="1.3"/></g>`
+};
+
+// ── TOP-DOWN PLAN-VIEW SVGs (viewBox 0 0 200 280, nose at top) ────────────────
+const SVGTOP={
+
+// 737 MAX: narrow body, 2 engines, split-scimitar winglets (up + blue down)
+'737max':`
+<defs>
+  <linearGradient id="p7f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#eaf4ff"/><stop offset="50%" stop-color="#d0e4f8"/>
+    <stop offset="100%" stop-color="#b8cce2"/>
+  </linearGradient>
+  <linearGradient id="p7w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#c8dced"/><stop offset="100%" stop-color="#a8bcd0"/>
+  </linearGradient>
+  <linearGradient id="p7wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#c8dced"/><stop offset="100%" stop-color="#a8bcd0"/>
+  </linearGradient>
+</defs>
+<!-- Left wing (drawn behind fuselage) -->
+<path d="M 86,118 L 5,158 L 5,169 L 86,147 Z" fill="url(#p7w)" stroke="#90a8c2" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 114,118 L 195,158 L 195,169 L 114,147 Z" fill="url(#p7wr)" stroke="#90a8c2" stroke-width="0.9"/>
+<!-- Split-scimitar winglet UP (silver/white) -->
+<path d="M 5,158 C -1,150 -2,142 2,137 L 5,158 Z" fill="#ccdde8" stroke="#90a8c2" stroke-width="0.8"/>
+<!-- Split-scimitar winglet DOWN (Boeing blue) -->
+<path d="M 5,169 C 0,176 -1,181 3,184 L 5,169 Z" fill="#1248b8" stroke="#0c38a0" stroke-width="0.8"/>
+<path d="M 195,158 C 201,150 202,142 198,137 L 195,158 Z" fill="#ccdde8" stroke="#90a8c2" stroke-width="0.8"/>
+<path d="M 195,169 C 200,176 201,181 197,184 L 195,169 Z" fill="#1248b8" stroke="#0c38a0" stroke-width="0.8"/>
+<!-- Left engine nacelle -->
+<ellipse cx="36" cy="147" rx="8" ry="16" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="36" cy="133" rx="6" ry="6" fill="#141e2e"/>
+<!-- Right engine nacelle -->
+<ellipse cx="164" cy="147" rx="8" ry="16" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="164" cy="133" rx="6" ry="6" fill="#141e2e"/>
+<!-- Fuselage (over wings) -->
+<path d="M 100,17 C 113,19 114,37 114,57 L 114,222 C 114,240 108,254 100,257 C 92,254 86,240 86,222 L 86,57 C 86,37 87,19 100,17 Z" fill="url(#p7f)" stroke="#90a8c2" stroke-width="1"/>
+<!-- Fuselage centerline highlight -->
+<path d="M 100,17 C 106,19 108,37 108,57 L 108,222 C 108,238 105,250 100,255 L 96,250 C 96,236 96,57 96,57 C 96,37 96,19 100,17 Z" fill="rgba(255,255,255,0.22)"/>
+<!-- H-stabilizers -->
+<path d="M 86,228 L 52,245 L 52,251 L 86,238 Z" fill="#a8c0d8" stroke="#90a8c2" stroke-width="0.7"/>
+<path d="M 114,228 L 148,245 L 148,251 L 114,238 Z" fill="#a8c0d8" stroke="#90a8c2" stroke-width="0.7"/>
+<!-- Vertical fin (top-view: thin strip at tail) -->
+<rect x="97" y="238" width="6" height="22" rx="2" fill="#8098b4" stroke="#6880a0" stroke-width="0.7"/>`,
+
+// 757: slimmer & longer than 737, very tall tail (suggested by wider fin rect), round RB211 engines
+'757':`
+<defs>
+  <linearGradient id="p75f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#eaf3ff"/><stop offset="50%" stop-color="#cee2f5"/>
+    <stop offset="100%" stop-color="#b6cadf"/>
+  </linearGradient>
+  <linearGradient id="p75w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#c6daea"/><stop offset="100%" stop-color="#a4b8cc"/>
+  </linearGradient>
+  <linearGradient id="p75wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#c6daea"/><stop offset="100%" stop-color="#a4b8cc"/>
+  </linearGradient>
+</defs>
+<!-- Left wing -->
+<path d="M 88,128 L 7,163 L 7,173 L 88,155 Z" fill="url(#p75w)" stroke="#90a8c2" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 112,128 L 193,163 L 193,173 L 112,155 Z" fill="url(#p75wr)" stroke="#90a8c2" stroke-width="0.9"/>
+<!-- Engines (round RB211 — slightly bigger than 737's LEAP) -->
+<ellipse cx="36" cy="153" rx="8.5" ry="17" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="36" cy="138" rx="6.5" ry="6.5" fill="#141e2e"/>
+<ellipse cx="164" cy="153" rx="8.5" ry="17" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="164" cy="138" rx="6.5" ry="6.5" fill="#141e2e"/>
+<!-- Fuselage (slim, long — nose at y=13, tail at y=268) -->
+<path d="M 100,13 C 112,16 112,34 112,55 L 112,244 C 112,262 107,272 100,275 C 93,272 88,262 88,244 L 88,55 C 88,34 88,16 100,13 Z" fill="url(#p75f)" stroke="#90a8c2" stroke-width="1"/>
+<path d="M 100,13 C 106,16 108,34 108,55 L 108,244 C 108,260 105,270 100,273 L 96,268 C 96,55 96,34 96,13 Z" fill="rgba(255,255,255,0.2)"/>
+<!-- H-stab (pushed far down = longer fuselage) -->
+<path d="M 88,248 L 56,263 L 56,269 L 88,258 Z" fill="#a6bece" stroke="#90a8c2" stroke-width="0.7"/>
+<path d="M 112,248 L 144,263 L 144,269 L 112,258 Z" fill="#a6bece" stroke="#90a8c2" stroke-width="0.7"/>
+<!-- Taller vertical fin (wider rect to suggest bigger fin) -->
+<rect x="96" y="256" width="8" height="20" rx="2" fill="#7a96b0" stroke="#6880a0" stroke-width="0.7"/>`,
+
+// 777: WIDE body (fuselage 38px), MASSIVE GE90 engines, raked wingtips
+'777':`
+<defs>
+  <linearGradient id="p77f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#eaf4ff"/><stop offset="50%" stop-color="#cce0f4"/>
+    <stop offset="100%" stop-color="#b4cce4"/>
+  </linearGradient>
+  <linearGradient id="p77w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#c2d8ec"/><stop offset="100%" stop-color="#9eb8cc"/>
+  </linearGradient>
+  <linearGradient id="p77wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#c2d8ec"/><stop offset="100%" stop-color="#9eb8cc"/>
+  </linearGradient>
+</defs>
+<!-- Left wing (large) -->
+<path d="M 81,120 L 3,162 L 3,176 L 81,150 Z" fill="url(#p77w)" stroke="#8ea8c0" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 119,120 L 197,162 L 197,176 L 119,150 Z" fill="url(#p77wr)" stroke="#8ea8c0" stroke-width="0.9"/>
+<!-- Raked wingtip left (angled cut, no winglet) -->
+<path d="M 3,162 L -3,156 L 3,176 Z" fill="#b0c8de" stroke="#8ea8c0" stroke-width="0.7"/>
+<!-- Raked wingtip right -->
+<path d="M 197,162 L 203,156 L 197,176 Z" fill="#b0c8de" stroke="#8ea8c0" stroke-width="0.7"/>
+<!-- GE90-115B engines — MASSIVE (rx=12, ry=23) -->
+<ellipse cx="32" cy="153" rx="12" ry="23" fill="#7088a0" stroke="#5878a0" stroke-width="1.1"/>
+<ellipse cx="32" cy="132" rx="9" ry="9" fill="#0e1a28"/>
+<ellipse cx="168" cy="153" rx="12" ry="23" fill="#7088a0" stroke="#5878a0" stroke-width="1.1"/>
+<ellipse cx="168" cy="132" rx="9" ry="9" fill="#0e1a28"/>
+<!-- Wide fuselage (x=81 to x=119 = 38px wide) -->
+<path d="M 100,16 C 117,19 119,38 119,60 L 119,228 C 119,246 113,260 100,263 C 87,260 81,246 81,228 L 81,60 C 81,38 83,19 100,16 Z" fill="url(#p77f)" stroke="#8ea8c0" stroke-width="1.1"/>
+<path d="M 100,16 C 109,19 113,38 113,60 L 113,228 C 113,244 109,256 100,261 L 93,256 C 93,44 90,19 100,16 Z" fill="rgba(255,255,255,0.2)"/>
+<!-- H-stab (large) -->
+<path d="M 81,225 L 43,243 L 43,251 L 81,237 Z" fill="#a2bcce" stroke="#8ea8c0" stroke-width="0.8"/>
+<path d="M 119,225 L 157,243 L 157,251 L 119,237 Z" fill="#a2bcce" stroke="#8ea8c0" stroke-width="0.8"/>
+<rect x="96" y="236" width="8" height="28" rx="2" fill="#7890a8" stroke="#6880a0" stroke-width="0.8"/>`,
+
+// A318: shortest fuselage, wingtip fences, CFM56 engines
+'a318':`
+<defs>
+  <linearGradient id="pa18f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ecf4fc"/><stop offset="50%" stop-color="#d2e6f4"/>
+    <stop offset="100%" stop-color="#bacede"/>
+  </linearGradient>
+  <linearGradient id="pa18w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#cadaec"/><stop offset="100%" stop-color="#a8bece"/>
+  </linearGradient>
+  <linearGradient id="pa18wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#cadaec"/><stop offset="100%" stop-color="#a8bece"/>
+  </linearGradient>
+</defs>
+<!-- Left wing -->
+<path d="M 87,124 L 12,158 L 12,168 L 87,149 Z" fill="url(#pa18w)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 113,124 L 188,158 L 188,168 L 113,149 Z" fill="url(#pa18wr)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Wingtip fence left (small rect perpendicular at tip) -->
+<rect x="8" y="156" width="7" height="14" rx="1" fill="#b8cede" stroke="#92a8c0" stroke-width="0.8"/>
+<!-- Wingtip fence right -->
+<rect x="185" y="156" width="7" height="14" rx="1" fill="#b8cede" stroke="#92a8c0" stroke-width="0.8"/>
+<!-- Left engine (CFM56 — compact) -->
+<ellipse cx="40" cy="149" rx="7" ry="14" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="40" cy="137" rx="5.5" ry="5.5" fill="#141e2e"/>
+<!-- Right engine -->
+<ellipse cx="160" cy="149" rx="7" ry="14" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="160" cy="137" rx="5.5" ry="5.5" fill="#141e2e"/>
+<!-- Short fuselage (nose y=22, tail y=248) -->
+<path d="M 100,22 C 113,25 113,42 113,62 L 113,218 C 113,234 108,246 100,249 C 92,246 87,234 87,218 L 87,62 C 87,42 87,25 100,22 Z" fill="url(#pa18f)" stroke="#92a8c0" stroke-width="1"/>
+<path d="M 100,22 C 107,25 108,42 108,62 L 108,218 C 108,232 105,244 100,247 L 95,243 C 95,62 93,25 100,22 Z" fill="rgba(255,255,255,0.2)"/>
+<!-- H-stab -->
+<path d="M 87,224 L 57,239 L 57,245 L 87,233 Z" fill="#a8c0d4" stroke="#92a8c0" stroke-width="0.7"/>
+<path d="M 113,224 L 143,239 L 143,245 L 113,233 Z" fill="#a8c0d4" stroke="#92a8c0" stroke-width="0.7"/>
+<rect x="97" y="232" width="6" height="20" rx="2" fill="#8098b2" stroke="#6880a0" stroke-width="0.7"/>`,
+
+// A320: medium narrow, sharklets (curved forward-sweeping winglet tips)
+'a320':`
+<defs>
+  <linearGradient id="pa20f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ecf4fc"/><stop offset="50%" stop-color="#d0e4f4"/>
+    <stop offset="100%" stop-color="#b8ccde"/>
+  </linearGradient>
+  <linearGradient id="pa20w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#c8daec"/><stop offset="100%" stop-color="#a6bace"/>
+  </linearGradient>
+  <linearGradient id="pa20wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#c8daec"/><stop offset="100%" stop-color="#a6bace"/>
+  </linearGradient>
+</defs>
+<!-- Left wing -->
+<path d="M 87,120 L 6,157 L 6,168 L 87,147 Z" fill="url(#pa20w)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 113,120 L 194,157 L 194,168 L 113,147 Z" fill="url(#pa20wr)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Sharklet left (curved, sweeps forward from tip) -->
+<path d="M 6,157 C 0,149 -1,141 3,136 L 6,157 Z" fill="#c2d4e6" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Sharklet right -->
+<path d="M 194,157 C 200,149 201,141 197,136 L 194,157 Z" fill="#c2d4e6" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Left engine (LEAP-1A) -->
+<ellipse cx="37" cy="147" rx="7.5" ry="15" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="37" cy="134" rx="6" ry="6" fill="#141e2e"/>
+<!-- Right engine -->
+<ellipse cx="163" cy="147" rx="7.5" ry="15" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="163" cy="134" rx="6" ry="6" fill="#141e2e"/>
+<!-- Fuselage (medium length, nose y=20, tail y=256) -->
+<path d="M 100,20 C 113,23 113,40 113,60 L 113,224 C 113,242 108,254 100,257 C 92,254 87,242 87,224 L 87,60 C 87,40 87,23 100,20 Z" fill="url(#pa20f)" stroke="#92a8c0" stroke-width="1"/>
+<path d="M 100,20 C 107,23 108,40 108,60 L 108,224 C 108,240 105,252 100,255 L 95,250 C 95,60 93,23 100,20 Z" fill="rgba(255,255,255,0.2)"/>
+<!-- H-stab -->
+<path d="M 87,228 L 55,244 L 55,250 L 87,238 Z" fill="#a6bece" stroke="#92a8c0" stroke-width="0.7"/>
+<path d="M 113,228 L 145,244 L 145,250 L 113,238 Z" fill="#a6bece" stroke="#92a8c0" stroke-width="0.7"/>
+<rect x="97" y="236" width="6" height="22" rx="2" fill="#8098b2" stroke="#6880a0" stroke-width="0.7"/>`,
+
+// A340: FOUR engines (most distinctive), longer narrow body
+'a340':`
+<defs>
+  <linearGradient id="pa34f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#ecf4fc"/><stop offset="50%" stop-color="#ceе2f2"/>
+    <stop offset="100%" stop-color="#b6ccde"/>
+  </linearGradient>
+  <linearGradient id="pa34w" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#c6d8ea"/><stop offset="100%" stop-color="#a4b8cc"/>
+  </linearGradient>
+  <linearGradient id="pa34wr" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#c6d8ea"/><stop offset="100%" stop-color="#a4b8cc"/>
+  </linearGradient>
+</defs>
+<!-- Left wing (large, 4-engine) -->
+<path d="M 87,122 L 4,162 L 4,173 L 87,151 Z" fill="url(#pa34w)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Right wing -->
+<path d="M 113,122 L 196,162 L 196,173 L 113,151 Z" fill="url(#pa34wr)" stroke="#92a8c0" stroke-width="0.9"/>
+<!-- Outboard engines (further from fuselage, smaller) -->
+<ellipse cx="24" cy="162" rx="6.5" ry="13" fill="#7890a8" stroke="#6080a0" stroke-width="0.8"/>
+<ellipse cx="24" cy="151" rx="5" ry="5" fill="#141e2e"/>
+<ellipse cx="176" cy="162" rx="6.5" ry="13" fill="#7890a8" stroke="#6080a0" stroke-width="0.8"/>
+<ellipse cx="176" cy="151" rx="5" ry="5" fill="#141e2e"/>
+<!-- Inboard engines (closer to fuselage) -->
+<ellipse cx="54" cy="151" rx="7" ry="14" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="54" cy="139" rx="5.5" ry="5.5" fill="#141e2e"/>
+<ellipse cx="146" cy="151" rx="7" ry="14" fill="#7890a8" stroke="#6080a0" stroke-width="0.9"/>
+<ellipse cx="146" cy="139" rx="5.5" ry="5.5" fill="#141e2e"/>
+<!-- Fuselage (long narrow body, nose y=18, tail y=268) -->
+<path d="M 100,18 C 113,21 113,38 113,58 L 113,238 C 113,255 108,266 100,269 C 92,266 87,255 87,238 L 87,58 C 87,38 87,21 100,18 Z" fill="url(#pa34f)" stroke="#92a8c0" stroke-width="1"/>
+<path d="M 100,18 C 107,21 108,38 108,58 L 108,238 C 108,253 105,264 100,267 L 95,262 C 95,58 93,21 100,18 Z" fill="rgba(255,255,255,0.2)"/>
+<!-- H-stab -->
+<path d="M 87,240 L 52,257 L 52,263 L 87,250 Z" fill="#a4bece" stroke="#92a8c0" stroke-width="0.7"/>
+<path d="M 113,240 L 148,257 L 148,263 L 113,250 Z" fill="#a4bece" stroke="#92a8c0" stroke-width="0.7"/>
+<rect x="97" y="248" width="6" height="22" rx="2" fill="#8098b2" stroke="#6880a0" stroke-width="0.7"/>`
 };
 
 // ── AIRCRAFT DATA ─────────────────────────────────────────────────────────────
-const AIRCRAFT = {
+const AIRCRAFT={
   '737max':{
     name:'Boeing 737 MAX 8',manufacturer:'Boeing',type:'Narrow-body twin-jet',
     firstFlight:'January 29, 2016',assembly:'Renton, Washington, USA',
@@ -842,9 +831,17 @@ function renderCards(ids,containerId){
   el.innerHTML=ids.map(id=>{
     const a=AIRCRAFT[id];
     return `
-    <div class="card" onclick="openModal('${id}')">
-      <div class="card-silhouette">
-        <svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg">${SVG[id]}</svg>
+    <div class="card" data-aircraft="${id}" onclick="openModal('${id}')">
+      <div class="photo-area">
+        <img class="aircraft-photo" src="" alt="${a.name}"/>
+        <div class="photo-fallback">
+          <svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg">${SVG[id]}</svg>
+        </div>
+        <div class="planview-inset">
+          <span class="inset-label">Plan View</span>
+          <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">${SVGTOP[id]}</svg>
+        </div>
+        <div class="photo-gradient"></div>
       </div>
       <div class="card-body">
         <div class="card-model">${a.name}</div>
@@ -863,6 +860,48 @@ function renderCards(ids,containerId){
 renderCards(BOEING_IDS,'boeing-grid');
 renderCards(AIRBUS_IDS,'airbus-grid');
 
+// ── Wikipedia photo loader ────────────────────────────────────────────────────
+// Maps aircraft ID → Wikipedia article title used to pull the lead image
+const WIKI_TITLES={
+  '737max':'Boeing_737_MAX',
+  '757':'Boeing_757',
+  '777':'Boeing_777',
+  'a318':'Airbus_A318',
+  'a320':'Airbus_A320',
+  'a340':'Airbus_A340'
+};
+
+async function loadAircraftPhotos(){
+  const titleList=Object.values(WIKI_TITLES).join('|');
+  try{
+    const res=await fetch(
+      `https://en.wikipedia.org/w/api.php?action=query&titles=${titleList}&prop=pageimages&format=json&pithumbsize=1000&origin=*`
+    );
+    const data=await res.json();
+    // Build reverse map: normalised title → aircraft id
+    const rev={};
+    for(const[id,t]of Object.entries(WIKI_TITLES))rev[t.replace(/_/g,' ')]=id;
+    for(const page of Object.values(data.query.pages)){
+      if(!page.thumbnail)continue;
+      const id=rev[page.title];
+      if(!id)continue;
+      const card=document.querySelector(`[data-aircraft="${id}"]`);
+      if(!card)continue;
+      const img=card.querySelector('.aircraft-photo');
+      const fallback=card.querySelector('.photo-fallback');
+      img.onload=()=>{
+        img.classList.add('loaded');
+        if(fallback)fallback.style.opacity='0';
+      };
+      img.src=page.thumbnail.source;
+    }
+  }catch(e){
+    // silently fall back to SVG illustrations
+  }
+}
+
+loadAircraftPhotos();
+
 function buildCalloutSVG(id){
   const a=AIRCRAFT[id];
   const overlays=a.callouts.map((c,i)=>{
@@ -874,7 +913,7 @@ function buildCalloutSVG(id){
       <circle cx="${c.cx}" cy="${c.cy}" r="9" fill="${color}" opacity=".93"/>
       <text x="${c.cx}" y="${c.cy+3.5}" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700" font-family="JetBrains Mono,monospace">${i+1}</text>`;
   }).join('');
-  return `<svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;background:#06101a;border-radius:4px;">
+  return `<svg viewBox="0 0 560 215" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;background:#060e1c;border-radius:4px;">
     ${SVG[id]}${overlays}</svg>`;
 }
 
