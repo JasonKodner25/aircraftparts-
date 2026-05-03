@@ -1,563 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aircraft Parts Origins</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aircraft Component Origins — Global Supply Chain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07111f;
+  --surface: #0b1928;
+  --card: #0e2035;
+  --border: rgba(80,150,220,0.14);
+  --border-hover: rgba(80,150,220,0.35);
+  --accent: #2d7dd2;
+  --accent-bright: #5ba3f5;
+  --text: #a8c8e8;
+  --text-dim: #4a6a8a;
+  --text-bright: #deeeff;
+  --grid: rgba(80,150,220,0.055);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;
+}
 
-    body {
-      font-family: 'Courier New', monospace;
-      background-color: #0d1b2a;
-      color: #c8daf0;
-      background-image:
-        linear-gradient(rgba(100,160,230,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100,160,230,0.07) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+/* ── HEADER ── */
+header{
+  text-align:center;
+  padding:72px 24px 52px;
+  position:relative;
+}
+header::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:600px;max-width:90%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(80,150,220,0.3),transparent);
+}
+.tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent-bright);
+  border:1px solid rgba(91,163,245,0.25);
+  padding:4px 14px;border-radius:2px;
+  margin-bottom:22px;
+  background:rgba(91,163,245,0.06);
+}
+header h1{
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  font-weight:800;color:var(--text-bright);
+  letter-spacing:-0.025em;line-height:1.1;
+  margin-bottom:14px;
+}
+header h1 em{font-style:normal;color:var(--accent-bright);}
+header p{
+  font-size:.93rem;color:var(--text-dim);
+  max-width:480px;margin:0 auto;line-height:1.75;
+}
 
-    header {
-      text-align: center;
-      padding: 60px 20px 30px;
-      border-bottom: 1px solid rgba(100,160,230,0.2);
-    }
+/* ── MAIN ── */
+main{max-width:1280px;margin:0 auto;padding:0 32px 100px;}
 
-    header h1 {
-      font-size: 2rem;
-      color: #4fa3e0;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
+.mfr-section{margin-bottom:64px;}
 
-    header p {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #6a9cc7;
-      letter-spacing: 0.08em;
-    }
+.mfr-head{
+  display:flex;align-items:center;gap:18px;
+  padding:36px 0 20px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:28px;
+}
+.mfr-badge{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text-dim);border:1px solid var(--border);
+  padding:3px 10px;border-radius:2px;
+}
+.mfr-head h2{
+  font-size:1.3rem;font-weight:700;
+  color:var(--text-bright);letter-spacing:-0.01em;
+}
 
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: #4fa3e0;
-      margin: 16px auto;
-    }
+/* ── CARDS ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  cursor:pointer;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  overflow:hidden;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--border-hover);
+  box-shadow:0 16px 50px rgba(45,125,210,.13);
+}
+.card-silhouette{
+  height:175px;
+  background:rgba(5,12,22,.55);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px 20px;
+  position:relative;
+  overflow:visible;
+}
+.card-silhouette svg{
+  width:100%;height:100%;overflow:visible;
+}
+.card-body{padding:18px 20px 0;}
+.card-model{font-size:.98rem;font-weight:700;color:var(--text-bright);margin-bottom:3px;}
+.card-sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
+.card-specs{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:0;}
+.spec{display:flex;flex-direction:column;gap:2px;}
+.spec-k{font-size:8.5px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
+.spec-v{font-size:11.5px;font-weight:600;color:var(--text);}
+.card-cta{
+  display:flex;align-items:center;gap:6px;
+  font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  color:var(--accent-bright);
+  padding:12px 20px;
+  border-top:1px solid var(--border);
+  margin-top:16px;
+  transition:gap .18s;
+}
+.card:hover .card-cta{gap:10px;}
+.card-cta span{margin-left:auto;font-size:13px;}
 
-    /* Manufacturer sections */
-    .manufacturer {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+/* ── MODAL ── */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(4,9,18,.93);
+  backdrop-filter:blur(10px);
+  z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--surface);
+  border:1px solid rgba(91,163,245,.18);
+  border-radius:8px;
+  width:100%;max-width:960px;
+  max-height:92vh;overflow-y:auto;
+  transform:translateY(22px);
+  transition:transform .25s ease;
+  position:relative;
+}
+.overlay.open .modal{transform:translateY(0);}
+.modal::-webkit-scrollbar{width:3px;}
+.modal::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-    .manufacturer-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: #4fa3e0;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
+.modal-top{
+  padding:28px 36px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.modal-title{font-size:1.55rem;font-weight:800;color:var(--text-bright);letter-spacing:-.02em;margin-bottom:8px;}
+.modal-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  letter-spacing:.15em;text-transform:uppercase;
+  padding:3px 10px;border-radius:2px;
+  border:1px solid rgba(91,163,245,.22);
+  color:var(--accent-bright);
+  background:rgba(91,163,245,.07);
+}
+.chip.assembly{color:#4fd18a;border-color:rgba(79,209,138,.22);background:rgba(79,209,138,.06);}
+.close-btn{
+  background:none;border:1px solid var(--border);
+  color:var(--text-dim);width:34px;height:34px;
+  border-radius:4px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;transition:all .15s;flex-shrink:0;
+}
+.close-btn:hover{color:var(--text-bright);border-color:var(--border-hover);}
 
-    .manufacturer-title {
-      font-size: 1.4rem;
-      color: #e8f4ff;
-      margin-bottom: 30px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(100,160,230,0.15);
-    }
+.modal-diagram{
+  padding:28px 36px;
+  background:rgba(5,12,22,.5);
+  border-bottom:1px solid var(--border);
+}
+.section-lbl{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);
+  margin-bottom:14px;
+}
+.diagram-wrap{position:relative;width:100%;}
+.diagram-wrap svg{width:100%;height:auto;display:block;overflow:visible;}
 
-    /* Aircraft grid */
-    .aircraft-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
+.modal-parts{padding:28px 36px;}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);
+  text-align:left;padding:8px 12px;
+  border-bottom:1px solid var(--border);
+}
+tbody td{
+  padding:11px 12px;
+  border-bottom:1px solid rgba(80,150,220,.06);
+  font-size:12.5px;vertical-align:middle;
+}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:rgba(91,163,245,.035);}
+.td-num{
+  width:28px;
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  font-size:10px;
+}
+.num-dot{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:50%;
+  font-size:9px;font-weight:700;font-family:'JetBrains Mono',monospace;
+}
+.td-part{color:var(--text-bright);font-weight:600;}
+.td-mfr{color:var(--text);}
+.td-loc{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dim);line-height:1.5;}
+.td-flag{font-size:19px;text-align:center;width:38px;}
 
-    .aircraft-card {
-      background: rgba(13, 35, 60, 0.7);
-      border: 1px solid rgba(100,160,230,0.2);
-      border-radius: 4px;
-      padding: 24px;
-      position: relative;
-    }
+.modal-footer{
+  padding:14px 36px;
+  border-top:1px solid var(--border);
+  background:rgba(45,125,210,.05);
+  display:flex;align-items:center;gap:10px;
+  font-size:11.5px;
+}
+.footer-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);}
+.footer-val{color:var(--text-bright);font-weight:600;}
 
-    .aircraft-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: #4fa3e0;
-      border-radius: 4px 0 0 4px;
-    }
-
-    .aircraft-name {
-      font-size: 1rem;
-      color: #e8f4ff;
-      letter-spacing: 0.1em;
-      margin-bottom: 18px;
-    }
-
-    /* Diagram */
-    .diagram {
-      position: relative;
-      width: 100%;
-      height: 200px;
-    }
-
-    .diagram svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Parts list */
-    .parts-list {
-      margin-top: 18px;
-      border-top: 1px solid rgba(100,160,230,0.1);
-      padding-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .part-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.75rem;
-    }
-
-    .part-name {
-      color: #8ab8d8;
-      min-width: 110px;
-    }
-
-    .part-origin {
-      color: #c8daf0;
-      text-align: right;
-      line-height: 1.4;
-    }
-
-    .part-arrow {
-      color: #4fa3e0;
-      flex-shrink: 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.7rem;
-      color: #3a6080;
-      letter-spacing: 0.1em;
-      border-top: 1px solid rgba(100,160,230,0.1);
-      margin-top: 60px;
-    }
-  </style>
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){
+  .grid{grid-template-columns:1fr;}
+  main{padding:0 14px 60px;}
+  header{padding:44px 14px 36px;}
+  .modal-top,.modal-diagram,.modal-parts,.modal-footer{padding-left:18px;padding-right:18px;}
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <p class="manufacturer-label">Global Supply Chain</p>
-    <h1>Aircraft Parts Origins</h1>
-    <div class="divider"></div>
-    <p>Where each component is manufactured — traced to its source</p>
-  </header>
+<header>
+  <div class="tag">Global Supply Chain Analysis</div>
+  <h1>Where Aircraft Parts<br><em>Come From</em></h1>
+  <p>Select any aircraft to trace each major component back to its country, city, and manufacturer of origin.</p>
+</header>
 
-  <!-- BOEING -->
-  <section class="manufacturer">
-    <p class="manufacturer-label">Manufacturer</p>
-    <h2 class="manufacturer-title">Boeing</h2>
-
-    <div class="aircraft-grid">
-
-      <!-- 737 MAX -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Boeing 737 MAX 8</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Simple side-view silhouette -->
-            <!-- Fuselage -->
-            <rect x="60" y="70" width="180" height="22" rx="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- Nose -->
-            <ellipse cx="60" cy="81" rx="18" ry="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- Tail fin -->
-            <polygon points="230,70 250,35 258,70" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- Wings -->
-            <polygon points="110,82 80,115 80,118 200,118 200,115 170,82" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- Engine -->
-            <rect x="100" y="112" width="40" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="152" y="112" width="40" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <!-- Origin dots & labels -->
-            <!-- Fuselage: Wichita KS -->
-            <circle cx="90" cy="81" r="3" fill="#e05c4f"/>
-            <line x1="90" y1="78" x2="90" y2="55" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="93" y="52" fill="#e05c4f" font-size="7" font-family="Courier New">Wichita, KS</text>
-
-            <!-- Wings: Renton WA -->
-            <circle cx="140" cy="100" r="3" fill="#4fd18a"/>
-            <line x1="140" y1="103" x2="140" y2="140" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="100" y="152" fill="#4fd18a" font-size="7" font-family="Courier New">Renton, WA (wings)</text>
-
-            <!-- Engine: France/Ohio -->
-            <circle cx="122" cy="117" r="3" fill="#f5c542"/>
-            <line x1="119" y1="117" x2="55" y2="135" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="2" y="142" fill="#f5c542" font-size="7" font-family="Courier New">France / Ohio</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Spirit AeroSystems<br>Wichita, Kansas, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Wings</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Boeing Fabrication<br>Renton, Washington, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (LEAP-1B)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">GE — Evendale, Ohio, USA<br>Safran — Villaroche, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Winglets</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Korean Air Aerospace<br>Incheon, South Korea</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Landing Gear</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Safran Landing Systems<br>Gloucester, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Avionics</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Collins Aerospace<br>Cedar Rapids, Iowa, USA</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 757 -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Boeing 757-200</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="60" y="70" width="180" height="22" rx="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <ellipse cx="60" cy="81" rx="18" ry="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="230,70 252,32 260,70" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="110,82 80,115 80,118 200,118 200,115 170,82" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="100" y="112" width="40" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="152" y="112" width="40" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <circle cx="155" cy="75" r="3" fill="#e05c4f"/>
-            <line x1="155" y1="72" x2="220" y2="48" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="185" y="45" fill="#e05c4f" font-size="7" font-family="Courier New">Tulsa, OK</text>
-
-            <circle cx="120" cy="107" r="3" fill="#4fd18a"/>
-            <line x1="120" y1="110" x2="90" y2="140" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="10" y="150" fill="#4fd18a" font-size="7" font-family="Courier New">Belfast, UK (flaps)</text>
-
-            <circle cx="172" cy="117" r="3" fill="#f5c542"/>
-            <line x1="175" y1="117" x2="230" y2="138" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="195" y="150" fill="#f5c542" font-size="7" font-family="Courier New">Derby, UK</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Rockwell International<br>Tulsa, Oklahoma, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Inboard Flaps</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Bombardier Shorts<br>Belfast, Northern Ireland, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Outboard Flaps</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">EADS CASA<br>Getafe, Spain</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (RB211)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Rolls-Royce<br>Derby, England, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Landing Gear</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Menasco / Collins<br>Oakville, Ontario, Canada</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Tail Section</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Northrop Grumman<br>Hawthorne, California, USA</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 777 -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Boeing 777-300ER</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="50" y="68" width="200" height="26" rx="13" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <ellipse cx="50" cy="81" rx="20" ry="13" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="235,68 260,28 270,68" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="105,82 65,120 65,124 225,124 225,120 185,82" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="88" y="116" width="48" height="13" rx="6" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="155" y="116" width="48" height="13" rx="6" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <circle cx="145" cy="81" r="3" fill="#e05c4f"/>
-            <line x1="145" y1="78" x2="145" y2="52" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="100" y="49" fill="#e05c4f" font-size="7" font-family="Courier New">Nagoya, Japan</text>
-
-            <circle cx="112" cy="122" r="3" fill="#4fd18a"/>
-            <line x1="109" y1="122" x2="50" y2="142" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="2" y="152" fill="#4fd18a" font-size="7" font-family="Courier New">Durham, NC</text>
-
-            <circle cx="245" cy="48" r="3" fill="#f5c542"/>
-            <line x1="245" y1="51" x2="245" y2="68" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="248" y="47" fill="#f5c542" font-size="7" font-family="Courier New">Hamburg, DE</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Fuselage Panels</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Kawasaki Heavy Industries<br>Nagoya, Japan</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Center Wing</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Mitsubishi Heavy Industries<br>Nagoya, Japan</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Wing Fairings</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Fuji (Subaru)<br>Handa, Aichi, Japan</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (GE90)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">GE Aerospace<br>Durham, North Carolina, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Landing Gear</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Héroux-Devtek<br>Longueuil, Quebec, Canada</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Avionics (AIMS)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Honeywell Aerospace<br>Phoenix, Arizona, USA</span>
-          </div>
-        </div>
-      </div>
-
+<main>
+  <section class="mfr-section" id="boeing">
+    <div class="mfr-head">
+      <span class="mfr-badge">Manufacturer</span>
+      <h2>Boeing Commercial Airplanes — Seattle, WA</h2>
     </div>
+    <div class="grid" id="boeing-grid"></div>
   </section>
 
-  <!-- AIRBUS -->
-  <section class="manufacturer">
-    <p class="manufacturer-label">Manufacturer</p>
-    <h2 class="manufacturer-title">Airbus</h2>
-
-    <div class="aircraft-grid">
-
-      <!-- A318 -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Airbus A318</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="65" y="70" width="170" height="22" rx="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <ellipse cx="65" cy="81" rx="18" ry="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="225,70 245,36 253,70" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="112,82 82,115 82,118 198,118 198,115 168,82" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="100" y="112" width="38" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="150" y="112" width="38" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <circle cx="90" cy="81" r="3" fill="#e05c4f"/>
-            <line x1="90" y1="78" x2="70" y2="48" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="2" y="45" fill="#e05c4f" font-size="7" font-family="Courier New">Saint-Nazaire, FR</text>
-
-            <circle cx="140" cy="95" r="3" fill="#4fd18a"/>
-            <line x1="140" y1="98" x2="140" y2="140" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="96" y="152" fill="#4fd18a" font-size="7" font-family="Courier New">Broughton, Wales</text>
-
-            <circle cx="125" cy="117" r="3" fill="#f5c542"/>
-            <line x1="122" y1="117" x2="55" y2="133" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="2" y="143" fill="#f5c542" font-size="7" font-family="Courier New">Gloucester, UK</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Wings</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Airbus Operations<br>Broughton, North Wales, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Forward Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Stelia Aerospace<br>Saint-Nazaire, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Aft Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Airbus Aerostructures<br>Hamburg, Germany</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (CFM56)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">GE — Ohio, USA<br>Safran — Villaroche, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Landing Gear</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Safran Landing Systems<br>Gloucester, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Flight Controls</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Thales / Diehl<br>Toulouse, France</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- A320 -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Airbus A320</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="60" y="70" width="180" height="22" rx="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <ellipse cx="60" cy="81" rx="18" ry="11" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="230,70 252,33 260,70" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="108,82 75,118 75,122 210,122 210,118 177,82" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- Sharklets -->
-            <line x1="75" y1="118" x2="65" y2="108" stroke="#4fa3e0" stroke-width="1.5"/>
-            <line x1="210" y1="118" x2="220" y2="108" stroke="#4fa3e0" stroke-width="1.5"/>
-            <rect x="96" y="114" width="40" height="11" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="152" y="114" width="40" height="11" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <circle cx="100" cy="81" r="3" fill="#e05c4f"/>
-            <line x1="100" y1="78" x2="80" y2="50" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="2" y="47" fill="#e05c4f" font-size="7" font-family="Courier New">Saint-Nazaire, FR</text>
-
-            <circle cx="142" cy="98" r="3" fill="#4fd18a"/>
-            <line x1="142" y1="101" x2="142" y2="140" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="98" y="152" fill="#4fd18a" font-size="7" font-family="Courier New">Broughton, Wales</text>
-
-            <circle cx="67" cy="110" r="3" fill="#f5c542"/>
-            <line x1="64" y1="110" x2="30" y2="130" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="0" y="143" fill="#f5c542" font-size="7" font-family="Courier New">Ried, Austria</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Wings</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Airbus Operations<br>Broughton, North Wales, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Sharklets</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">FACC AG<br>Ried im Innkreis, Austria</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Forward Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Stelia Aerospace<br>Saint-Nazaire, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (LEAP-1A)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">GE / Safran (CFM)<br>Ohio, USA / Villaroche, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Hydraulics</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Parker Hannifin<br>Irvine, California, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Flight Computers</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Thales Avionics<br>Toulouse, France</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- A340 -->
-      <div class="aircraft-card">
-        <div class="aircraft-name">Airbus A340-300</div>
-        <div class="diagram">
-          <svg viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Longer fuselage for A340 -->
-            <rect x="45" y="68" width="210" height="24" rx="12" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <ellipse cx="45" cy="80" rx="20" ry="12" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="240,68 265,26 275,68" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <polygon points="105,80 65,118 65,122 225,122 225,118 185,80" fill="#1a3a5c" stroke="#4fa3e0" stroke-width="1"/>
-            <!-- 4 engines -->
-            <rect x="75" y="114" width="32" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="112" y="114" width="32" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="149" y="114" width="32" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-            <rect x="186" y="114" width="32" height="10" rx="5" fill="#0d2a45" stroke="#4fa3e0" stroke-width="1"/>
-
-            <circle cx="150" cy="80" r="3" fill="#e05c4f"/>
-            <line x1="150" y1="77" x2="150" y2="50" stroke="#e05c4f" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="105" y="47" fill="#e05c4f" font-size="7" font-family="Courier New">Hamburg, Germany</text>
-
-            <circle cx="145" cy="105" r="3" fill="#4fd18a"/>
-            <line x1="145" y1="108" x2="145" y2="142" stroke="#4fd18a" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="98" y="154" fill="#4fd18a" font-size="7" font-family="Courier New">Broughton, Wales</text>
-
-            <circle cx="91" cy="119" r="3" fill="#f5c542"/>
-            <line x1="88" y1="119" x2="30" y2="138" stroke="#f5c542" stroke-width="1" stroke-dasharray="3,2"/>
-            <text x="0" y="150" fill="#f5c542" font-size="7" font-family="Courier New">Derby, UK</text>
-          </svg>
-        </div>
-        <div class="parts-list">
-          <div class="part-row">
-            <span class="part-name">Wings</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">BAE Systems<br>Broughton, North Wales, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Forward Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Stelia Aerospace<br>Saint-Nazaire, France</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Aft Fuselage</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Airbus / DASA<br>Hamburg, Germany</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Engines (CFM56-5C)</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Safran — Villaroche, France<br>GE — Evendale, Ohio, USA</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Landing Gear</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Messier-Dowty (Safran)<br>Gloucester, UK</span>
-          </div>
-          <div class="part-row">
-            <span class="part-name">Avionics Suite</span>
-            <span class="part-arrow">→</span>
-            <span class="part-origin">Thales Avionics<br>Toulouse, France</span>
-          </div>
-        </div>
-      </div>
-
+  <section class="mfr-section" id="airbus">
+    <div class="mfr-head">
+      <span class="mfr-badge">Manufacturer</span>
+      <h2>Airbus Commercial Aircraft — Toulouse, France</h2>
     </div>
+    <div class="grid" id="airbus-grid"></div>
   </section>
+</main>
 
-  <footer>
-    AIRCRAFT PARTS ORIGIN STUDY — GLOBAL SUPPLY CHAIN DIAGRAM
-  </footer>
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal"></div>
+</div>
 
+<script>
+// ─── PALETTE for callout dots ───────────────────────────────────────────────
+const DOT_COLORS = ['#5ba3f5','#4fd18a','#f0c040','#e05c4f','#a78bfa','#38d9f9','#fb923c','#f472b6'];
+
+// ─── SVG AIRCRAFT DEFINITIONS ───────────────────────────────────────────────
+// All use viewBox="0 0 560 210", nose pointing right.
+// Fuselage center Y ≈ 103–105.
+
+const SVG = {
+
+// ── Boeing 737 MAX 8 ─────────────────────────────────────────────────────────
+'737max': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- fuselage -->
+  <path stroke-width="1.5" d="M28,104 C35,83 65,74 102,72 L438,72 C458,72 473,80 481,95 C485,101 485,108 481,114 C473,129 458,136 438,136 L102,136 C65,136 35,125 28,115 Z"/>
+  <!-- cockpit visor -->
+  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M54,88 C62,78 80,73 102,72 L108,72 L102,89 Z"/>
+  <!-- wing -->
+  <path stroke-width="1.5" d="M218,123 L174,172 L325,172 L284,123 Z"/>
+  <!-- split-scimitar winglet up -->
+  <path stroke-width="1.3" d="M174,172 L160,153 L175,170 Z"/>
+  <!-- split-scimitar winglet down (small) -->
+  <path stroke-width="1.2" d="M174,172 L165,183 L177,174 Z"/>
+  <!-- engine pylon -->
+  <path stroke-width=".9" d="M238,123 L234,137 L250,137 L252,123 Z"/>
+  <!-- CFM LEAP-1B body (flat-bottom nacelle) -->
+  <path stroke-width="1.6" fill="#060f1e" d="M196,152 C195,140 203,134 214,134 L272,134 C283,134 290,140 290,152 C290,162 284,170 272,170 L214,170 C203,170 196,162 196,152 Z"/>
+  <!-- flat-bottom line — 737 MAX signature -->
+  <line x1="196" y1="170" x2="290" y2="170" stroke-width="2.2"/>
+  <!-- engine inlet -->
+  <ellipse cx="198" cy="152" rx="9" ry="18" fill="#030810" stroke-width="1"/>
+  <!-- fan face hint -->
+  <ellipse cx="198" cy="152" rx="5" ry="12" fill="#060e1c" stroke-width=".5"/>
+  <!-- exhaust nozzle -->
+  <path stroke-width=".9" fill="#040c1a" d="M281,141 L292,147 L292,161 L281,168 Z"/>
+  <!-- vertical stabilizer -->
+  <path stroke-width="1.5" d="M448,72 L464,25 L477,25 L498,70 Z"/>
+  <!-- horizontal stabilizer -->
+  <path stroke-width="1.5" d="M458,117 L422,134 L472,134 L476,117 Z"/>
+  <!-- door frames -->
+  <rect x="132" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="308" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="412" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<!-- windows -->
+<g fill="rgba(147,210,255,0.32)" stroke="none">
+  <rect x="140" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="153" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="166" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="179" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="192" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="205" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="218" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="231" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="244" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="257" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="270" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="283" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="296" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="309" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="322" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="335" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="348" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="361" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="374" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="387" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="400" y="80" width="7" height="4" rx="1.2"/>
+</g>`,
+
+// ── Boeing 757-200 ────────────────────────────────────────────────────────────
+'757': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- fuselage (longer, slimmer) -->
+  <path stroke-width="1.5" d="M24,104 C31,83 63,74 100,72 L458,72 C480,72 497,80 506,95 C510,101 510,108 506,114 C497,129 480,136 458,136 L100,136 C63,136 31,125 24,115 Z"/>
+  <!-- cockpit visor -->
+  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M50,88 C58,78 78,73 100,72 L106,72 L100,89 Z"/>
+  <!-- wing -->
+  <path stroke-width="1.5" d="M220,123 L172,178 L348,178 L296,123 Z"/>
+  <!-- RB211 engine body (conventional round, no winglets on -200) -->
+  <path stroke-width=".9" d="M248,123 L244,142 L260,142 L262,123 Z"/>
+  <!-- engine ellipse -->
+  <path stroke-width="1.5" fill="#060f1e" d="M210,158 C209,145 217,138 229,138 L280,138 C292,138 300,145 300,158 C300,171 292,178 280,178 L229,178 C217,178 210,171 210,158 Z"/>
+  <!-- inlet -->
+  <ellipse cx="212" cy="158" rx="9" ry="20" fill="#030810" stroke-width="1"/>
+  <ellipse cx="212" cy="158" rx="5" ry="13" fill="#060e1c" stroke-width=".5"/>
+  <!-- exhaust -->
+  <path stroke-width=".9" fill="#040c1a" d="M292,145 L304,151 L304,166 L292,174 Z"/>
+  <!-- VERY TALL vertical stabilizer — 757 signature -->
+  <path stroke-width="1.5" d="M446,72 L462,12 L478,12 L512,70 Z"/>
+  <!-- horizontal stabilizer -->
+  <path stroke-width="1.5" d="M462,116 L424,134 L476,134 L480,116 Z"/>
+  <!-- door frames -->
+  <rect x="132" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="320" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="420" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<g fill="rgba(147,210,255,0.32)" stroke="none">
+  <rect x="140" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="153" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="166" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="179" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="192" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="205" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="218" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="231" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="244" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="257" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="270" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="283" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="296" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="309" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="322" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="335" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="348" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="361" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="374" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="387" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="400" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="413" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="426" y="80" width="7" height="4" rx="1.2"/>
+</g>`,
+
+// ── Boeing 777-300ER ──────────────────────────────────────────────────────────
+'777': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- widebody fuselage (taller cross-section) -->
+  <path stroke-width="1.6" d="M20,104 C28,78 62,65 106,63 L480,63 C504,63 522,72 530,90 C534,98 534,110 530,118 C522,136 504,145 480,145 L106,145 C62,145 28,130 20,116 Z"/>
+  <!-- cockpit visor -->
+  <path stroke-width=".9" fill="rgba(147,210,255,0.17)" d="M46,82 C56,70 78,64 106,63 L114,63 L106,82 Z"/>
+  <!-- wing (large, high sweep) -->
+  <path stroke-width="1.5" d="M212,132 L155,188 L368,188 L298,132 Z"/>
+  <!-- raked wingtip (no winglet) -->
+  <path stroke-width="1.2" d="M155,188 L144,180 L157,187 Z"/>
+  <!-- engine pylon -->
+  <path stroke-width="1" d="M238,132 L232,146 L254,146 L258,132 Z"/>
+  <!-- GE90-115B — world's largest turbofan -->
+  <path stroke-width="1.8" fill="#050d1c" d="M190,166 C188,150 198,142 214,142 L284,142 C300,142 310,150 310,166 C310,182 300,190 284,190 L214,190 C198,190 188,182 190,166 Z"/>
+  <!-- large inlet -->
+  <ellipse cx="193" cy="166" rx="12" ry="24" fill="#030810" stroke-width="1.2"/>
+  <ellipse cx="193" cy="166" rx="7" ry="16" fill="#060d1c" stroke-width=".6"/>
+  <!-- exhaust -->
+  <path stroke-width="1" fill="#040c1a" d="M298,150 L314,158 L314,175 L298,184 Z"/>
+  <!-- vertical stabilizer -->
+  <path stroke-width="1.6" d="M468,63 L486,18 L502,18 L524,61 Z"/>
+  <!-- horizontal stabilizer (large) -->
+  <path stroke-width="1.5" d="M480,122 L438,143 L492,143 L498,122 Z"/>
+  <!-- door frames -->
+  <rect x="140" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="328" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="430" y="64" width="4" height="22" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<!-- two rows of windows — widebody cabin -->
+<g fill="rgba(147,210,255,0.3)" stroke="none">
+  <rect x="148" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="161" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="174" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="187" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="200" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="213" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="226" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="239" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="252" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="265" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="278" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="291" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="304" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="317" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="330" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="343" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="356" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="369" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="382" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="395" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="408" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="421" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="434" y="73" width="7" height="4" rx="1.2"/>
+  <rect x="447" y="73" width="7" height="4" rx="1.2"/>
+</g>
+<g fill="rgba(147,210,255,0.18)" stroke="none">
+  <rect x="148" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="161" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="174" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="187" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="200" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="213" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="226" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="239" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="252" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="265" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="278" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="291" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="304" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="317" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="330" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="343" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="356" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="369" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="382" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="395" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="408" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="421" y="81" width="7" height="4" rx="1.2"/>
+  <rect x="434" y="81" width="7" height="4" rx="1.2"/>
+</g>`,
+
+// ── Airbus A318 ───────────────────────────────────────────────────────────────
+'a318': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- fuselage (short, Airbus rounded nose) -->
+  <path stroke-width="1.5" d="M46,104 C52,84 78,76 112,74 L400,74 C420,74 434,82 440,96 C443,102 443,108 440,114 C434,128 420,134 400,134 L112,134 C78,134 52,123 46,114 Z"/>
+  <!-- Airbus cockpit: wider, more rectangular windows -->
+  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M68,90 C76,81 94,75 114,74 L120,74 L114,90 Z"/>
+  <rect x="70" y="80" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
+  <rect x="92" y="80" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
+  <!-- wing -->
+  <path stroke-width="1.5" d="M210,122 L167,172 L314,172 L274,122 Z"/>
+  <!-- engine pylon -->
+  <path stroke-width=".9" d="M232,122 L228,137 L244,137 L246,122 Z"/>
+  <!-- CFM56-5B (compact, round) -->
+  <path stroke-width="1.5" fill="#060f1e" d="M194,152 C193,141 200,135 210,135 L262,135 C272,135 279,141 279,152 C279,163 272,170 262,170 L210,170 C200,170 193,163 194,152 Z"/>
+  <ellipse cx="196" cy="152" rx="8" ry="17" fill="#030810" stroke-width="1"/>
+  <ellipse cx="196" cy="152" rx="4.5" ry="11" fill="#060e1c" stroke-width=".5"/>
+  <path stroke-width=".9" fill="#040c1a" d="M271,141 L282,147 L282,159 L271,167 Z"/>
+  <!-- Airbus curved vertical stabilizer leading edge -->
+  <path stroke-width="1.5" d="M404,74 C416,74 430,64 440,42 L452,22 L466,22 L454,72 Z"/>
+  <!-- horizontal stabilizer -->
+  <path stroke-width="1.5" d="M412,116 L380,132 L426,132 L430,116 Z"/>
+  <!-- doors -->
+  <rect x="136" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="296" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="370" y="75" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<g fill="rgba(147,210,255,0.32)" stroke="none">
+  <rect x="142" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="155" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="168" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="181" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="194" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="207" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="220" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="233" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="246" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="259" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="272" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="285" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="298" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="311" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="324" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="337" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="350" y="82" width="7" height="4" rx="1.2"/>
+  <rect x="363" y="82" width="7" height="4" rx="1.2"/>
+</g>`,
+
+// ── Airbus A320 ───────────────────────────────────────────────────────────────
+'a320': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- fuselage (medium Airbus) -->
+  <path stroke-width="1.5" d="M40,104 C47,83 74,74 110,72 L446,72 C466,72 480,80 488,95 C492,101 492,108 488,114 C480,129 466,136 446,136 L110,136 C74,136 47,124 40,114 Z"/>
+  <!-- cockpit -->
+  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M63,88 C72,78 90,73 110,72 L116,72 L110,88 Z"/>
+  <rect x="65" y="79" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
+  <rect x="87" y="79" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
+  <!-- wing -->
+  <path stroke-width="1.5" d="M216,123 L172,175 L332,175 L288,123 Z"/>
+  <!-- SHARKLET (smooth curved upward tip — Airbus signature) -->
+  <path stroke-width="1.3" fill="#0d2040" d="M172,175 C168,168 164,158 166,147 L172,158 L176,173 Z"/>
+  <!-- engine pylon -->
+  <path stroke-width=".9" d="M238,123 L234,138 L250,138 L252,123 Z"/>
+  <!-- CFM LEAP-1A or IAE V2500 -->
+  <path stroke-width="1.5" fill="#060f1e" d="M198,153 C197,141 204,135 215,135 L268,135 C279,135 285,141 285,153 C285,165 279,172 268,172 L215,172 C204,172 197,165 198,153 Z"/>
+  <ellipse cx="200" cy="153" rx="9" ry="18" fill="#030810" stroke-width="1"/>
+  <ellipse cx="200" cy="153" rx="5" ry="12" fill="#060e1c" stroke-width=".5"/>
+  <path stroke-width=".9" fill="#040c1a" d="M277,141 L288,147 L288,161 L277,169 Z"/>
+  <!-- Airbus curved vertical stabilizer -->
+  <path stroke-width="1.5" d="M450,72 C462,72 475,62 485,40 L496,21 L510,21 L498,70 Z"/>
+  <!-- horizontal stabilizer -->
+  <path stroke-width="1.5" d="M458,117 L422,135 L472,135 L476,117 Z"/>
+  <!-- doors -->
+  <rect x="138" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="326" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="416" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<g fill="rgba(147,210,255,0.32)" stroke="none">
+  <rect x="144" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="157" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="170" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="183" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="196" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="209" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="222" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="235" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="248" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="261" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="274" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="287" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="300" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="313" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="326" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="339" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="352" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="365" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="378" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="391" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="404" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="417" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="430" y="80" width="7" height="4" rx="1.2"/>
+</g>`,
+
+// ── Airbus A340-300 ───────────────────────────────────────────────────────────
+'a340': `
+<g fill="#0d2040" stroke="#4492d8" stroke-linejoin="round">
+  <!-- fuselage (long) -->
+  <path stroke-width="1.5" d="M34,104 C41,83 70,74 108,72 L476,72 C498,72 514,80 522,95 C526,101 526,108 522,114 C514,129 498,136 476,136 L108,136 C70,136 41,124 34,114 Z"/>
+  <!-- Airbus cockpit -->
+  <path stroke-width=".8" fill="rgba(147,210,255,0.17)" d="M57,88 C66,78 84,73 108,72 L114,72 L108,88 Z"/>
+  <rect x="60" y="79" width="18" height="8" rx="1" fill="rgba(147,210,255,0.12)" stroke="#4492d8" stroke-width=".7"/>
+  <rect x="82" y="79" width="12" height="8" rx="1" fill="rgba(147,210,255,0.08)" stroke="#4492d8" stroke-width=".7"/>
+  <!-- wing (large 4-engine wing) -->
+  <path stroke-width="1.5" d="M218,123 L168,182 L362,182 L298,123 Z"/>
+  <!-- FOUR ENGINES — 2 visible in profile (inboard + outboard) -->
+  <!-- INBOARD ENGINE pylon -->
+  <path stroke-width=".9" d="M250,123 L246,138 L260,138 L262,123 Z"/>
+  <!-- Inboard CFM56-5C -->
+  <path stroke-width="1.4" fill="#060f1e" d="M218,152 C217,142 224,137 234,137 L278,137 C288,137 294,142 294,152 C294,162 288,168 278,168 L234,168 C224,168 218,162 218,152 Z"/>
+  <ellipse cx="220" cy="152" rx="8" ry="15" fill="#030810" stroke-width="1"/>
+  <ellipse cx="220" cy="152" rx="4.5" ry="10" fill="#060e1c" stroke-width=".5"/>
+  <path stroke-width=".8" fill="#040c1a" d="M286,142 L296,147 L296,158 L286,165 Z"/>
+  <!-- OUTBOARD ENGINE pylon (further out along wing) -->
+  <path stroke-width=".9" d="M207,143 L204,156 L214,156 L216,143 Z"/>
+  <!-- Outboard CFM56-5C (lower/further out) -->
+  <path stroke-width="1.4" fill="#060f1e" d="M178,165 C177,156 183,151 192,151 L228,151 C237,151 242,156 242,165 C242,174 237,179 228,179 L192,179 C183,179 178,174 178,165 Z"/>
+  <ellipse cx="180" cy="165" rx="7" ry="14" fill="#030810" stroke-width="1"/>
+  <ellipse cx="180" cy="165" rx="4" ry="9" fill="#060e1c" stroke-width=".5"/>
+  <path stroke-width=".8" fill="#040c1a" d="M230,155 L239,159 L239,171 L230,176 Z"/>
+  <!-- Airbus vertical stabilizer (curved LE) -->
+  <path stroke-width="1.5" d="M480,72 C492,72 505,62 515,40 L526,21 L540,21 L528,70 Z"/>
+  <!-- horizontal stabilizer (large span) -->
+  <path stroke-width="1.5" d="M490,117 L450,136 L504,136 L508,117 Z"/>
+  <!-- doors -->
+  <rect x="136" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="340" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+  <rect x="446" y="73" width="4" height="19" rx=".5" stroke-width=".6" fill="rgba(147,210,255,0.07)"/>
+</g>
+<g fill="rgba(147,210,255,0.32)" stroke="none">
+  <rect x="142" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="155" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="168" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="181" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="194" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="207" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="220" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="233" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="246" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="259" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="272" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="285" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="298" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="311" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="324" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="337" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="350" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="363" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="376" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="389" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="402" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="415" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="428" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="441" y="80" width="7" height="4" rx="1.2"/>
+  <rect x="454" y="80" width="7" height="4" rx="1.2"/>
+</g>`
+};
+
+// ─── AIRCRAFT DATA ─────────────────────────────────────────────────────────
+const AIRCRAFT = {
+  '737max': {
+    name: 'Boeing 737 MAX 8',
+    manufacturer: 'Boeing',
+    type: 'Narrow-body twin-jet',
+    firstFlight: 'January 29, 2016',
+    assembly: 'Renton, Washington, USA',
+    range: '3,550 nmi / 6,570 km',
+    engines: '2× CFM LEAP-1B',
+    capacity: '162–178 passengers',
+    callouts: [
+      {cx:96, cy:100, label:'Fuselage'},
+      {cx:252, cy:145, label:'Wings'},
+      {cx:244, cy:152, label:'Engines'},
+      {cx:162, cy:162, label:'Winglets'},
+      {cx:462, cy:120, label:'Horiz. Stabilizer'},
+      {cx:62, cy:87,  label:'Avionics'},
+      {cx:272, cy:168, label:'Landing Gear'},
+    ],
+    parts:[
+      {component:'Fuselage (All Sections)',manufacturer:'Spirit AeroSystems',location:'Wichita, Kansas',country:'USA',flag:'🇺🇸'},
+      {component:'Wings & Skins',manufacturer:'Boeing Fabrication',location:'Auburn & Renton, Washington',country:'USA',flag:'🇺🇸'},
+      {component:'Engines — CFM LEAP-1B',manufacturer:'GE Aerospace / Safran Aircraft Engines',location:'Evendale, Ohio (USA) · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
+      {component:'Split Scimitar Winglets',manufacturer:'Korean Air Aerospace Division',location:'Incheon',country:'South Korea',flag:'🇰🇷'},
+      {component:'Horizontal Stabilizer',manufacturer:'Korea Aerospace Industries (KAI)',location:'Sacheon, South Gyeongsang',country:'South Korea',flag:'🇰🇷'},
+      {component:'Avionics & Flight Displays',manufacturer:'Collins Aerospace (Rockwell Collins)',location:'Cedar Rapids, Iowa',country:'USA',flag:'🇺🇸'},
+      {component:'Main & Nose Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+    ]
+  },
+  '757': {
+    name: 'Boeing 757-200',
+    manufacturer: 'Boeing',
+    type: 'Narrow-body twin-jet',
+    firstFlight: 'February 19, 1982',
+    assembly: 'Renton, Washington, USA',
+    range: '3,900 nmi / 7,222 km',
+    engines: '2× Rolls-Royce RB211-535 or P&W PW2000',
+    capacity: '200–239 passengers',
+    callouts: [
+      {cx:96, cy:100, label:'Fuselage'},
+      {cx:262, cy:155, label:'Wings / Flaps'},
+      {cx:256, cy:158, label:'Engines'},
+      {cx:464, cy:120, label:'Horiz. Stabilizer'},
+      {cx:62,  cy:87,  label:'Tail Section'},
+      {cx:282, cy:177, label:'Landing Gear'},
+      {cx:470, cy:30,  label:'Vert. Stabilizer'},
+    ],
+    parts:[
+      {component:'Rear Fuselage, Fin & Tailplane',manufacturer:'Northrop Grumman',location:'Hawthorne, California',country:'USA',flag:'🇺🇸'},
+      {component:'Main Fuselage Sections',manufacturer:'Rockwell International',location:'Tulsa, Oklahoma',country:'USA',flag:'🇺🇸'},
+      {component:'Inboard Flaps',manufacturer:'Bombardier Shorts',location:'Belfast, Northern Ireland',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Outboard Flaps',manufacturer:'EADS CASA',location:'Getafe, Madrid',country:'Spain',flag:'🇪🇸'},
+      {component:'Engines — RB211-535E4',manufacturer:'Rolls-Royce',location:'Derby, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Main Landing Gear',manufacturer:'Menasco / Collins Aerospace',location:'Oakville, Ontario',country:'Canada',flag:'🇨🇦'},
+      {component:'Dorsal Fin',manufacturer:'Israel Aerospace Industries (IAI)',location:'Lod, Central District',country:'Israel',flag:'🇮🇱'},
+    ]
+  },
+  '777': {
+    name: 'Boeing 777-300ER',
+    manufacturer: 'Boeing',
+    type: 'Wide-body twin-jet',
+    firstFlight: 'February 24, 2003',
+    assembly: 'Everett, Washington, USA',
+    range: '7,370 nmi / 13,650 km',
+    engines: '2× GE90-115B (world\'s largest turbofan)',
+    capacity: '340–396 passengers',
+    callouts: [
+      {cx:104, cy:102, label:'Fuselage Panels'},
+      {cx:275, cy:155, label:'Wings'},
+      {cx:252, cy:166, label:'Engines (GE90)'},
+      {cx:484, cy:125, label:'Horiz. Stabilizer'},
+      {cx:62,  cy:90,  label:'Cockpit / Avionics'},
+      {cx:280, cy:188, label:'Landing Gear'},
+      {cx:490, cy:38,  label:'Vert. Stabilizer'},
+    ],
+    parts:[
+      {component:'Fuselage Panels & Center Section',manufacturer:'Kawasaki Heavy Industries',location:'Nagoya, Aichi',country:'Japan',flag:'🇯🇵'},
+      {component:'Center Wing Section',manufacturer:'Mitsubishi Heavy Industries',location:'Nagoya, Aichi',country:'Japan',flag:'🇯🇵'},
+      {component:'Wing-to-Body Fairings',manufacturer:'Fuji Heavy Industries (Subaru)',location:'Handa, Aichi',country:'Japan',flag:'🇯🇵'},
+      {component:'Engines — GE90-115B',manufacturer:'GE Aerospace',location:'Evendale & Durham, North Carolina',country:'USA',flag:'🇺🇸'},
+      {component:'Main Landing Gear',manufacturer:'Héroux-Devtek',location:'Longueuil, Quebec',country:'Canada',flag:'🇨🇦'},
+      {component:'Avionics (AIMS suite)',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
+      {component:'Interior — Galleys & Lavatories',manufacturer:'Jamco Corporation',location:'Hamura, Tokyo',country:'Japan',flag:'🇯🇵'},
+    ]
+  },
+  'a318': {
+    name: 'Airbus A318-100',
+    manufacturer: 'Airbus',
+    type: 'Narrow-body twin-jet',
+    firstFlight: 'January 15, 2002',
+    assembly: 'Hamburg-Finkenwerder, Germany',
+    range: '3,100 nmi / 5,750 km',
+    engines: '2× CFM56-5B or PW6000',
+    capacity: '107–132 passengers',
+    callouts: [
+      {cx:108, cy:100, label:'Fuselage'},
+      {cx:240, cy:145, label:'Wings'},
+      {cx:236, cy:152, label:'Engines'},
+      {cx:424, cy:120, label:'Horiz. Stabilizer'},
+      {cx:72,  cy:88,  label:'Cockpit / FBW'},
+      {cx:258, cy:170, label:'Landing Gear'},
+      {cx:455, cy:36,  label:'Vert. Stabilizer'},
+    ],
+    parts:[
+      {component:'Wings (skins, spars, ribs)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Forward Fuselage & Nose',manufacturer:'Stelia Aerospace',location:'Saint-Nazaire, Loire-Atlantique',country:'France',flag:'🇫🇷'},
+      {component:'Centre & Aft Fuselage',manufacturer:'Airbus Aerostructures',location:'Hamburg, Germany',country:'Germany',flag:'🇩🇪'},
+      {component:'Engines — CFM56-5B',manufacturer:'CFM International (GE + Safran)',location:'Evendale, Ohio · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
+      {component:'Main & Nose Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Fly-By-Wire Flight Controls',manufacturer:'Thales / Diehl Aerospace',location:'Toulouse, France · Überlingen, Germany',country:'France & Germany',flag:'🇫🇷🇩🇪'},
+      {component:'Flight Management System',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
+    ]
+  },
+  'a320': {
+    name: 'Airbus A320-200',
+    manufacturer: 'Airbus',
+    type: 'Narrow-body twin-jet',
+    firstFlight: 'February 22, 1987',
+    assembly: 'Hamburg · Toulouse · Tianjin · Mobile (AL)',
+    range: '3,300 nmi / 6,150 km',
+    engines: '2× CFM LEAP-1A or IAE V2500 / PW1100G',
+    capacity: '150–180 passengers',
+    callouts: [
+      {cx:108, cy:100, label:'Fuselage'},
+      {cx:252, cy:148, label:'Wings'},
+      {cx:248, cy:155, label:'Engines'},
+      {cx:166, cy:165, label:'Sharklets'},
+      {cx:464, cy:122, label:'Horiz. Stabilizer'},
+      {cx:70,  cy:87,  label:'Cockpit / FBW'},
+      {cx:268, cy:172, label:'Landing Gear'},
+    ],
+    parts:[
+      {component:'Wings (primary structure)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Sharklet Winglets',manufacturer:'FACC AG',location:'Ried im Innkreis, Upper Austria',country:'Austria',flag:'🇦🇹'},
+      {component:'Forward Fuselage (nose, cockpit)',manufacturer:'Stelia Aerospace',location:'Saint-Nazaire, Loire-Atlantique',country:'France',flag:'🇫🇷'},
+      {component:'Engines — CFM LEAP-1A',manufacturer:'CFM International (GE + Safran)',location:'Evendale, Ohio · Villaroche, France',country:'USA & France',flag:'🇺🇸🇫🇷'},
+      {component:'Main Landing Gear',manufacturer:'Safran Landing Systems',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Flight Control Computers',manufacturer:'Thales Avionics',location:'Toulouse, Haute-Garonne',country:'France',flag:'🇫🇷'},
+      {component:'Hydraulic Systems',manufacturer:'Parker Hannifin Aerospace',location:'Irvine, California',country:'USA',flag:'🇺🇸'},
+    ]
+  },
+  'a340': {
+    name: 'Airbus A340-300',
+    manufacturer: 'Airbus',
+    type: 'Wide-body quad-jet',
+    firstFlight: 'October 25, 1991',
+    assembly: 'Toulouse-Blagnac, France',
+    range: '7,400 nmi / 13,700 km',
+    engines: '4× CFM International CFM56-5C4',
+    capacity: '295–380 passengers',
+    callouts: [
+      {cx:108, cy:100, label:'Fuselage'},
+      {cx:278, cy:148, label:'Wings'},
+      {cx:256, cy:152, label:'Inboard Engines'},
+      {cx:210, cy:165, label:'Outboard Engines'},
+      {cx:496, cy:124, label:'Horiz. Stabilizer'},
+      {cx:70,  cy:87,  label:'Cockpit / FBW'},
+      {cx:508, cy:38,  label:'Vert. Stabilizer'},
+    ],
+    parts:[
+      {component:'Wings (primary structure)',manufacturer:'BAE Systems',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Forward Fuselage & Nose',manufacturer:'Stelia Aerospace',location:'Saint-Nazaire, Loire-Atlantique',country:'France',flag:'🇫🇷'},
+      {component:'Centre & Aft Fuselage',manufacturer:'Airbus / Premium Aerotec',location:'Hamburg, Germany',country:'Germany',flag:'🇩🇪'},
+      {component:'Engines — CFM56-5C4 (×4)',manufacturer:'CFM International (Safran + GE)',location:'Villaroche, France · Evendale, Ohio',country:'France & USA',flag:'🇫🇷🇺🇸'},
+      {component:'Main & Nose Landing Gear',manufacturer:'Messier-Dowty (Safran Landing Systems)',location:'Gloucester, England',country:'United Kingdom',flag:'🇬🇧'},
+      {component:'Avionics Suite (HUD, FMS)',manufacturer:'Thales Avionics',location:'Toulouse, Haute-Garonne',country:'France',flag:'🇫🇷'},
+      {component:'APU — Honeywell 331-350A',manufacturer:'Honeywell Aerospace',location:'Phoenix, Arizona',country:'USA',flag:'🇺🇸'},
+    ]
+  }
+};
+
+const BOEING_IDS = ['737max','757','777'];
+const AIRBUS_IDS = ['a318','a320','a340'];
+
+// ─── RENDER CARDS ──────────────────────────────────────────────────────────
+function renderCards(ids, containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = ids.map(id => {
+    const a = AIRCRAFT[id];
+    return `
+    <div class="card" onclick="openModal('${id}')">
+      <div class="card-silhouette">
+        <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
+          ${SVG[id]}
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-model">${a.name}</div>
+        <div class="card-sub">${a.type}</div>
+        <div class="card-specs">
+          <div class="spec"><div class="spec-k">Range</div><div class="spec-v">${a.range.split('/')[0].trim()}</div></div>
+          <div class="spec"><div class="spec-k">Capacity</div><div class="spec-v">${a.capacity}</div></div>
+          <div class="spec"><div class="spec-k">First Flight</div><div class="spec-v">${a.firstFlight.split(' ').slice(-1)[0]}</div></div>
+        </div>
+      </div>
+      <div class="card-cta">Explore component origins <span>→</span></div>
+    </div>`;
+  }).join('');
+}
+
+renderCards(BOEING_IDS, 'boeing-grid');
+renderCards(AIRBUS_IDS, 'airbus-grid');
+
+// ─── MODAL ─────────────────────────────────────────────────────────────────
+function buildCalloutSVG(id) {
+  const a = AIRCRAFT[id];
+  // Build callout overlay in same coordinate system as aircraft SVG
+  const lines = a.callouts.map((c, i) => {
+    const color = DOT_COLORS[i];
+    // pick a label anchor away from the dot
+    const lx = c.cx < 280 ? c.cx - 60 : c.cx + 60;
+    const ly = c.cy < 105 ? c.cy - 28 : c.cy + 28;
+    return `
+      <line x1="${c.cx}" y1="${c.cy}" x2="${lx}" y2="${ly}" stroke="${color}" stroke-width="1" stroke-dasharray="4,3" opacity=".7"/>
+      <circle cx="${c.cx}" cy="${c.cy}" r="9" fill="${color}" opacity=".92"/>
+      <text x="${c.cx}" y="${c.cy+3.5}" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700" font-family="JetBrains Mono,monospace">${i+1}</text>
+    `;
+  }).join('');
+  return `
+    <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" class="modal-diagram-svg">
+      ${SVG[id]}
+      ${lines}
+    </svg>`;
+}
+
+function buildPartsTable(id) {
+  const a = AIRCRAFT[id];
+  const rows = a.parts.map((p, i) => {
+    const color = DOT_COLORS[i];
+    return `
+    <tr>
+      <td class="td-num"><div class="num-dot" style="background:${color};color:#fff">${i+1}</div></td>
+      <td class="td-part">${p.component}</td>
+      <td class="td-mfr">${p.manufacturer}</td>
+      <td class="td-loc">${p.location}<br><span style="color:var(--text-dim);font-size:9.5px">${p.country}</span></td>
+      <td class="td-flag">${p.flag}</td>
+    </tr>`;
+  }).join('');
+  return `
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Component</th><th>Manufacturer</th><th>Origin</th><th>Flag</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function openModal(id) {
+  const a = AIRCRAFT[id];
+  document.getElementById('modal').innerHTML = `
+    <div class="modal-top">
+      <div class="modal-title-group">
+        <div class="modal-title">${a.name}</div>
+        <div class="modal-chips">
+          <span class="chip">${a.type}</span>
+          <span class="chip">${a.engines}</span>
+          <span class="chip assembly">Assembly ▸ ${a.assembly}</span>
+        </div>
+      </div>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-diagram">
+      <div class="section-lbl">Component Origin Diagram</div>
+      <div class="diagram-wrap">${buildCalloutSVG(id)}</div>
+    </div>
+    <div class="modal-parts">
+      <div class="section-lbl">Numbered Component Breakdown</div>
+      ${buildPartsTable(id)}
+    </div>
+    <div class="modal-footer">
+      <span class="footer-lbl">First Flight</span>
+      <span class="footer-val">${a.firstFlight}</span>
+      <span style="margin:0 10px;color:var(--border)">|</span>
+      <span class="footer-lbl">Range</span>
+      <span class="footer-val">${a.range}</span>
+      <span style="margin:0 10px;color:var(--border)">|</span>
+      <span class="footer-lbl">Typical Capacity</span>
+      <span class="footer-val">${a.capacity}</span>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
