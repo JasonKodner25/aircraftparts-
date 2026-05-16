@@ -152,10 +152,16 @@ main{max-width:1300px;margin:0 auto;padding:0 32px 100px;}
 .chip.assembly{color:#4fd18a;border-color:rgba(79,209,138,.22);background:rgba(79,209,138,.06);}
 .close-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;flex-shrink:0;}
 .close-btn:hover{color:var(--text-bright);border-color:var(--border-hover);}
-.modal-diagram{padding:26px 34px 18px;background:rgba(4,9,20,.5);border-bottom:1px solid var(--border);overflow:visible;}
-.section-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
-.diagram-wrap{overflow:visible;}
-.diagram-wrap svg{width:100%;height:auto;display:block;overflow:visible;}
+.modal-diagram{padding:0;background:#f0f2ec;border-bottom:1px solid var(--border);}
+.modal-diagram>.section-lbl{padding:14px 18px 10px;margin-bottom:0;}
+.section-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;padding:0 16px;}
+.diagram-wrap{overflow:hidden;}
+.diagram-wrap svg{width:100%;height:auto;display:block;}
+.callout-legend{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;padding:12px 18px 18px;background:#f0f2ec;}
+.legend-row{display:flex;align-items:flex-start;gap:9px;min-width:0;}
+.legend-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;width:22px;height:22px;border-radius:50%;font-size:10.5px;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.legend-label{font-size:11.5px;font-weight:600;color:#1a2840;line-height:1.35;}
+.legend-sub{font-size:9.5px;color:#4a6080;line-height:1.4;margin-top:2px;}
 .modal-parts{padding:26px 34px;}
 table{width:100%;border-collapse:collapse;}
 thead th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);}
@@ -178,7 +184,10 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
   main{padding:0 14px 60px;}
   header{padding:40px 14px 32px;}
   nav{padding:12px 16px;}
-  .modal-top,.modal-diagram,.modal-parts,.modal-footer{padding-left:16px;padding-right:16px;}
+  .modal-top,.modal-parts,.modal-footer{padding-left:14px;padding-right:14px;}
+  .modal-diagram>.section-lbl{padding:12px 14px 8px;}
+  .section-lbl{padding:0 8px;}
+  .callout-legend{grid-template-columns:1fr;gap:5px 0;padding:10px 14px 14px;}
   .photo-area{height:165px;}
 }
 </style>
@@ -726,13 +735,13 @@ const AIRCRAFT={
     firstFlight:'January 29, 2016',assembly:'Renton, Washington, USA',
     range:'3,550 nmi / 6,570 km',engines:'2× CFM International LEAP-1B',capacity:'162–178 passengers',
     callouts:[
-      {cx:100,cy:22,lx:210,ly:10,label:'Avionics & Flight Displays',sub:'Collins Aerospace · Cedar Rapids, IA',anchor:'start'},
-      {cx:100,cy:115,lx:210,ly:92,label:'Fuselage Sections',sub:'Spirit AeroSystems · Wichita, KS',anchor:'start'},
-      {cx:20,cy:132,lx:-8,ly:120,label:'Wings & Skins',sub:'Boeing Fabrication · Renton, WA',anchor:'end'},
-      {cx:4,cy:162,lx:-8,ly:172,label:'Split Scimitar Winglets',sub:'Korean Air Aerospace · Incheon, SK',anchor:'end'},
-      {cx:36,cy:147,lx:-8,ly:214,label:'CFM LEAP-1B Engines',sub:'GE Aerospace / Safran · USA & France',anchor:'end'},
-      {cx:100,cy:158,lx:210,ly:152,label:'Main & Nose Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'},
-      {cx:68,cy:245,lx:210,ly:247,label:'Horizontal Stabilizer',sub:'KAI · Sacheon, South Korea',anchor:'start'}
+      {cx:1340,cy:740,lx:1720,ly:570,label:'Avionics & Flight Displays',sub:'Collins Aerospace · Cedar Rapids, IA',anchor:'start'},
+      {cx:800,cy:740,lx:1720,ly:750,label:'Fuselage Sections',sub:'Spirit AeroSystems · Wichita, KS',anchor:'start'},
+      {cx:740,cy:870,lx:-80,ly:845,label:'Wings & Skins',sub:'Boeing Fabrication · Renton, WA',anchor:'end'},
+      {cx:170,cy:385,lx:-80,ly:355,label:'Vertical Stabilizer',sub:'Spirit AeroSystems · Wichita, KS',anchor:'end'},
+      {cx:700,cy:1040,lx:-80,ly:1010,label:'CFM LEAP-1B Engines',sub:'GE Aerospace / Safran · USA & France',anchor:'end'},
+      {cx:720,cy:1155,lx:1720,ly:1155,label:'Main & Nose Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'},
+      {cx:155,cy:750,lx:-80,ly:750,label:'Horizontal Stabilizer',sub:'KAI · Sacheon, South Korea',anchor:'end'}
     ],
     parts:[
       {component:'Fuselage (All Sections)',manufacturer:'Spirit AeroSystems',location:'Wichita, Kansas',country:'USA',flag:'🇺🇸'},
@@ -749,13 +758,13 @@ const AIRCRAFT={
     firstFlight:'February 19, 1982',assembly:'Renton, Washington, USA',
     range:'3,900 nmi / 7,222 km',engines:'2× Rolls-Royce RB211-535E4',capacity:'200–239 passengers',
     callouts:[
-      {cx:100,cy:22,lx:-8,ly:10,label:'Main Fuselage Sections',sub:'Rockwell International · Tulsa, OK',anchor:'end'},
-      {cx:100,cy:232,lx:210,ly:216,label:'Rear Fuselage & Tailplane',sub:'Northrop Grumman · Hawthorne, CA',anchor:'start'},
-      {cx:80,cy:158,lx:-8,ly:126,label:'Inboard Flaps',sub:'Bombardier Shorts · Belfast, UK',anchor:'end'},
-      {cx:22,cy:168,lx:-8,ly:174,label:'Outboard Flaps',sub:'EADS CASA · Getafe, Spain',anchor:'end'},
-      {cx:36,cy:153,lx:-8,ly:216,label:'RB211-535E4 Engines',sub:'Rolls-Royce · Derby, England',anchor:'end'},
-      {cx:100,cy:172,lx:210,ly:160,label:'Main Landing Gear',sub:'Menasco / Collins · Ontario, Canada',anchor:'start'},
-      {cx:100,cy:267,lx:210,ly:268,label:'Dorsal Fin',sub:'IAI · Lod, Israel',anchor:'start'}
+      {cx:1105,cy:412,lx:1230,ly:280,label:'Main Fuselage Sections',sub:'Rockwell International · Tulsa, OK',anchor:'start'},
+      {cx:400,cy:412,lx:1230,ly:412,label:'Rear Fuselage & Tailplane',sub:'Northrop Grumman · Hawthorne, CA',anchor:'start'},
+      {cx:605,cy:555,lx:-80,ly:515,label:'Inboard Flaps',sub:'Bombardier Shorts · Belfast, UK',anchor:'end'},
+      {cx:360,cy:585,lx:-80,ly:585,label:'Outboard Flaps',sub:'EADS CASA · Getafe, Spain',anchor:'end'},
+      {cx:480,cy:658,lx:-80,ly:658,label:'RB211-535E4 Engines',sub:'Rolls-Royce · Derby, England',anchor:'end'},
+      {cx:590,cy:415,lx:1230,ly:540,label:'Main Landing Gear',sub:'Menasco / Collins · Ontario, Canada',anchor:'start'},
+      {cx:76,cy:415,lx:-80,ly:415,label:'Dorsal Fin',sub:'IAI · Lod, Israel',anchor:'end'}
     ],
     parts:[
       {component:'Rear Fuselage, Fin & Tailplane',manufacturer:'Northrop Grumman',location:'Hawthorne, California',country:'USA',flag:'🇺🇸'},
@@ -772,13 +781,13 @@ const AIRCRAFT={
     firstFlight:'February 24, 2003',assembly:'Everett, Washington, USA',
     range:'7,370 nmi / 13,650 km',engines:"2× GE90-115B (world's largest turbofan)",capacity:'340–396 passengers',
     callouts:[
-      {cx:100,cy:24,lx:210,ly:12,label:'Avionics (AIMS Suite)',sub:'Honeywell Aerospace · Phoenix, AZ',anchor:'start'},
-      {cx:100,cy:115,lx:-8,ly:90,label:'Fuselage Panels & Center Section',sub:'Kawasaki Heavy Industries · Nagoya, Japan',anchor:'end'},
-      {cx:16,cy:142,lx:-8,ly:130,label:'Center Wing Section',sub:'Mitsubishi Heavy Industries · Nagoya, Japan',anchor:'end'},
-      {cx:32,cy:153,lx:-8,ly:186,label:'GE90-115B Engines',sub:'GE Aerospace · Evendale, OH',anchor:'end'},
-      {cx:44,cy:167,lx:-8,ly:226,label:'Wing-to-Body Fairings',sub:'Fuji Heavy Industries (Subaru) · Aichi',anchor:'end'},
-      {cx:100,cy:170,lx:210,ly:160,label:'Main Landing Gear',sub:'Héroux-Devtek · Longueuil, Quebec',anchor:'start'},
-      {cx:100,cy:212,lx:210,ly:218,label:'Interior — Galleys & Lavatories',sub:'Jamco Corporation · Hamura, Tokyo',anchor:'start'}
+      {cx:1105,cy:415,lx:1230,ly:280,label:'Avionics (AIMS Suite)',sub:'Honeywell Aerospace · Phoenix, AZ',anchor:'start'},
+      {cx:550,cy:415,lx:1230,ly:415,label:'Fuselage Panels & Center Section',sub:'Kawasaki Heavy Industries · Nagoya, Japan',anchor:'start'},
+      {cx:680,cy:545,lx:-80,ly:500,label:'Center Wing Section',sub:'Mitsubishi Heavy Industries · Nagoya, Japan',anchor:'end'},
+      {cx:490,cy:700,lx:-80,ly:680,label:'GE90-115B Engines',sub:'GE Aerospace · Evendale, OH',anchor:'end'},
+      {cx:380,cy:640,lx:-80,ly:640,label:'Wing-to-Body Fairings',sub:'Fuji Heavy Industries · Aichi, Japan',anchor:'end'},
+      {cx:600,cy:430,lx:1230,ly:545,label:'Main Landing Gear',sub:'Héroux-Devtek · Longueuil, Quebec',anchor:'start'},
+      {cx:620,cy:415,lx:1230,ly:660,label:'Interior — Galleys & Lavatories',sub:'Jamco Corporation · Hamura, Tokyo',anchor:'start'}
     ],
     parts:[
       {component:'Fuselage Panels & Center Section',manufacturer:'Kawasaki Heavy Industries',location:'Nagoya, Aichi',country:'Japan',flag:'🇯🇵'},
@@ -795,13 +804,13 @@ const AIRCRAFT={
     firstFlight:'January 15, 2002',assembly:'Hamburg-Finkenwerder, Germany',
     range:'3,100 nmi / 5,750 km',engines:'2× CFM56-5B or PW6000',capacity:'107–132 passengers',
     callouts:[
-      {cx:100,cy:30,lx:210,ly:16,label:'Flight Management System',sub:'Honeywell Aerospace · Phoenix, AZ',anchor:'start'},
-      {cx:100,cy:105,lx:-8,ly:80,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'end'},
-      {cx:22,cy:138,lx:-8,ly:126,label:'Wings (Skins, Spars, Ribs)',sub:'Airbus Operations · Broughton, Wales UK',anchor:'end'},
-      {cx:11,cy:163,lx:-8,ly:176,label:'Fly-By-Wire Flight Controls',sub:'Thales / Diehl Aerospace · France & Germany',anchor:'end'},
-      {cx:40,cy:149,lx:-8,ly:216,label:'CFM56-5B Engines',sub:'CFM International · USA & France',anchor:'end'},
-      {cx:100,cy:162,lx:210,ly:150,label:'Centre & Aft Fuselage',sub:'Airbus Aerostructures · Hamburg, Germany',anchor:'start'},
-      {cx:72,cy:237,lx:210,ly:238,label:'Main & Nose Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'}
+      {cx:1355,cy:735,lx:1760,ly:580,label:'Flight Management System',sub:'Honeywell Aerospace · Phoenix, AZ',anchor:'start'},
+      {cx:1105,cy:735,lx:-80,ly:670,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'end'},
+      {cx:815,cy:875,lx:-80,ly:850,label:'Wings (Skins, Spars, Ribs)',sub:'Airbus Operations · Broughton, Wales UK',anchor:'end'},
+      {cx:130,cy:390,lx:-80,ly:360,label:'Fly-By-Wire Flight Controls',sub:'Thales / Diehl Aerospace · France & Germany',anchor:'end'},
+      {cx:720,cy:1025,lx:-80,ly:1000,label:'CFM56-5B Engines',sub:'CFM International · USA & France',anchor:'end'},
+      {cx:500,cy:735,lx:1760,ly:745,label:'Centre & Aft Fuselage',sub:'Airbus Aerostructures · Hamburg, Germany',anchor:'start'},
+      {cx:140,cy:755,lx:1760,ly:1150,label:'Main & Nose Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'}
     ],
     parts:[
       {component:'Wings (skins, spars, ribs)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
@@ -818,13 +827,13 @@ const AIRCRAFT={
     firstFlight:'February 22, 1987',assembly:'Hamburg · Toulouse · Tianjin · Mobile (AL)',
     range:'3,300 nmi / 6,150 km',engines:'2× CFM LEAP-1A or IAE V2500 / PW1100G',capacity:'150–180 passengers',
     callouts:[
-      {cx:100,cy:28,lx:210,ly:14,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'start'},
-      {cx:20,cy:133,lx:-8,ly:120,label:'Wings (Primary Structure)',sub:'Airbus Operations · Broughton, Wales UK',anchor:'end'},
-      {cx:3,cy:146,lx:-8,ly:166,label:'Sharklet Winglets',sub:'FACC AG · Ried, Upper Austria',anchor:'end'},
-      {cx:37,cy:147,lx:-8,ly:210,label:'CFM LEAP-1A Engines',sub:'CFM International · USA & France',anchor:'end'},
-      {cx:100,cy:150,lx:210,ly:118,label:'Flight Control Computers',sub:'Thales Avionics · Toulouse, France',anchor:'start'},
-      {cx:100,cy:165,lx:210,ly:160,label:'Main Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'},
-      {cx:71,cy:241,lx:210,ly:243,label:'Hydraulic Systems',sub:'Parker Hannifin · Irvine, CA',anchor:'start'}
+      {cx:1365,cy:730,lx:-80,ly:640,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'end'},
+      {cx:820,cy:880,lx:-80,ly:855,label:'Wings (Primary Structure)',sub:'Airbus Operations · Broughton, Wales UK',anchor:'end'},
+      {cx:130,cy:375,lx:-80,ly:345,label:'Vertical Stabilizer',sub:'FACC Sharklets at wing tips',anchor:'end'},
+      {cx:720,cy:1030,lx:-80,ly:1005,label:'CFM LEAP-1A Engines',sub:'CFM International · USA & France',anchor:'end'},
+      {cx:750,cy:740,lx:1760,ly:630,label:'Flight Control Computers',sub:'Thales Avionics · Toulouse, France',anchor:'start'},
+      {cx:720,cy:1170,lx:1760,ly:1170,label:'Main Landing Gear',sub:'Safran Landing Systems · Gloucester, UK',anchor:'start'},
+      {cx:500,cy:740,lx:1760,ly:755,label:'Hydraulic Systems',sub:'Parker Hannifin · Irvine, CA',anchor:'start'}
     ],
     parts:[
       {component:'Wings (primary structure)',manufacturer:'Airbus Operations',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
@@ -841,13 +850,13 @@ const AIRCRAFT={
     firstFlight:'October 25, 1991',assembly:'Toulouse-Blagnac, France',
     range:'7,400 nmi / 13,700 km',engines:'4× CFM International CFM56-5C4',capacity:'295–380 passengers',
     callouts:[
-      {cx:100,cy:26,lx:-8,ly:12,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'end'},
-      {cx:20,cy:138,lx:-8,ly:124,label:'Wings (Primary Structure)',sub:'BAE Systems · Broughton, Wales UK',anchor:'end'},
-      {cx:24,cy:162,lx:-8,ly:170,label:'Outboard Engines (CFM56-5C4)',sub:'CFM International · Villaroche, France',anchor:'end'},
-      {cx:54,cy:151,lx:-8,ly:216,label:'Inboard Engines (CFM56-5C4)',sub:'CFM International · France & USA',anchor:'end'},
-      {cx:100,cy:118,lx:210,ly:100,label:'Avionics Suite (HUD, FMS)',sub:'Thales Avionics · Toulouse, France',anchor:'start'},
-      {cx:100,cy:168,lx:210,ly:162,label:'Main & Nose Landing Gear',sub:'Messier-Dowty (Safran) · Gloucester, UK',anchor:'start'},
-      {cx:70,cy:253,lx:210,ly:255,label:'Horizontal Stabilizer',sub:'Centre & Aft Fuselage · Airbus/Premium Aerotec',anchor:'start'}
+      {cx:1325,cy:730,lx:-80,ly:635,label:'Forward Fuselage & Nose',sub:'Stelia Aerospace · Saint-Nazaire, France',anchor:'end'},
+      {cx:830,cy:880,lx:-80,ly:855,label:'Wings (Primary Structure)',sub:'BAE Systems · Broughton, Wales UK',anchor:'end'},
+      {cx:545,cy:1065,lx:-80,ly:1055,label:'Outboard Engines (CFM56-5C4)',sub:'CFM International · Villaroche, France',anchor:'end'},
+      {cx:715,cy:995,lx:-80,ly:980,label:'Inboard Engines (CFM56-5C4)',sub:'CFM International · France & USA',anchor:'end'},
+      {cx:750,cy:735,lx:1660,ly:570,label:'Avionics Suite (HUD, FMS)',sub:'Thales Avionics · Toulouse, France',anchor:'start'},
+      {cx:650,cy:735,lx:1660,ly:745,label:'Main & Nose Landing Gear',sub:'Messier-Dowty (Safran) · Gloucester, UK',anchor:'start'},
+      {cx:140,cy:745,lx:1660,ly:1125,label:'Horizontal Stabilizer',sub:'Airbus / Premium Aerotec · Hamburg',anchor:'start'}
     ],
     parts:[
       {component:'Wings (primary structure)',manufacturer:'BAE Systems',location:'Broughton, North Wales',country:'United Kingdom',flag:'🇬🇧'},
@@ -898,8 +907,24 @@ function renderCards(ids,containerId){
 renderCards(BOEING_IDS,'boeing-grid');
 renderCards(AIRBUS_IDS,'airbus-grid');
 
+// ── Static photo overrides ────────────────────────────────────────────────────
+// Used when the Wikipedia API doesn't return a thumbnail (or for specific overrides).
+// Wikimedia Commons Special:FilePath URLs redirect to the actual full-res file.
+const STATIC_PHOTOS={
+  'a320':'https://commons.wikimedia.org/wiki/Special:FilePath/Airbus_A320-200_Airbus_Industries_(AIB)_%22House_colors%22_F-WWBA_-_MSN_001_(10276181983).jpg'
+};
+
+// ── Engineering diagram config — Wikimedia Commons v1.0 orthographic drawings ─
+const DIAGRAM_CFG={
+  '737max':{url:'https://commons.wikimedia.org/wiki/Special:FilePath/Boeing_737-800_v1.0.png',   vb:'-450 -200 3300 2000',iw:2416,ih:1600,fs:72,fsub:54,r:18,sw:3.5},
+  '757':   {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Boeing_757_family_v1.0.png',vb:'-380 -120 1960 1180',iw:1200,ih:2191,fs:52,fsub:40,r:14,sw:3},
+  '777':   {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Boeing_777_family_v1.0.png',vb:'-380 -120 1960 1180',iw:1200,ih:2220,fs:52,fsub:40,r:14,sw:3},
+  'a318':  {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Airbus_A318_v1.0.png',      vb:'-450 -200 3400 2000',iw:2550,ih:1600,fs:72,fsub:54,r:18,sw:3.5},
+  'a320':  {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Airbus_A320_v1.0.png',      vb:'-450 -200 3400 2000',iw:2551,ih:1600,fs:72,fsub:54,r:18,sw:3.5},
+  'a340':  {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Airbus_A340-300_v1.0.png',  vb:'-450 -200 3200 2000',iw:2333,ih:1600,fs:72,fsub:54,r:18,sw:3.5}
+};
+
 // ── Wikipedia photo loader ────────────────────────────────────────────────────
-// Maps aircraft ID → Wikipedia article title used to pull the lead image
 const WIKI_TITLES={
   '737max':'Boeing_737_MAX',
   '757':'Boeing_757',
@@ -909,30 +934,37 @@ const WIKI_TITLES={
   'a340':'Airbus_A340'
 };
 
+function applyPhoto(id, src){
+  const card=document.querySelector(`[data-aircraft="${id}"]`);
+  if(!card)return;
+  const img=card.querySelector('.aircraft-photo');
+  const fallback=card.querySelector('.photo-fallback');
+  loadedPhotos[id]=src;
+  img.onload=()=>{ img.classList.add('loaded'); if(fallback)fallback.style.opacity='0'; };
+  img.onerror=()=>{ img.src=''; };
+  img.src=src;
+}
+
 async function loadAircraftPhotos(){
+  // Apply static overrides first
+  for(const[id,src]of Object.entries(STATIC_PHOTOS)) applyPhoto(id,src);
+
   const titleList=Object.values(WIKI_TITLES).join('|');
   try{
     const res=await fetch(
       `https://en.wikipedia.org/w/api.php?action=query&titles=${titleList}&prop=pageimages&format=json&pithumbsize=1000&origin=*`
     );
     const data=await res.json();
-    // Build reverse map: normalised title → aircraft id
+    // Build reverse map handling both original and API-normalised titles
     const rev={};
-    for(const[id,t]of Object.entries(WIKI_TITLES))rev[t.replace(/_/g,' ')]=id;
+    for(const[id,t]of Object.entries(WIKI_TITLES)) rev[t.replace(/_/g,' ')]=id;
+    // Also apply any normalizations the API reports (e.g. redirects)
+    for(const n of (data.query.normalized||[])) rev[n.to]=rev[n.from.replace(/_/g,' ')]||rev[n.to];
     for(const page of Object.values(data.query.pages)){
-      if(!page.thumbnail)continue;
+      if(!page.thumbnail) continue;
       const id=rev[page.title];
-      if(!id)continue;
-      const card=document.querySelector(`[data-aircraft="${id}"]`);
-      if(!card)continue;
-      const img=card.querySelector('.aircraft-photo');
-      const fallback=card.querySelector('.photo-fallback');
-      loadedPhotos[id]=page.thumbnail.source;
-      img.onload=()=>{
-        img.classList.add('loaded');
-        if(fallback)fallback.style.opacity='0';
-      };
-      img.src=page.thumbnail.source;
+      if(!id || STATIC_PHOTOS[id]) continue; // skip if already set by static override
+      applyPhoto(id, page.thumbnail.source);
     }
   }catch(e){
     // silently fall back to SVG illustrations
@@ -943,25 +975,33 @@ loadAircraftPhotos();
 
 function buildCalloutSVG(id){
   const a=AIRCRAFT[id];
-  // SVGTOP is 200×280 (nose at top). Extend viewBox with ~120px left/right and ~55px top/bottom for labels.
-  const VB='-125 -55 450 400';
+  const cfg=DIAGRAM_CFG[id];
+  const {r,sw}=cfg;
+  // Scale dots so they're visible at any screen width without overflowing the viewBox
+  const dotR=r*7;
+  const numFS=r*5;
 
-  const overlays=a.callouts.map((c)=>{
-    const anchor=c.anchor||'middle';
-    const textOffX = anchor==='start' ? 6 : anchor==='end' ? -6 : 0;
-    const lineEndY  = c.ly + 5;
+  const overlays=a.callouts.map((c,i)=>`
+    <circle cx="${c.cx}" cy="${c.cy}" r="${dotR}" fill="${DOT_COLORS[i]}" stroke="white" stroke-width="${sw*2.5}"/>
+    <text x="${c.cx}" y="${c.cy+numFS*0.38}" text-anchor="middle" fill="white" font-size="${numFS}" font-weight="800" font-family="Inter,sans-serif">${i+1}</text>
+  `).join('');
 
-    return `
-      <line x1="${c.cx}" y1="${c.cy}" x2="${c.lx}" y2="${lineEndY}" stroke="rgba(220,60,60,0.68)" stroke-width="0.9"/>
-      <circle cx="${c.cx}" cy="${c.cy}" r="4" fill="#e03535" stroke="rgba(255,170,170,0.5)" stroke-width="1.1"/>
-      <text x="${c.lx+textOffX}" y="${c.ly}" text-anchor="${anchor}" fill="#d4ecff" font-size="9" font-weight="600" font-family="Inter,sans-serif">${c.label}</text>
-      ${c.sub?`<text x="${c.lx+textOffX}" y="${c.ly+11}" text-anchor="${anchor}" fill="#6a92b8" font-size="7.5" font-family="Inter,sans-serif">${c.sub}</text>`:''}
-    `;
-  }).join('');
+  return `<svg viewBox="${cfg.vb}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#f0f2ec;">
+    <image href="${cfg.url}" x="0" y="0" width="${cfg.iw}" height="${cfg.ih}" preserveAspectRatio="xMidYMid meet"/>
+    ${overlays}
+  </svg>`;
+}
 
-  // Use top-down plan view (SVGTOP) so the schematic matches Boeing/Airbus-style top-view diagrams
-  return `<svg viewBox="${VB}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;background:#060e1c;border-radius:4px;">
-    ${SVGTOP[id]}${overlays}</svg>`;
+function buildLegend(id){
+  const a=AIRCRAFT[id];
+  return `<div class="callout-legend">${a.callouts.map((c,i)=>`
+    <div class="legend-row">
+      <span class="legend-num" style="background:${DOT_COLORS[i]}">${i+1}</span>
+      <div>
+        <div class="legend-label">${c.label}</div>
+        ${c.sub?`<div class="legend-sub">${c.sub}</div>`:''}
+      </div>
+    </div>`).join('')}</div>`;
 }
 
 function buildTable(id){
@@ -1000,8 +1040,9 @@ function openModal(id){
       <button class="close-btn" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-diagram">
-      <div class="section-lbl">Top-View Schematic — Component Origins</div>
+      <div class="section-lbl">Orthographic Schematic — Component Origins</div>
       <div class="diagram-wrap">${buildCalloutSVG(id)}</div>
+      ${buildLegend(id)}
     </div>
     <div class="modal-parts">
       <div class="section-lbl">Numbered Component Breakdown</div>
