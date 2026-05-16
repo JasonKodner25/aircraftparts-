@@ -902,8 +902,14 @@ function renderCards(ids,containerId){
 renderCards(BOEING_IDS,'boeing-grid');
 renderCards(AIRBUS_IDS,'airbus-grid');
 
+// ── Static photo overrides ────────────────────────────────────────────────────
+// Used when the Wikipedia API doesn't return a thumbnail (or for specific overrides).
+// Wikimedia Commons Special:FilePath URLs redirect to the actual full-res file.
+const STATIC_PHOTOS={
+  'a320':'https://commons.wikimedia.org/wiki/Special:FilePath/Airbus_A320-200_Airbus_Industries_(AIB)_%22House_colors%22_F-WWBA_-_MSN_001_(10276181983).jpg'
+};
+
 // ── Wikipedia photo loader ────────────────────────────────────────────────────
-// Maps aircraft ID → Wikipedia article title used to pull the lead image
 const WIKI_TITLES={
   '737max':'Boeing_737_MAX',
   '757':'Boeing_757',
@@ -913,30 +919,37 @@ const WIKI_TITLES={
   'a340':'Airbus_A340'
 };
 
+function applyPhoto(id, src){
+  const card=document.querySelector(`[data-aircraft="${id}"]`);
+  if(!card)return;
+  const img=card.querySelector('.aircraft-photo');
+  const fallback=card.querySelector('.photo-fallback');
+  loadedPhotos[id]=src;
+  img.onload=()=>{ img.classList.add('loaded'); if(fallback)fallback.style.opacity='0'; };
+  img.onerror=()=>{ img.src=''; };
+  img.src=src;
+}
+
 async function loadAircraftPhotos(){
+  // Apply static overrides first
+  for(const[id,src]of Object.entries(STATIC_PHOTOS)) applyPhoto(id,src);
+
   const titleList=Object.values(WIKI_TITLES).join('|');
   try{
     const res=await fetch(
       `https://en.wikipedia.org/w/api.php?action=query&titles=${titleList}&prop=pageimages&format=json&pithumbsize=1000&origin=*`
     );
     const data=await res.json();
-    // Build reverse map: normalised title → aircraft id
+    // Build reverse map handling both original and API-normalised titles
     const rev={};
-    for(const[id,t]of Object.entries(WIKI_TITLES))rev[t.replace(/_/g,' ')]=id;
+    for(const[id,t]of Object.entries(WIKI_TITLES)) rev[t.replace(/_/g,' ')]=id;
+    // Also apply any normalizations the API reports (e.g. redirects)
+    for(const n of (data.query.normalized||[])) rev[n.to]=rev[n.from.replace(/_/g,' ')]||rev[n.to];
     for(const page of Object.values(data.query.pages)){
-      if(!page.thumbnail)continue;
+      if(!page.thumbnail) continue;
       const id=rev[page.title];
-      if(!id)continue;
-      const card=document.querySelector(`[data-aircraft="${id}"]`);
-      if(!card)continue;
-      const img=card.querySelector('.aircraft-photo');
-      const fallback=card.querySelector('.photo-fallback');
-      loadedPhotos[id]=page.thumbnail.source;
-      img.onload=()=>{
-        img.classList.add('loaded');
-        if(fallback)fallback.style.opacity='0';
-      };
-      img.src=page.thumbnail.source;
+      if(!id || STATIC_PHOTOS[id]) continue; // skip if already set by static override
+      applyPhoto(id, page.thumbnail.source);
     }
   }catch(e){
     // silently fall back to SVG illustrations
