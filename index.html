@@ -152,11 +152,16 @@ main{max-width:1300px;margin:0 auto;padding:0 32px 100px;}
 .chip.assembly{color:#4fd18a;border-color:rgba(79,209,138,.22);background:rgba(79,209,138,.06);}
 .close-btn{background:none;border:1px solid var(--border);color:var(--text-dim);width:34px;height:34px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s;flex-shrink:0;}
 .close-btn:hover{color:var(--text-bright);border-color:var(--border-hover);}
-.modal-diagram{padding:22px 18px 18px;background:#f0f2ec;border-bottom:1px solid var(--border);}
+.modal-diagram{padding:0;background:#f0f2ec;border-bottom:1px solid var(--border);}
+.modal-diagram>.section-lbl{padding:14px 18px 10px;margin-bottom:0;}
 .section-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;padding:0 16px;}
-/* overflow-x:auto lets the diagram scroll horizontally on small screens rather than clip labels */
-.diagram-wrap{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;}
-.diagram-wrap svg{width:100%;min-width:520px;height:auto;display:block;overflow:visible;}
+.diagram-wrap{overflow:hidden;}
+.diagram-wrap svg{width:100%;height:auto;display:block;}
+.callout-legend{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;padding:12px 18px 18px;background:#f0f2ec;}
+.legend-row{display:flex;align-items:flex-start;gap:9px;min-width:0;}
+.legend-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;width:22px;height:22px;border-radius:50%;font-size:10.5px;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.legend-label{font-size:11.5px;font-weight:600;color:#1a2840;line-height:1.35;}
+.legend-sub{font-size:9.5px;color:#4a6080;line-height:1.4;margin-top:2px;}
 .modal-parts{padding:26px 34px;}
 table{width:100%;border-collapse:collapse;}
 thead th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);}
@@ -180,9 +185,9 @@ tbody tr:hover td{background:rgba(91,163,245,.03);}
   header{padding:40px 14px 32px;}
   nav{padding:12px 16px;}
   .modal-top,.modal-parts,.modal-footer{padding-left:14px;padding-right:14px;}
-  .modal-diagram{padding-left:6px;padding-right:6px;}
+  .modal-diagram>.section-lbl{padding:12px 14px 8px;}
   .section-lbl{padding:0 8px;}
-  .diagram-wrap svg{min-width:460px;}
+  .callout-legend{grid-template-columns:1fr;gap:5px 0;padding:10px 14px 14px;}
   .photo-area{height:165px;}
 }
 </style>
@@ -971,23 +976,32 @@ loadAircraftPhotos();
 function buildCalloutSVG(id){
   const a=AIRCRAFT[id];
   const cfg=DIAGRAM_CFG[id];
-  const {fs,fsub,r,sw}=cfg;
+  const {r,sw}=cfg;
+  // Scale dots so they're visible at any screen width without overflowing the viewBox
+  const dotR=r*7;
+  const numFS=r*5;
 
-  const overlays=a.callouts.map((c)=>{
-    const anchor=c.anchor||'middle';
-    const dx=anchor==='start'?8:anchor==='end'?-8:0;
-    return `
-      <line x1="${c.cx}" y1="${c.cy}" x2="${c.lx}" y2="${c.ly+4}" stroke="#cc1a1a" stroke-width="${sw}" opacity="0.85"/>
-      <circle cx="${c.cx}" cy="${c.cy}" r="${r}" fill="#cc1a1a" stroke="rgba(255,100,100,0.35)" stroke-width="${sw*1.1}"/>
-      <text x="${c.lx+dx}" y="${c.ly}" text-anchor="${anchor}" fill="#1a2840" font-size="${fs}" font-weight="700" font-family="Inter,sans-serif" paint-order="stroke" stroke="#f0f2ec" stroke-width="${fs*0.28}" stroke-linejoin="round">${c.label}</text>
-      ${c.sub?`<text x="${c.lx+dx}" y="${c.ly+fsub+6}" text-anchor="${anchor}" fill="#3d5878" font-size="${fsub}" font-family="Inter,sans-serif" paint-order="stroke" stroke="#f0f2ec" stroke-width="${fsub*0.32}" stroke-linejoin="round">${c.sub}</text>`:''}
-    `;
-  }).join('');
+  const overlays=a.callouts.map((c,i)=>`
+    <circle cx="${c.cx}" cy="${c.cy}" r="${dotR}" fill="${DOT_COLORS[i]}" stroke="white" stroke-width="${sw*2.5}"/>
+    <text x="${c.cx}" y="${c.cy+numFS*0.38}" text-anchor="middle" fill="white" font-size="${numFS}" font-weight="800" font-family="Inter,sans-serif">${i+1}</text>
+  `).join('');
 
-  return `<svg viewBox="${cfg.vb}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;background:#f0f2ec;border-radius:4px;">
+  return `<svg viewBox="${cfg.vb}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#f0f2ec;">
     <image href="${cfg.url}" x="0" y="0" width="${cfg.iw}" height="${cfg.ih}" preserveAspectRatio="xMidYMid meet"/>
     ${overlays}
   </svg>`;
+}
+
+function buildLegend(id){
+  const a=AIRCRAFT[id];
+  return `<div class="callout-legend">${a.callouts.map((c,i)=>`
+    <div class="legend-row">
+      <span class="legend-num" style="background:${DOT_COLORS[i]}">${i+1}</span>
+      <div>
+        <div class="legend-label">${c.label}</div>
+        ${c.sub?`<div class="legend-sub">${c.sub}</div>`:''}
+      </div>
+    </div>`).join('')}</div>`;
 }
 
 function buildTable(id){
@@ -1028,6 +1042,7 @@ function openModal(id){
     <div class="modal-diagram">
       <div class="section-lbl">Orthographic Schematic — Component Origins</div>
       <div class="diagram-wrap">${buildCalloutSVG(id)}</div>
+      ${buildLegend(id)}
     </div>
     <div class="modal-parts">
       <div class="section-lbl">Numbered Component Breakdown</div>
